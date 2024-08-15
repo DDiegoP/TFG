@@ -14,3 +14,47 @@ export_presets.cfg
 .mono/
 data_*/
 mono_crash.*.json
+
+# Android Studio ignores 
+# Gradle files
+pruebas/libGDX/.gradle/
+build/
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Log/OS Files
+*.log
+
+.gradle/8.0/checksums/checksums.lock
+.gradle/8.0/dependencies-accessors/dependencies-accessors.lock
+.gradle/8.0/dependencies-accessors/gc.properties
+.gradle/8.0/executionHistory/executionHistory.lock
+.gradle/8.0/fileChanges/last-build.bin
+.gradle/8.0/fileHashes/fileHashes.bin
+.gradle/8.0/fileHashes/fileHashes.lock
+.gradle/8.0/gc.properties
+.gradle/buildOutputCleanup/buildOutputCleanup.lock
+.gradle/buildOutputCleanup/cache.properties
+.gradle/buildOutputCleanup/outputFiles.bin
+.gradle/vcs-1/gc.properties
+.idea/workspace.xml
+local.properties
+
+*.iml
+.gradle
+pruebas/libGDX/local.properties
+pruebas/libGDX/.idea/caches
+pruebas/libGDX/.idea/libraries
+pruebas/libGDX/.idea/modules.xml
+pruebas/libGDX/.idea/workspace.xml
+pruebas/libGDX/.idea/navEditor.xml
+pruebas/libGDX/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+
+.idea/vcs.xml
