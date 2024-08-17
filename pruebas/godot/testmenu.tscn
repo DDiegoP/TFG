@@ -16,8 +16,29 @@ offset_right = 394.0
 offset_bottom = 708.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 22
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Camera2D/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/bold_font_size = 0
+theme_override_font_sizes/italics_font_size = 0
+theme_override_font_sizes/bold_italics_font_size = 0
+theme_override_font_sizes/mono_font_size = 0
+text = "								   OSC SENDER !
+"
+fit_content = true
+
+[node name="LineEdit" type="LineEdit" parent="Camera2D/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 28
+placeholder_text = "IP ADRESS "
 alignment = 1
 
 [node name="Button" type="Button" parent="Camera2D/VBoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "SEND!"
