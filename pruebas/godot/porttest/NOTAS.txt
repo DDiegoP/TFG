@@ -1,0 +1,5 @@
+Ahora este script es un man in the middle 
+en la escena demo de godot mandamos un oscMessage al client
+que es el puerto 3000 y ahi es donde esta escuchando main.mjs 
+que recibe el mensaje y lo manda al puerto 3001 que es donde le hemos dicho
+al server dentro de godot que escuche.

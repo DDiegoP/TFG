@@ -1,4 +1,7 @@
-[gd_scene format=3 uid="uid://cwn4gbgiohtt1"]
+[gd_scene load_steps=3 format=3 uid="uid://cwn4gbgiohtt1"]
+
+[ext_resource type="Script" path="res://addons/godOSC/scripts/OSCServer.gd" id="1_yuaq0"]
+[ext_resource type="Script" path="res://addons/godOSC/scripts/OSCClient.gd" id="2_ypdgk"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -42,3 +45,11 @@ custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "SEND!"
+
+[node name="OSCManager" type="Node" parent="."]
+
+[node name="OSCServer" type="Node" parent="OSCManager"]
+script = ExtResource("1_yuaq0")
+
+[node name="OSCClient" type="Node" parent="OSCManager"]
+script = ExtResource("2_ypdgk")
