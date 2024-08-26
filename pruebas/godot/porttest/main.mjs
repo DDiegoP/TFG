@@ -26,7 +26,9 @@ server.on('message', (msg, rinfo) => {
   //En godot el osc Client es este puerto aqui pillamos el mensaje y 
   //lo mandammos al puerto 3001 que es el server en godot para 
   //que el cubo se mueva 
-  server.send( msg ,0, msg.length, 3001, rinfo.address, (err) => {
+  //Reaper contesta desde destination port , no le devolvemos el mensaje en ese caso.
+  if(rinfo.port!=destinationport )
+  {server.send( msg ,0, msg.length, destinationport, rinfo.address, (err) => {
     if (err) {
       console.error('Error sending message:', err);
     } else {
@@ -34,6 +36,7 @@ server.on('message', (msg, rinfo) => {
     }
    
   });
+}
 });
 
 // Event when the server is ready and listening
@@ -49,6 +52,7 @@ server.on('error', (err) => {
 });
 
 const port = 3000;
+const destinationport = 3002;
 server.bind(port);
 function scream()
 {
