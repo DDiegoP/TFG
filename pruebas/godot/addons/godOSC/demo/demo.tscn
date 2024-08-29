@@ -53,7 +53,7 @@ value = 300.0
 [node name="OSCMessage" type="Node" parent="Cube 1 Slider" node_paths=PackedStringArray("target_client")]
 script = ExtResource("2_6fq7l")
 target_client = NodePath("../../OSCClient")
-osc_address = "/cube1"
+osc_address = "t/play"
 
 [node name="Cube 2 Slider" type="HSlider" parent="."]
 offset_left = 796.0
@@ -67,6 +67,7 @@ value = 1.0
 [node name="OSCMessage" type="Node" parent="Cube 2 Slider" node_paths=PackedStringArray("target_client")]
 script = ExtResource("6_deeug")
 target_client = NodePath("../../OSCClient")
-osc_address = "/cube2"
+osc_address = "t/stop"
 
 [connection signal="drag_ended" from="Cube 1 Slider" to="Cube 1 Slider/OSCMessage" method="_on_cube_1_slider_drag_ended"]
+[connection signal="drag_ended" from="Cube 2 Slider" to="Cube 2 Slider/OSCMessage" method="_on_cube_2_slider_drag_ended"]

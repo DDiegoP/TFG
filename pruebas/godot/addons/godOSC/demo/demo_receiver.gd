@@ -10,7 +10,7 @@ func _ready():
 func _process(delta):
 	#print(target_server.incoming_messages.has(osc_address))
 	if target_server.incoming_messages.has(osc_address):
-		parent.position.x = target_server.incoming_messages[osc_address][0]
+	#	parent.position.x = target_server.incoming_messages[osc_address][0]
 		print(target_server.incoming_messages[osc_address][0])
 	
 	pass

@@ -15,6 +15,8 @@ func _process(delta):
 
 
 func _on_cube_1_slider_drag_ended(value_changed):
-	print("value changed to " + str($"..".value))
-	target_client.send_message(osc_address, [$"..".value])
+	#para que se mueva el cubo es esto
+	#print("value changed to " + str($"..".value))
+	#target_client.send_message(osc_address, [$"..".value])
+	target_client.send_message(osc_address, [])
 	pass # Replace with function body.
