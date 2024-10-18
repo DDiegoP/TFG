@@ -11,6 +11,7 @@
 
 [node name="OSCClient" type="Node" parent="."]
 script = ExtResource("1_8dhcu")
+ip_address = "tu ip"
 port = 3000
 
 [node name="OSCServer" type="Node" parent="."]

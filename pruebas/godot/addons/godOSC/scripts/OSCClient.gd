@@ -17,6 +17,7 @@ func _ready():
 func connect_socket(new_ip = "127.0.0.1", new_port = 4646):
 	close_socket()
 	client.set_dest_address(new_ip, new_port)
+	print("created socket" + str(new_ip) + "at port " + str (new_port))
 
 func close_socket():
 	if client.is_socket_connected():
