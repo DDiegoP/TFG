@@ -32,5 +32,13 @@ Si no encuentras los sdk en la configuracion de Android Studio están las rutas 
 
 Ahora podemos en Godot ir a  Project>Export y generar nuestro apk :)
 
-
+Preparación Debug:
+- Godot -> Proyecto -> Exportar-> Opciones de la plantilla
+- En el apartado de opciones de keystore rellenar los siguientes campos:
+    - Depurar: Poner la ruta de debug.keystore de android, normalmente en C:/Usuarios/TuUsuario/.android/
+    - Usuario de depuración: Por defecto androiddebugkey
+    - Contraseña de depuración: Por defecto android
+- Enchufar el dispositivo móvil en el que lanzar la app
+- En el editor de godot ejecutar con la opción depuración remota, el 4º símbolo empezando por la izquierda
+- Esperar a que se lance la aplicación
 
