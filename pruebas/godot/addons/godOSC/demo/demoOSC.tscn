@@ -1,21 +1,20 @@
-[gd_scene load_steps=7 format=3 uid="uid://nqupygtbema1"]
+[gd_scene load_steps=7 format=3 uid="uid://d3wg0yaqwl5qt"]
 
-[ext_resource type="Script" path="res://addons/godOSC/scripts/OSCClient.gd" id="1_8dhcu"]
-[ext_resource type="Script" path="res://addons/godOSC/demo/demo_message.gd" id="2_6fq7l"]
-[ext_resource type="Script" path="res://addons/godOSC/scripts/OSCServer.gd" id="2_ey2x6"]
-[ext_resource type="Script" path="res://addons/godOSC/demo/demo_receiver.gd" id="4_47v2p"]
-[ext_resource type="Script" path="res://addons/godOSC/demo/demo_receiver2.gd" id="5_qly6e"]
-[ext_resource type="Script" path="res://addons/godOSC/demo/demo_message2.gd" id="6_deeug"]
+[ext_resource type="Script" path="res://addons/godOSC/scripts/OSCClient.gd" id="1_gwoeu"]
+[ext_resource type="Script" path="res://addons/godOSC/scripts/OSCServer.gd" id="2_5mxk6"]
+[ext_resource type="Script" path="res://addons/godOSC/demo/demo_receiver.gd" id="3_6wxh7"]
+[ext_resource type="Script" path="res://addons/godOSC/demo/demo_receiver2.gd" id="4_sttfi"]
+[ext_resource type="Script" path="res://addons/godOSC/demo/demo_messagePLAY.gd" id="5_cyf88"]
+[ext_resource type="Script" path="res://addons/godOSC/demo/demo_messageSTOP.gd" id="6_o8je7"]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="OSCClient" type="Node" parent="."]
-script = ExtResource("1_8dhcu")
-ip_address = "192.168.1.56"
+script = ExtResource("1_gwoeu")
 port = 3000
 
 [node name="OSCServer" type="Node" parent="."]
-script = ExtResource("2_ey2x6")
+script = ExtResource("2_5mxk6")
 port = 3001
 
 [node name="Cube 1" type="ColorRect" parent="."]
@@ -26,7 +25,7 @@ offset_bottom = 156.0
 scale = Vector2(1.205, 1.205)
 
 [node name="OSCReceiver" type="Node" parent="Cube 1" node_paths=PackedStringArray("target_server")]
-script = ExtResource("4_47v2p")
+script = ExtResource("3_6wxh7")
 target_server = NodePath("../../OSCServer")
 osc_address = "/cube1"
 
@@ -38,7 +37,7 @@ offset_bottom = 184.0
 scale = Vector2(1.075, 1.075)
 
 [node name="OSCReceiver" type="Node" parent="Cube 2" node_paths=PackedStringArray("target_server")]
-script = ExtResource("5_qly6e")
+script = ExtResource("4_sttfi")
 target_server = NodePath("../../OSCServer")
 osc_address = "/cube2"
 
@@ -52,23 +51,40 @@ max_value = 600.0
 value = 300.0
 
 [node name="OSCMessage" type="Node" parent="Cube 1 Slider" node_paths=PackedStringArray("target_client")]
-script = ExtResource("2_6fq7l")
+script = ExtResource("5_cyf88")
 target_client = NodePath("../../OSCClient")
 osc_address = "t/play"
+osc_argument = "als"
 
 [node name="Cube 2 Slider" type="HSlider" parent="."]
-offset_left = 796.0
-offset_top = 381.0
-offset_right = 1113.0
-offset_bottom = 397.0
+offset_left = 167.0
+offset_top = 308.0
+offset_right = 678.0
+offset_bottom = 324.0
 max_value = 2.0
 step = 0.01
 value = 1.0
 
 [node name="OSCMessage" type="Node" parent="Cube 2 Slider" node_paths=PackedStringArray("target_client")]
-script = ExtResource("6_deeug")
+script = ExtResource("6_o8je7")
 target_client = NodePath("../../OSCClient")
 osc_address = "t/stop"
+osc_argument = "stoptext"
+
+[node name="TextEdit" type="TextEdit" parent="."]
+offset_left = 89.0
+offset_top = 387.0
+offset_right = 147.0
+offset_bottom = 418.0
+text = "PLAY"
+
+[node name="TextEdit2" type="TextEdit" parent="."]
+offset_left = 95.0
+offset_top = 302.0
+offset_right = 153.0
+offset_bottom = 333.0
+text = "STOP
+"
 
 [connection signal="drag_ended" from="Cube 1 Slider" to="Cube 1 Slider/OSCMessage" method="_on_cube_1_slider_drag_ended"]
 [connection signal="drag_ended" from="Cube 2 Slider" to="Cube 2 Slider/OSCMessage" method="_on_cube_2_slider_drag_ended"]

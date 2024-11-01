@@ -75,4 +75,5 @@ func prepare_message(osc_address : String, args : Array):
 
 func send_message(osc_address : String, args : Array):
 	var packet = prepare_message(osc_address, args)
+	print("sending message " + str(args))
 	client.put_packet(packet)
