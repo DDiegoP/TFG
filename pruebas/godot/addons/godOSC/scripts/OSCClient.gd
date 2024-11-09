@@ -4,20 +4,21 @@ extends Node
 ## Client for sending Open Sound Control messages over UDP. Use one OSCClient per server you want to send to.
 
 ## The IP Address of the server to send to.
-@export var ip_address = "127.0.0.1"
+var ip_address
 ## The port to send to.
-@export var port = 4646
+@export var port = 3003
 var client = PacketPeerUDP.new()
 
 
 func _ready():
-	connect_socket(ip_address, port)
+	connect_socket(port)
 
 ## Connect to an OSC server. Can only send to one OSC server at a time.
-func connect_socket(new_ip = "127.0.0.1", new_port = 4646):
+func connect_socket(new_port = 3003):
 	close_socket()
-	client.set_dest_address(new_ip, new_port)
-	print("created socket" + str(new_ip) + "at port " + str (new_port))
+	client.set_broadcast_enabled(true)
+	client.set_dest_address("255.255.255.255", new_port)
+	ip_address = client.get_packet_ip()
 
 func close_socket():
 	if client.is_socket_connected():

@@ -11,12 +11,10 @@
 
 [node name="OSCClient" type="Node" parent="."]
 script = ExtResource("1_8dhcu")
-ip_address = "192.168.1.56"
-port = 3000
 
 [node name="OSCServer" type="Node" parent="."]
 script = ExtResource("2_ey2x6")
-port = 3001
+port = 3003
 
 [node name="Cube 1" type="ColorRect" parent="."]
 offset_left = 154.0
