@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://d3wg0yaqwl5qt"]
+[gd_scene load_steps=13 format=3 uid="uid://d3wg0yaqwl5qt"]
 
 [ext_resource type="Script" path="res://addons/godOSC/scripts/OSCClient.gd" id="1_gwoeu"]
 [ext_resource type="Script" path="res://addons/godOSC/scripts/OSCServer.gd" id="2_5mxk6"]
@@ -6,6 +6,19 @@
 [ext_resource type="Script" path="res://addons/godOSC/demo/demo_receiver2.gd" id="4_sttfi"]
 [ext_resource type="Script" path="res://addons/godOSC/demo/demo_messagePLAY.gd" id="5_cyf88"]
 [ext_resource type="Script" path="res://addons/godOSC/demo/demo_messageSTOP.gd" id="6_o8je7"]
+[ext_resource type="Script" path="res://addons/godOSC/demo/PianoButton.gd" id="7_j3r6q"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_q867h"]
+
+[sub_resource type="Theme" id="Theme_ehevk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dwkxb"]
+bg_color = Color(0.87451, 0.878431, 0.882353, 1)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ev6sg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8bl3e"]
+bg_color = Color(0.117647, 0.117647, 0.117647, 1)
 
 [node name="Node2D" type="Node2D"]
 
@@ -86,5 +99,194 @@ offset_bottom = 333.0
 text = "STOP
 "
 
+[node name="Button" type="Button" parent="." node_paths=PackedStringArray("target_client")]
+material = SubResource("CanvasItemMaterial_q867h")
+offset_left = 282.0
+offset_top = 93.0
+offset_right = 336.0
+offset_bottom = 270.0
+theme = SubResource("Theme_ehevk")
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_dwkxb")
+icon = SubResource("CanvasTexture_ev6sg")
+script = ExtResource("7_j3r6q")
+target_client = NodePath("../OSCClient")
+osc_address = "/midiP"
+osc_argument = "60.0"
+
+[node name="Button" type="Button" parent="Button" node_paths=PackedStringArray("target_client")]
+material = SubResource("CanvasItemMaterial_q867h")
+offset_left = 62.0
+offset_top = 2.0
+offset_right = 116.0
+offset_bottom = 175.0
+theme = SubResource("Theme_ehevk")
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_dwkxb")
+icon = SubResource("CanvasTexture_ev6sg")
+script = ExtResource("7_j3r6q")
+target_client = NodePath("../../OSCClient")
+osc_address = "/midiP"
+osc_argument = "62.0"
+
+[node name="Button" type="Button" parent="Button/Button" node_paths=PackedStringArray("target_client")]
+material = SubResource("CanvasItemMaterial_q867h")
+offset_left = 65.0
+offset_right = 119.0
+offset_bottom = 173.0
+theme = SubResource("Theme_ehevk")
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_dwkxb")
+icon = SubResource("CanvasTexture_ev6sg")
+script = ExtResource("7_j3r6q")
+target_client = NodePath("../../../OSCClient")
+osc_address = "/midiP"
+osc_argument = "64.0"
+
+[node name="Button" type="Button" parent="Button/Button/Button" node_paths=PackedStringArray("target_client")]
+material = SubResource("CanvasItemMaterial_q867h")
+offset_left = 126.0
+offset_top = 1.0
+offset_right = 180.0
+offset_bottom = 173.0
+theme = SubResource("Theme_ehevk")
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_dwkxb")
+icon = SubResource("CanvasTexture_ev6sg")
+script = ExtResource("7_j3r6q")
+target_client = NodePath("../../../../OSCClient")
+osc_address = "/midiP"
+osc_argument = "67.0"
+
+[node name="Button" type="Button" parent="Button/Button/Button/Button" node_paths=PackedStringArray("target_client")]
+material = SubResource("CanvasItemMaterial_q867h")
+offset_left = 65.0
+offset_right = 119.0
+offset_bottom = 172.0
+theme = SubResource("Theme_ehevk")
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_dwkxb")
+icon = SubResource("CanvasTexture_ev6sg")
+script = ExtResource("7_j3r6q")
+target_client = NodePath("../../../../../OSCClient")
+osc_address = "/midiP"
+osc_argument = "69.0"
+
+[node name="Button" type="Button" parent="Button/Button/Button/Button/Button" node_paths=PackedStringArray("target_client")]
+material = SubResource("CanvasItemMaterial_q867h")
+offset_left = 65.0
+offset_right = 119.0
+offset_bottom = 172.0
+theme = SubResource("Theme_ehevk")
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_dwkxb")
+icon = SubResource("CanvasTexture_ev6sg")
+script = ExtResource("7_j3r6q")
+target_client = NodePath("../../../../../../OSCClient")
+osc_address = "/midiP"
+osc_argument = "71.0"
+
+[node name="Button2" type="Button" parent="Button/Button/Button" node_paths=PackedStringArray("target_client")]
+material = SubResource("CanvasItemMaterial_q867h")
+offset_left = 62.0
+offset_top = 1.0
+offset_right = 116.0
+offset_bottom = 174.0
+theme = SubResource("Theme_ehevk")
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_dwkxb")
+icon = SubResource("CanvasTexture_ev6sg")
+script = ExtResource("7_j3r6q")
+target_client = NodePath("../../../../OSCClient")
+osc_address = "/midiP"
+osc_argument = "65.0"
+
+[node name="Button2" type="Button" parent="." node_paths=PackedStringArray("target_client")]
+material = SubResource("CanvasItemMaterial_q867h")
+offset_left = 382.0
+offset_top = 66.0
+offset_right = 420.0
+offset_bottom = 188.0
+theme = SubResource("Theme_ehevk")
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_8bl3e")
+icon = SubResource("CanvasTexture_ev6sg")
+script = ExtResource("7_j3r6q")
+target_client = NodePath("../OSCClient")
+osc_address = "/midiP"
+osc_argument = "63.0"
+
+[node name="Button2" type="Button" parent="Button2" node_paths=PackedStringArray("target_client")]
+material = SubResource("CanvasItemMaterial_q867h")
+offset_left = 137.0
+offset_top = 1.0
+offset_right = 175.0
+offset_bottom = 123.0
+theme = SubResource("Theme_ehevk")
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_8bl3e")
+icon = SubResource("CanvasTexture_ev6sg")
+script = ExtResource("7_j3r6q")
+target_client = NodePath("../../OSCClient")
+osc_address = "/midiP"
+osc_argument = "66.0"
+
+[node name="Button2" type="Button" parent="Button2/Button2" node_paths=PackedStringArray("target_client")]
+material = SubResource("CanvasItemMaterial_q867h")
+offset_left = 62.0
+offset_top = 2.0
+offset_right = 100.0
+offset_bottom = 124.0
+theme = SubResource("Theme_ehevk")
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_8bl3e")
+icon = SubResource("CanvasTexture_ev6sg")
+script = ExtResource("7_j3r6q")
+target_client = NodePath("../../../OSCClient")
+osc_address = "/midiP"
+osc_argument = "68.0"
+
+[node name="Button3" type="Button" parent="." node_paths=PackedStringArray("target_client")]
+material = SubResource("CanvasItemMaterial_q867h")
+offset_left = 321.0
+offset_top = 68.0
+offset_right = 359.0
+offset_bottom = 190.0
+theme = SubResource("Theme_ehevk")
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_8bl3e")
+icon = SubResource("CanvasTexture_ev6sg")
+script = ExtResource("7_j3r6q")
+target_client = NodePath("../OSCClient")
+osc_address = "/midiP"
+osc_argument = "61.0"
+
+[node name="Button4" type="Button" parent="." node_paths=PackedStringArray("target_client")]
+material = SubResource("CanvasItemMaterial_q867h")
+offset_left = 640.0
+offset_top = 67.0
+offset_right = 678.0
+offset_bottom = 189.0
+theme = SubResource("Theme_ehevk")
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_8bl3e")
+icon = SubResource("CanvasTexture_ev6sg")
+script = ExtResource("7_j3r6q")
+target_client = NodePath("../OSCClient")
+osc_address = "/midiP"
+osc_argument = "70.0"
+
 [connection signal="drag_ended" from="Cube 1 Slider" to="Cube 1 Slider/OSCMessage" method="_on_cube_1_slider_drag_ended"]
 [connection signal="drag_ended" from="Cube 2 Slider" to="Cube 2 Slider/OSCMessage" method="_on_cube_2_slider_drag_ended"]
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
+[connection signal="pressed" from="Button/Button" to="Button/Button" method="_on_pressed"]
+[connection signal="pressed" from="Button/Button/Button" to="Button/Button/Button" method="_on_pressed"]
+[connection signal="pressed" from="Button/Button/Button/Button" to="Button/Button/Button/Button" method="_on_pressed"]
+[connection signal="pressed" from="Button/Button/Button/Button/Button" to="Button/Button/Button/Button/Button" method="_on_pressed"]
+[connection signal="pressed" from="Button/Button/Button/Button/Button/Button" to="Button/Button/Button/Button/Button/Button" method="_on_pressed"]
+[connection signal="pressed" from="Button/Button/Button/Button2" to="Button/Button/Button/Button2" method="_on_pressed"]
+[connection signal="pressed" from="Button2" to="Button2" method="_on_pressed"]
+[connection signal="pressed" from="Button2/Button2" to="Button2/Button2" method="_on_pressed"]
+[connection signal="pressed" from="Button2/Button2/Button2" to="Button2/Button2/Button2" method="_on_pressed"]
+[connection signal="pressed" from="Button3" to="Button3" method="_on_pressed"]
+[connection signal="pressed" from="Button4" to="Button4" method="_on_pressed"]
