@@ -7,3 +7,14 @@ al server dentro de godot que escuche.
 comandos :
 para ejecutar el script main.mjs 
 node main.mjs
+
+
+
+PARA EL DNS
+no vamos a pagar asi que nos montamos uno para nuestraa red local
+Es importante que el ordenador que lo hostea pueda resolver el dominio.
+Es necesario modificar el archivo hosts.
+https://stackoverflow.com/questions/66833764/dns-server-configuration-for-node-js
+
+esto funciona para la propia maquina no se como se extenderia a una red local
+
