@@ -1,0 +1,58 @@
+BlueARP License
+
+
+Short "human-readable" Summary
+
+You can:
+ - use it free of charge;
+ - use it in your performances and music production, either commercial or non-commercial; 
+ - distribute it free of charge, accompanying it with this license; 
+
+You cannot (unless you have written consent from the Oleg Mikheev, author of this software):
+ - sell it;
+ - modify it or remove any part of it; 
+ - hold the author or publisher responsible for any damages; 
+
+The author cannot guarantee 
+ - bug fixes and other support; 
+
+
+1. License Agreement
+
+As used in this Agreement, "Author" or "Author of the Product" shall mean Oleg Mikheev. "Product" or "Software Product " shall mean BlueARP version 1.x.
+BY USING THIS PRODUCT, YOU ARE CONSENTING TO BE BOUND BY AND BECOME A PARTY TO THIS AGREEMENT AS THE "LICENSEE." IF YOU DO NOT AGREE TO ALL OF THE TERMS OF THIS AGREEMENT, YOU MUST NOT INSTALL OR USE THIS PRODUCT, AND YOU DO NOT BECOME A LICENSEE UNDER THIS AGREEMENT.
+
+Author grants Licensee a non-exclusive and non-transferable license to reproduce and use for personal or internal business purposes, on a single computer and by a single person at a time, the executable code version of the Product, provided any copy must contain all of the original proprietary notices. This license does not entitle Licensee to receive from Author of the Product hard-copy documentation, technical support, telephone assistance, or enhancements or updates to the Product, although Author may decide to provide these anyway. Author may terminate this Agreement at any time, for any reason or no reason. Author may also terminate this Agreement if Licensee breaches any of its terms and conditions. Upon termination, Licensee shall destroy all copies of the Product and of the personalised license files that were received by Licensee after purchase.
+
+
+2. Permitted License Uses and Restrictions
+
+You may distribute this Software Product provided the following conditions are met:
+ - This license agreement must accompany the Software Product;
+ - You do not charge any money for the Software Product or its distribution without express written permission from Oleg Mikheev;
+ - You do not rent, lease, lend, sell, redistribute or give away any serial codes, license files or information;
+
+You may not copy, decompile, attempt to discover the source code or resources, reverse engineer, disassemble, modify, or create derivative works of the Software Product in whole or part, including translation to another language, computer language or format. You may not attempt to unlock or bypass any copyprotection or authentication algorithm utilized by this Product.
+
+
+3. Disclaimer of Warranty.
+
+THE PRODUCT IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION THE WARRANTIES THAT IT IS FREE OF DEFECTS, VIRUS FREE, ABLE TO OPERATE ON AN UNINTERRUPTED BASIS, MERCHANTABLE, FIT FOR A PARTICULAR PURPOSE OR NON-INFRINGING. THIS DISCLAIMER OF WARRANTY CONSTITUTES AN ESSENTIAL PART OF THIS AGREEMENT. NO USE OF THE PRODUCT IS AUTHORIZED HEREUNDER EXCEPT UNDER THIS DISCLAIMER.
+
+
+4. Limitation of Liability.
+
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT WILL AUTHOR OF THIS SOFTWARE PRODUCT OR HIS AFFILIATES OR SUPPLIERS BE LIABLE FOR ANY INDIRECT, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OF OR INABILITY TO USE THE PRODUCT, INCLUDING, WITHOUT LIMITATION, DAMAGES FOR LOST PROFITS, LOSS OF GOODWILL, WORK STOPPAGE, COMPUTER FAILURE OR MALFUNCTION, OR ANY AND ALL OTHER COMMERCIAL DAMAGES OR LOSSES, EVEN IF ADVISED OF THE POSSIBILITY THEREOF, AND REGARDLESS OF THE LEGAL OR EQUITABLE THEORY (CONTRACT, TORT OR OTHERWISE) UPON WHICH THE CLAIM IS BASED. IN ANY CASE, AUTHOR'S COLLECTIVE LIABILITY UNDER ANY PROVISION OF THIS AGREEMENT SHALL NOT EXCEED IN THE AGGREGATE THE SUM OF THE FEES LICENSEE PAID FOR THIS LICENSE (IF ANY). SOME JURISDICTIONS DO NOT ALLOW THE EXCLUSION OR LIMITATION OF INCIDENTAL, CONSEQUENTIAL OR SPECIAL DAMAGES, SO THIS EXCLUSION AND LIMITATION MAY NOT APPLY TO YOU.
+
+
+5. Copyright
+
+All copyrights in BlueARP are owned by Oleg Mikheev.
+ 
+VST is a trademark of Steinberg Media AG. 
+
+All other trademarks are the property of their respective owners.
+
+©2012-2024 Oleg Mikheev (aka Graywolf). All rights reserved.
+
+www.omg-instruments.com
