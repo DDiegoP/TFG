@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://bnjj7clpcs40m"]
+
+[ext_resource type="Script" path="res://addons/godOSC/scripts/OSCClient.gd" id="1_ku14u"]
+[ext_resource type="Script" path="res://addons/godOSC/scripts/OSCServer.gd" id="2_h1qj2"]
+[ext_resource type="Script" path="res://addons/godOSC/demo/ConnectButton.gd" id="3_nn0ao"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0d374"]
+bg_color = Color(0.8, 0.815686, 0.788235, 1)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="ConnectButton" type="Button" parent="." node_paths=PackedStringArray("target_client")]
+offset_left = 344.0
+offset_top = 282.0
+offset_right = 549.0
+offset_bottom = 332.0
+text = "CONECTAR "
+script = ExtResource("3_nn0ao")
+target_client = NodePath("../OSCClient")
+osc_address = "/connect"
+
+[node name="LineEdit" type="LineEdit" parent="."]
+offset_left = 343.0
+offset_top = 200.0
+offset_right = 550.0
+offset_bottom = 242.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_0d374")
+alignment = 1
+
+[node name="Label" type="Label" parent="."]
+offset_left = 291.0
+offset_top = 150.0
+offset_right = 604.0
+offset_bottom = 173.0
+text = "INTRODUCE TU CODIGO DE ANFITRION : "
+
+[node name="OSCClient" type="Node" parent="."]
+script = ExtResource("1_ku14u")
+port = 3000
+
+[node name="OSCServer" type="Node" parent="."]
+script = ExtResource("2_h1qj2")
+port = 3003
+
+[connection signal="pressed" from="ConnectButton" to="ConnectButton" method="_on_pressed"]

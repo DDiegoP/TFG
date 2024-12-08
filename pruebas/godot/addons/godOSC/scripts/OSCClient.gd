@@ -4,22 +4,53 @@ extends Node
 ## Client for sending Open Sound Control messages over UDP. Use one OSCClient per server you want to send to.
 
 ## The IP Address of the server to send to.
-var ip_address
+@export var  myip_address = "tu ip"
+@export	var  other_ipaddress = "su ip" 
 ## The port to send to.
 @export var port = 3003
 var client = PacketPeerUDP.new()
 
 
+
 func _ready():
+	#get_deviceIPs()
 	connect_socket(port)
 
 ## Connect to an OSC server. Can only send to one OSC server at a time.
-func connect_socket(new_port = 3003):
-	close_socket()
-	client.set_broadcast_enabled(true)
-	client.set_dest_address("255.255.255.255", new_port)
-	ip_address = client.get_packet_ip()
+#func connect_socket ():
+	##for address in IP.get_local_addresses():
+	##IMPORTANTE ESTO ES PARA WINDOWS , COMPUTERNAME ES UNA VARIABLE DE WINDOWS 
+	##PARA ANDROID HAY QUE CAMBIARLO	
+	#SOPORTE PARA DNS
+	#myip_address=IP.resolve_hostname(str(OS.get_environment("COMPUTERNAME")),1)	
+	#print(myip_address)	
+	#client.set_dest_address(IP.resolve_hostname("tfg.net"), new_port)
+	#print("created socket" + str(IP.resolve_hostname("tfg.net")) + "at port " + str (new_port))
+	#client.set_broadcast_enabled(true)
+	#client.set_dest_address("255.255.255.255", new_port)
+		
+		
+func connect_socket(new_port = 3005):
+	
+	client.set_dest_address(other_ipaddress, new_port)
+	##ip_address = client.get_packet_ip()
+	##print("client ip " + ip_address)
 
+func connect_socket_to_host(new_address = "127.0.0.1", new_port = 3005):
+	
+	client.set_dest_address(new_address, new_port)
+	#le decimos al host nuestra direccion 
+	var myaddress
+	for address in IP.get_local_addresses():
+		myaddress=IP.resolve_hostname(str(OS.get_environment("COMPUTERNAME")),1)
+	##IMPORTANTE ESTO ES PARA WINDOWS , COMPUTERNAME ES UNA VARIABLE DE WINDOWS 
+	##PARA ANDROID HAY QUE CAMBIARLO	
+	var packet = prepare_message("t/connect",[myaddress])
+	print("sending message " + myaddress)
+	client.put_packet(packet)
+	##ip_address = client.get_packet_ip()
+	##print("client ip " + ip_address)
+	
 func close_socket():
 	if client.is_socket_connected():
 		client.close()
@@ -77,4 +108,9 @@ func prepare_message(osc_address : String, args : Array):
 func send_message(osc_address : String, args : Array):
 	var packet = prepare_message(osc_address, args)
 	print("sending message " + str(args))
+	client.put_packet(packet)
+func send_broadcast_message(osc_address : String, args : Array):
+	client.set_broadcast_enabled(true)
+	var packet = prepare_message(osc_address, args)
+	print("sending message " +osc_address)
 	client.put_packet(packet)

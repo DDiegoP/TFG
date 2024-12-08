@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="TFGTESTS"
-run/main_scene="res://addons/godOSC/demo/demoOSC.tscn"
+run/main_scene="res://LAESCENAPARACONECTARSE.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.svg"
+
+[autoload]
+
+AppManager="*res://AppManager.gd"
 
 [display]
 
