@@ -1,0 +1,958 @@
+--- BlueARP v2.6.0 / 18-Nov-2024 (patch format ver = 19) ---
+    QUICK BUGFIX RELEASE FOR v2.5.9, fixind backwards compatibility issues
+
+1.  BugFix: due to memory leak in some DAWs projects saved with the BlueARP versions up to v2.5.3 didn't load 
+    correctly (it started with the default bank)
+2.  BugFix: some possible project loading problems for VST3 version due to memory leak
+
+--- BlueARP v2.5.9 / 17-Nov-2024 (patch format ver = 19) ---
+
+1.  GATE TIME lane got new mode 'CHANCE'. Defines note trigger chance on a pre-step basis. For 'Nrm' steps, decreasing
+    the chance will attract the step to 'Off'; for 'Rst' - to 'Nrm', for 'Tie' - to 'Rst'; for other step types - to 'Off'.
+2.  Reworked chord recognition engine. Now BlueARP creates 'pressed keys footprint' from input keys, wrapped into 1 octave
+    and scans it against pre-defined table. This algorithm is much faster that the previous one and has a lot of potential
+    for flexibility (i.e. user-defined chord detection tables)
+3.  BugFix: chord detection algorithm re-scans input keys on each key press\release, but chord changes are quantized the same
+    way as the keys, for more consistent root note detection; also for 'chord, normalized' and 'chord, as played' 
+    key ordering options.
+4.  Added new ordering option 'chord norm, low root' - works as 'chord, normalized', but the detected root will always be
+    lower than all of the pressed keys
+5.  BugFix: selected page allowing to select non-relevant page numbers (like 16 steps, pages 1-3 should be disabled)
+6.  Removed 'min out vel' and 'amplitude' params for the drum mode (amplitude didn't work anyway, I overcomplicated things a bit),
+    logic for 'dynamics' and 'base value' changed a bit, check the manual. 
+7.  "probability" param for drum mode renamed into "chance" or "trigger chance"
+8.  "fixed key" param removed from drum mode, it doesn't work there anyway
+9.  "dynamics" param in drum mode renamed into "velo amp" (velocity amplify), to make it consistent with other modes.
+    The value now shows real amplification factor value (from 0.00 to 2.00, 1.00 is the default 'neutral' value)
+10. Change to 'restart on key' option, the sequence will restart when a key pressed after all keys were released, even
+    if the gap is shorter than the step time (if you don't want that, use 'restart on 1st key')
+11. Added the ability to play 'fixed key' steps without the note input (version 2.3.9 worked this way, then it was removed).
+    To make it work like v2.3.9 in this respect, go to BlueARP.ini (MENU -> Debug -> Open BlueARP.ini location), 
+    there you should have the line "fixed_key_always_play=0", change the value to 1 and restart your DAW afterwards.
+
+--- BlueARP v2.5.4 / 07-Sep-2024 (patch format ver = 19) ---
+
+1.  BugFix: In steps=1 (quantized thru mode) it was retriggering the note, the bug was introduced in the recent versions
+2.  BugFix: When switching programs while holding input keys, they should be re-triggered 
+3.  BugFix: When switching between auto/off and auto/thru states, latched keys weren't correctly re-triggered
+4.  For 'descending' order algorithms, I removed the k1..k5 visual flip in the matrix editor, it was too counter-intuitive.
+    But the value flipping when the algorithm changes is still there, so the pattern will stay the same when
+    you switch from 'ascending' to 'descending' and vice versa
+5.  GUI minor fix: more accurate value change when mouse-dragging horizontally across the matrix editor
+6.  BugFix: 'current chain' went above the 'number of chains' value
+7.  BugFix: 'notes off' button didn't cut the input notes when latch is on
+8.  Removed 'output note velocity' param from the Drum mode (ARP block), it doesn't work in drum mode anyway
+9.  Added 'notes off' button in drum mode
+10. BugFix: some 'stuck notes' in special mode with steps=0 (simple thru)
+11. BugFix: for rootles chords with sort algo = "chord, normalized" root wasn't included into post-filter key list
+12. BugFix: KEY SELECT k1..k5 values didn't flip when switching from 'desc' algo to 'chord normalized' or 'chord as played'
+13. BugFix: When KEY SELECT = Root and in 'fake playback' (DAW playback stopped), sometimes the arp generated 
+    the lowest notes (midi note 0) after all input keys just released
+14. BugFix: Input quantize didn't work for chords as designed, now it will show something like 'Am > Am7', meaning
+    that the current chord is Am, but currently detected is Am7, will switch to Am7 on next quantization step
+
+--- BlueARP v2.5.3 / 21-Apr-2024 (patch format ver = 19) ---
+
+1.  BugFix: chain variations don't switch reliably for input condition 'input keys' or 'input notes'
+2.  When 'page lock' is on, changing pattern page doesn't reset the lock as it was (this way it is easier
+    to edit long pattern page-by-page while keeping 'page lock' on)
+3.  Pattern page buttons replaced with typical 'dragBox' control, with the added right-click menu to copy/paste
+    pattern pages (the menu duplicates the one available via MENU button)
+4.  'arp state' and 'operation mode' swapped on the GUI to make it consistent with the hardware GUI
+5.  'arp. latch' checkbox replaced with dragbox, new value 'latch+sustain' - latches input chord and sustains 
+    generated notes, works great for guitar picking patterns
+6.  BugFix: aftertouch condition for chain variations didn't work reliably
+7.  BugFix: crashes or freezes with order algorithm = 'chord, normalized'
+
+--- BlueARP v2.5.2 / 04-Mar-2024 (patch format ver = 19) ---
+
+1.  BugFix: Apple M1 version in Logic had some memory (BAD_ACCESS) errors which were tolerated
+    on some systems, now should work fine, tested in Logic 10.7.7 and MainStage 3.6.6
+2.  Note naming changed to sharps for all black notes (i.e. 'D#' instead of 'Eb')
+3.  Added 'P' mark to drum lane notes, cause it is stored per-program
+4.  Added 'Clone till the last' option to program right-click menu ('01 / 128' label on top right),
+    so you can bulk-copy current program to all the remaining slots
+5.  Chain variations logic - now it will check all chain variations and if 2 or more fulfill the condition,
+    the last one will actually trigger. This way it is possible to create rules with exceptions, like
+    root key E is var1, except Esus2 chord which is var2
+6.  Added new options to chain variation conditions - 'lowest velocity', 'highest velocity' and 'aftertouch'
+7.  Adjusted GUI scale logic. For sub-4K screens (width < 3840px) added 250% and 300% scaling options,
+    for 4K screens (width >= 3840px) scaling factor is automatically doubled (no changes here), 
+    so 200% is actually 400%
+8.  Updated operation manuals (to v250) in English and Russian
+
+--- BlueARP v2.5.1 / 18-Feb-2024 (patch format ver = 19) ---
+
+1.  For right-click value selection, currently selected value is marked with a check mark 
+2.  BugFix: BlueARP freezes when switching to dummy thru program with 0 steps
+3.  Added right-click value selection to all GUI controls, not only to dragBoxes
+4.  When switching operation mode (arpeggiator /drum sequencer) there is a confirmation
+    dialog saying that it will erase all the current programs 
+5.  BugFix: when chain has 1 step and it is playing, changing program for that step didn't
+    actually change it
+6.  When curChain is automated and it receives the same value, chain re-triggers
+    (shown as '1 -> 1', like swhitching to the same chain).
+    There's a safety interval of 1 beat to avoid glitches
+7.  In the right-click menu on 'current chain', there is an option to select chain from the list.
+    On playback, the chain selected this way will trigger immediately (without quantization)
+8.  Improved long chains editing. When you click on a chain sequence and the playback is stopped,
+    it will switch to that program. When 'page lock' is on and the arp is running, clicking on a
+    chain step will switch to that step and it will keep locked until you uncheck 'page lock'
+9.  Added 175% GUI scale option
+10. BugFix: BlueARP v2.5.0 VST not recognized in FL Studio on Mac (v2.3.8 didn't have this problem)
+11. Minor GUI improvements for OSX (fonts, margins) - now in HiRes it looks exactly the same as on Windows,
+    at the expense of slightly worse look in standard resolutions. This is because there's no ClearType
+    on Mac and I had to bolden the fonts to make GUI look better, but now most of the people have HiRes displays
+12. BugFix: BlueARP midiFX not saving state in Logic Pro X and MainStage
+13. Improved parameter Get/Set methods on Mac, fixed some warning in auval
+14. BugFix: in arpState=Thru and sustainMsg=arp.latch it passed only up to 5 notes, now up to 16
+
+--- BlueARP v2.5.0 / 03-Feb-2024 (patch format ver = 19) ---
+
+1.  Added DRUM MODE, where BlueARP acts as a drum sequencer with few extra options like 'trigger probability'
+    and 'dynamics' 
+2.  Removed coarse/fine velocity option, now it is is only five velocity, but there's
+    an option to quantize values if you want it like the old way
+3.  Removed sustain msg = 'sustain' option, it was confusing and musically useless
+4.  Added 'notes off' button, which clears output note buffer and sends 'All notes Off' MIDI message
+5.  Program can be changed my dragging program number label '01 / 128' with a mouse or wheel,
+    also it can be automated like ano other control
+6.  Right click on program number '01 / 128' gives the same menu options (like Copy, Paste, etc.),
+    but faster (no need to dive into MENU -> Program)
+7.  Right click on chain number gives the same menu options for chain (like Copy, Paste, etc.),
+    but faster (no need to dive into MENU -> Program)
+8.  Reworked right-click menu for all other params. Except 'Reset' and 'Press MIDI key', right-click
+    menu now contains value selection. For params like gate % will large number ov values, you have 
+    selectable options like 10%, 20%, 30% etc.
+9.  All param boxes now have left and right arrows (instead of drop-down for some), you can still select
+    value from the list via right click. So now instead of pressing the down arrow, you right-click and select
+    the value. For params with 30+ values like gate, a coarse selecion is available (like 10%, 20%, 30%, etc.).
+10.  Mouse wheel adjustment works equally for all values, scroll up to increase and down to decrease
+    (old logic - for params with menus - scroll down to decrease)    
+11. For automation and bank data structure, step lanes were rearranged in natural order as they apper in the GUI,
+    from bottom to top. So if you automated any of step-related params, you may need to re-automate them
+    (sorry, I had to do this to prevent further potential problems)
+12. 'Cut' option for Chain and Program replaced with 'Duplicate'. Duplicate creates copy of the current
+    Program or Chain, shifting the rest to the right.
+13. 'OMG: DrakBlue' skin is now default (hardcoded into BlueARP), old default skin moved to skins.ini and 
+    now called 'OMG: LegacyBlue'
+14. Right-Click for VST3 behaves like for VST2, it shows BlueARP's popup menu, but it is still possible
+    to call popup menu from Host by choosing option 'VST3 popup menu' (old logic - popup menu from host). 
+    This is more convenient imho for heavy usage, cause most of the time you will use popup menu to set values
+    and only rarely - to automate controls etc (which can be done via VST3 popup menu).
+    Note: not all host implement this so nothing may happen, but FL Studio implements it, for example
+15. Now BlueARP VST3 works as an insert effect in Samplitude Pro X8 (tested in v19.1.1), VST2 didn't have
+    this problem and works as well
+16. Added slower sync options - '1/2' and '1 bar'
+
+
+
+--- BlueARP v2.4.0 / 01-Oct-2023 (patch format ver = 17) ---
+    (unofficial release, mostly for BlueARP hardware)
+
+1. Input and Chain quantize '4 bars' value added
+2. Chain quantize, '1+1 bar' value added (mostly for hardware BlueARP, as requested by one customer)
+   In '1+1 bar' mode, when chain changed, it will always play the current bar, then play next bar 
+   and only then switch the chain
+
+
+
+--- BlueARP v2.3.9 / 03-Sep-2022 (patch format ver = 17) ---
+
+1. Windows only update, VST3 output noise fix
+
+
+
+--- BlueARP v2.3.8 / 21-Nov-2021 (patch format ver = 17) ---
+
+1. Apple M1 silicon compatible - all OSX packages are compiled as Universal binaries
+   (both x86_64 and arm64), so they will run natively on M1 macs but will keep running
+   on Intel macs as before. M1 versions were tested on OSX 12.0.1 Monterey
+2. Minimum OSX requirement raised to 10.9 Mavericks, yet the lowest tested is OSX 10.11 El Capitain
+3. 32-bit OSX version is no longer supported (windows 32-bit version is still supported though)
+   If you really need 32-bit version for mac, email me, I think it is still possible to do on my older i5 mac mini
+3. Updated GUI logic for OSX: now it is HiRes-ready, so on Retina displays BlueARP will
+   appear sharper and more detailed.
+4. On Windows 4k displays, BlueARP will automatically scale up 2x times, so 100% GUI scaling will
+   be actually 200%. You can still make it smaller with added 60% and 75% scaling options
+5. New 'auto start' values for 'arp mode' parameter. Allows to start arping automatically as
+   soon as 2 or 3 keys pressed, otherwise arp will be off or in thru mode. Allows to
+   combine arp lines and solo without switching 'arp mode'
+6. 'rotate keys' parameter renamed to 'smart bend', logic updated to get better sonic results
+   (will be reflected in the manual in later releases, not yet)
+
+
+
+--- BlueARP v2.3.7 / 01-May-2021 (patch format ver = 17) ---
+
+1. Changed plugin ID back to '7dWx' for VST2 to keep compatibility
+2. Changed plugin name from 'BlueARP.x64' to 'BlueARP' for VST3
+3. Minor GUI fixes 
+
+
+
+--- BlueARP v2.3.6 / 25-Apr-2021 (patch format ver = 17) ---
+
+1. Fixed crash in Ableton Live11 / Windows, VST3 version
+2. Added options to enable/disable dummy audio outputs for VST2 and VST3 versions
+   (some DAWs can't handle pure MIDI plugins with 0 audio ins and outs)
+3. Updated 'ReadMe (How to install).rtf'
+4. Fixed crash on OSX, VST2 x64 in Ableton Live 10
+5. Likely fixed audio buzz problem in Ableton 11 / OSX / VST3 (can't check myself)
+
+
+
+--- BlueARP v2.3.5 / 18-Apr-2021 (patch format ver = 17) ---
+
+1. Added "rotate keys" option in input filter section. Experimental.
+2. Improved chord detection logic, made in collaboration with Saif Sameer (aka phreaque at kvr)
+3. Improved chord-derived scales (still experimental, but should give more musical result)
+4. Introducing VST3 version for both Windows and OSX (yet beta, may be much buggier than VST2)
+5. Windows XP support is back (for 32-bit VST2 only). Tested in WinXP SP3
+6. GUI optimization: now BlueARP will load GUI and create all GUI elements only on 1st editor opening,
+   otherwise it won't load GUI, it speeds loading each instance a bit (for 0.2 .. 0.6 seconds)
+7. New "Channel per step" option. GATE TIME lane now has a switch, can be switched to channel per step mode.
+8. Plugin ID for VST2 version on Win changed from '7dWx' to 'BArp' to make it the same for all versions
+
+
+
+--- BlueARP v2.3.2 / 16-May-2020 (patch format ver = 17) ---
+
+1. Refined 'Random' STEP TYPE logic. For 3+ input keys, randomized excludes note repetitions,
+   so it will be like k1-k3-k2-k3-k1-k2 but never like k1-k1-k1-k3-k2-k2-k3
+2. Changed 'arp latch' logic. Now it will re-scan input keys on each new key press.
+3. Updated English manual to v.2.3.2
+4. Added manual in Russian
+
+
+
+--- BlueARP v2.3.1 / 01-May-2020 (patch format ver = 17) ---
+
+1. Added 'Random' option ty STEP TYPE lane.
+2. BugFix: GUI skin, GUI scale goes out of bounds
+3. BugFix: manual wasn't embedded into package (OSX only)
+
+
+
+--- BlueARP v2.3.0 / 25-Apr-2020 (patch format ver = 17) ---
+
+Mostly GUI improvements
+1. Reworked GUI skinning and scaling engine:
+   a) New GUI font: Oxanium (embedded into package, no need to install)
+   b) Pixel-precise font alignment, both on WIN amd OSX
+   c) new skins: OMG DarkBlue and others (in skins\default.ini) 
+2. Fixed sync issues in MIDI-FX version on OSX (appeared since 2.2.9)
+
+
+
+--- BlueARP v2.2.12 / 29-May-2020 (patch format ver = 17) ---
+
+Mostly updates related to Unify and other minor changes:
+1. 'GUI Scale' and 'Skin' settings moved from MENU to SETTINGS on the left panel
+2. Added octave numbering options, it tells bluearp how to display notes or
+    which key is the middle - C3, C4 or C5. Before this change - C5 was the only setting,
+    cause this is the way it works in FL by default
+3. Added 'sustain msg' and 'sustain polarity' options to existing midi cc filtering options. 
+    sustain msg = sustain - works like normal sustain, arp latch - sustain is linked to arp latch
+    option. Difference with sustain - when all keys are released, chord sustains, but
+    as long as you press a new key, previous chord is cleared.
+4. Added 'restart chain on switch' checkbox. When checked, chain always starts from the
+    beginning after chain switch (otherwise, in restart on beat mode, chain step is calculated from
+    host song position)
+5. Ini file is now saved to different location, cause VST folder doesn't always have write permission.
+   Windows: C:\Users\<username>\AppData\Roaming\BlueARP,
+   OSX: c:/Users/<username>/Library/Application Support/BlueARP
+   Settings stored in INI are: selected skin, gui scaling, octave numbering
+
+
+
+--- BlueARP v2.2.11 / 10-Mar-2020 (patch format ver = 17) ---
+
+1. Refactorings for HW Ctrl interface, no major changes
+2. BugFix: crashed when trying to edit preset name (x64 win only)
+
+
+
+--- BlueARP v2.2.10 / 21-Sep-2019 (patch format ver = 17) ---
+
+1. Restart on play sync option added
+2. This is the last version compiled with VS2010, later I upgraded to VS2015,
+   further versions will not run on Windows XP
+
+
+
+--- BlueARP v2.2.9 / 02-Jun-2019 (patch format ver = 17) ---
+
+1. Scalable GUI (125% and 150%). Windows only.
+2. BlueARP remembers directory for last load/save operation and uses it for next load/save
+3. Manual embedded into package (previosly was a link to my website, but it generates too much traffic)
+4. Manual updated to v2.2.9
+
+
+
+--- BlueARP v2.2.8 / 21-Jan-2019 (patch format ver = 17) ---
+
+1. Likely fixed bug mentioned before with restart=key
+2. Added names for program chains
+3. Did a lot of fine tuning with the core engine
+4. "Next chain" setting for program chains - finally tested and works as expected
+
+
+
+--- BlueARP v2.2.7 / 08-Sep-2018 unofficial (patch format ver = 17) ---
+
+1. Added setting for PBend/MWheel/ATouch/OtherCC pass thru
+2. BugFix: bluearp didn't report param change back to host, so automating in FL
+   via 'Last changed parameter' didn't work
+3. Checked and improved patch compatibility back to v2.15
+   Fixed some bugs in conversion 2.2.5 -> 2.2.6 (it was wrong with midi in ch, midi out ch, curChain)
+4. Fixed bug with studio4 skins colors
+5. studio4 skins updated
+
+
+
+--- BlueARP v2.2.6 / 27-Jul-2018 unofficial (patch format ver = 17) ---
+
+1. Pages eliminated, all controls on one page
+2. Memory allocation errors in file open/save logic
+
+
+
+--- BlueARP v2.2.5 / 26-Jun-2017 (patch format ver = 16) ---
+
+1. Tabs for the left panel (to place all the controls)
+2. Bank format reworked (now it's more like riff file format),
+   for better further compatibility
+3. Some fixes to MIDI engine
+4. New options 'force to scale: mode'. When set to 'semi-transposed', only keys with
+   non-zero scale step will be forced to scale
+5. New randomize options - velocity, gate and start time
+6. Reworked factory bank
+7. Input range mode param moved from Settings to Input filter block
+
+
+
+--- BlueARP v2.2.4 / 05-Nov-2016 (patch format ver = 15) ---
+
+1. Bank select method for chain. Now configurable (in MENU -> Settings), 
+   options available: ctlr 0, ctlr 32, ctlr 0+32.
+   For example, Sylenth 1 uses "ctlr 0", while my hardware Kurzweil PC3 
+   needs "ctrl 0+32".
+2. All "MENU -> Settings" values are now stored within a bank, not ini file 
+   as it was before. They all now have (B) mark - bank-related.
+   Cause one may need to configure them separately for different instances.
+3. Fixed bug for "OCTAVE" and "KEY SELECT" automation. As someone mentioned before,
+   trying to automate them created a mess.
+   This was an aftermath of making it polyphonic. But of course it's possible 
+   to set monophonic values only with automation.
+4. skins by [b]studio4[/b] included
+5. Some minor fixes in MIDI engine
+6. You can swap steps by clicking LEDs on led bar under the screen.
+7. Improved Copy/paste functionality for programs and chains
+
+
+
+--- BlueARP v2.2.3 / 06-Jun-2016 (patch format ver = 15) ---
+
+Bugfixes only:
+1. Bugfix: Bitwig 1.3.9: Octave and KeySelect value bars are messed up after re-loading the project
+
+
+
+--- BlueARP v2.2.2 / 06-Jun-2016 (patch format ver = 15) ---
+
+1. Extended number of programs to 128, so Opax will be able to fit his great patches into a single bank
+2. Added 1/64 sync option
+3. Ordered scales in a more logical way, minor/major followed by pentatonic, in case someone will automate this setting
+4. Right-clicking "program sequence" allows to select a program from a drop-down menu
+5. Manual is excluded from download package, BlueARP opens it online
+6. German manual added (translated by Jan Dziock)
+
+
+
+--- BlueARP v2.2.1b / 02-Apr-2016 (patch format ver = 14) ---
+
+Just fixed some apparent bugs:
+1. VST version will now load files created with AU midiFX version (bug replrted by Musical Gym, Mar 20)
+2. wrong curr.chain setting whan project saved with v2.1.7 and loaded with 2.2.1 (bug reported by Yeager, Apr 01)
+3. OCTAVE transpose bug reported by Opax in previous post. This was tricky one:
+   Some background info. When I implemented polyphonic octave, I changed octave transpose logic, so
+   only lowest key in the list gets transposed by octaves. It's great for generating wide trance chords with step type set to Chord.
+   But with moniphonic octave mode it's still better to transpose all keys by octave.    
+
+
+
+--- BlueARP v2.2.1 / 29-Mar-2016 (patch format ver = 14) ---
+
+1. Polyphonic key select. Works the same way as polyphonic octave
+2. Added option value for MENU -> Settings -> Output note velocity. Now you can select 'bar + input key'. 
+   It means velocity from value bar adjusted to input key velocity (kind of miltiplied)
+3. Added 'pentatonic blues' and 'pentatonic neutral' scales
+4. Versions name convention changes - 2.2.1 instead of 2.21 (to comply VST2 spec)
+
+
+
+--- BlueARP v2.17 / 06-Dec-2015 (patch format ver = 13) ---
+
+This is a bugfix release:
+1. Octave step transpose bug reported by MoZi (octave transpose affected only key1)
+2. Some fixes in midi engine (stuck notes)
+
+
+
+--- BlueARP v2.16 / 26-Oct-2015 (patch format ver = 13) ---
+
+1. New 'polyphonic OCTAVE' feature, see tutorial in previous post. It's not yet reflected in the manual.
+2. Fixed some bugs in chains logic
+3. Updated manual
+4. For OSX, better indtallation package, now you need to take just 'BlueARP.vst' to your VST directory, 
+   all necessary files are incorporated into vst package
+5. There are new (P) or (B) marks next to many controls. They tell is this parameter is program-related (P) or bank-related (B).
+
+
+
+--- BlueARP v2.15 / 08-Jul-2015 (patch format ver = 12) ---
+
+1. Fixed some crashes like 'deprecated method call...'
+2. new GUI feature - you can adjust any dragbox or matrix editor value with mouse wheel
+   (coulnd't resist to add it. Seems very convenient to me). 
+   Just rotate mouse wheel while pointer is over any control.
+
+
+
+--- BlueARP v2.14 / 07-Jun-2015 (patch format ver = 12) ---
+
+1. bugfix: "The bug is with MIDI in channel which is incorrect (it is off by a count of 1)", reported by provoc
+2. bugfix: "If i try to change the input (wrap) parameter, bluearp cause to crash FL", reported by ZXOxo67
+3. new option in Settings "keys out of input range". Sets whether to truncate notes outside the range or pass them non-arpeggiated (Kirnu way)
+4. new option in Settings "output note velocity". Ability to force velocity from input key (not from 'VELOCITY' value bar)
+
+
+
+--- BlueARP v2.13 / 19-Apr-2015 (patch format ver = 12) ---
+
+Changes:
+1. This is mostly a bugfixing release, since I released 2.12 quite raw. It's still beta, current stable is v2.11
+2. Combined 'SCALE STEP' and 'SEMITONE' values bars into one. Now 'SCALE STEP' behaves like SEMITONE when force to scale: scale = 'off/chromatic'. Check the manual for more details
+3. By right-clicking note-related value box (like input range) you can enter it from MIDI keyboard, see the attached image (phreaque, it was your request)
+4. Fixed several bugs with force to scale and other things
+
+Last but not least - finally I updated the manual.
+
+
+
+--- BlueARP v2.12 / 02-Feb-2015 (patch format ver = 11) ---
+
+This version is quite experimental, better use it separately (rename .dll)
+I introdiced quite a lot of changes but didn't finish testing.
+The main thing - I started refining 'force to scale' stuff since I finished it with chains.
+
+Changes:
+1. Added 'prog change msg' in MENU->Settings. Ignore - BlueARP ignores program change MIDI messages. Other options are 'set program' (bluearp sets it's program in response) and 'pass to synth' (bluearp does nothing, but passes this message to synth)
+2. Added 'scale step' value bar. Works like 'semitone' bar, but sets per-step transposition in scale steps. Works when 'force to scale: scale' is not 'off'
+3. Key select = 'Chord' - moved to 'Step type' value bar.
+4. Key select - added 'Root' value. It's a root key of the detected chord, no matter what order algorithm is.
+
+Bank format has changed, but I wrote the conversion routine, so new version should pick up projects saved in ver 2.11. I tested it in FL. But again - it's experimantal. For production, better stay on 2.11
+
+
+
+--- BlueARP v2.11 / 28-Dec-2014 (patch format ver = 10) ---
+
+Changes:
+Only bugfixes for program chains - timing issues, quantization, etc. There are many small fixes - don't remember all.
+I spent around 4 hours testing & fixing bugs with long chains, having various sync and length values, kind of a stress test. Finally it seems to work as designed.
+
+Pay attention to 'chain quantize' parameter. Most comfortable setting is 1/4 (1/4 bar = 1 beat), it means if you switch the chain a little beforehead it will be actually switched strictly at the new beat.
+Chain logic also depends on "restart on" setting:
+1. "beat" - chain\program step position is always aligned to host song position
+2. "key" - each new chord (after a pause) resrarts the chain. When you switch to another chain, new chain starts from the beginning
+3. "1st key" - the same as "key", but only the 1st key\chord starts the chain, further pauses between chords don't affect timing.
+
+
+
+--- BlueARP v2.10 / 12-Dec-2014 (patch format ver = 10) ---
+
+There are many changes in this version, so better use it separately (copy it to new folder and rename BlueARP.dll to BlueARP_v2.10.dll)
+1. Improved timing for program chains. Chains are now sticked together regardless of each program length, arp core calculates appropriate time offsets for each program in chain. Next program will start at step 1 strictly after previous program last step.
+2. Improved timing for 'restart on key' mode. While in 'restart on beat' you stick to host song position, in restart on key mode BlueARP will start the whole chain after you press the 1st key. Also chain will restart when you press a key after all keys were released. 
+3. There are 'Pos:' and 'Beat:' labels in info panel. Pos shows song position reported by host, 'Beat' shows internal beat counter. In restart on key mode it may differ from Pos. BlueARP uses 'Beat' value to calculate a step. Looking at it will help you to understand how it works. For example when you have a fragment of a song looped in you DAW and this loop recycles, Pos will revert to 0 while the Beat will continue incrementing (it's about restart on key mode)
+4. 'input quantize' and 'chain quantize' value lists have changed, now they are fraction of a bar. For example, input qualtize = 1/4 means quarter of a bar or 1 beat. Input quantize also works in restart on key mode. If you have a chain and want it to start smoothly (synced to a beat), set input quantize = 1/4 and press chord keys a little beforehead. The chain will start strictly at the next beat.
+   Chain quantize works the same way, but it affects chain switching. If you set it to 1 bar and switch chain in the middle of a bar, the actual chain switching will happen strictly at the beginning of the next bar.
+5. I made parameters like 'input quantize', 'input range', 'output range' global, so they are stored at bank\project level. If you change any of them, it will affect all programs in the bank. Say if you configured input range C0-D5 for bass part, no need to re-configure it for each program you use. Program-dependent parameters are marked with (*) sign. 
+   I'm not sure it's a final solution. The other idea is to group bank-dependent params together into 1 block. But on the other hand, current order of params is designed according to signal flow and it's logial. Do you have any other ideas?
+6. Fixed bug with input range (wrap).
+
+
+
+--- BlueARP v2.09 / 23-Nov-2014 (patch format ver = 10) ---
+
+Changes:
+1. Bugfix: timing issue with REAPER (bluearp starts from 2ns beat)
+2. Bugfix: velocity goes to wrong low value after switching 'fine velocity' on
+3. Bugfix: when clicking any dragbox menu and then clicking somewhere else (to cancel), value reverts to 1st one in the list
+4. Arp engine improvements for gate per step (didn't finish all the testing yet, but should be better anyway)
+
+
+
+--- BlueARP v2.08 / 03-Nov-2014 (patch format ver = 10) ---
+
+Changes:
+1. Bugfix: crash when sync = 3/8 selected (both windows & osx)
+2. Added "input range (wrap)" parameter, not yet reflected in the manual
+3. Created separate "Settings" panel, moved "semitone range" and "fine velocity" there.
+Now I can add more settings and keep it logical.
+4. BugFix. It seems like step mode = Tie didn't work when sync < 99%.
+Maybe this bug was introduced in recent versions.
+
+
+
+--- BlueARP v2.07 / 28-Sep-2014 (patch format ver = 9)---
+
+Changes:
+1. BugFix: buzz noise in Cubase 7 on OSX
+2. BugFix: half-missing GUI on OSX (hopefully)
+3. BugFix: BlueARP didn't remember selected skin on OSX & Windows
+
+
+
+--- BlueARP v2.06 / 14-Sep-2014 (patch format ver = 9) ---
+
+Changes:
+1. BugFix: buzz noise in Cubase 7 64 bit
+2. BugFix: BlueARP didn't recall preset number in REAPER after project load
+3. Minor updates to the manual
+
+
+
+--- BlueARP v2.05 / 31-Aug-2014 (patch format ver = 9) ---
+
+Changes:
+1. Added 'gate per step' option (reflected in the manual)
+2. Fixed bug with force to scale mode
+3. Updated the manual
+
+Gate per step (new value bar "GATE TIME" under "VELOCITY") works as a multiplier for step length. 
+Generated note may be longer than a step. Say you have gate time 60% and set gate per step to 4x. 
+It means generated note will be 60%*4 = 2,4 steps long. I think it will be useful to mimic guitar strumming. 
+Or use it for complex bass lines, when one lower note sustains through the pattern. 
+Saying other way, it adds polyphony of some sort.
+Patch format didn't change (I reserved space for gate per step before).
+
+
+
+--- BlueARP v2.04 / 09-Aug-2014 (patch format ver = 9) ---
+
+Bugs fixed:
+1. Reported by Zmotion:
+   ...All leds are green and yellow and the arrows from patt. shift and page are no longer attached to the font color, making user skins unusable. Version 1.53 works fine...
+2. Reported by backb0ard:
+   Using the latest version gives an error: procedure entry point wow64revertWow64FsRedirection ould not be located in dynamic link library KERNEL32.dll and the plugin is not detected.
+   Using Reaper 32 bit on Windows XP. v1.15b1 works.
+
+
+
+--- BlueARP v2.03 / 03-Aug-2014 (patch format ver = 9) ---
+
+Changes:
+1. Added x64 version
+2. Bugfixes for program chain mode
+3. Bugfixes for loading banks from ver 1.15
+
+
+
+--- BlueARP v2.02 / 28-Jul-2014 (patch format ver = 9) ---
+
+Things I did since 2.01 (for both PC & Mac versions)
+1. Patch (bank\program) compatibility with versions 1.1x - so you can use this one with presets/banks saved in ver 1.15x
+2. GUI Settings - fine velocity and semitone range
+3. Skins as separate files
+4. Storing selected skin and GUI settings in BlueARP. ini
+5. Minor bugfixes
+
+So ver 2.02 should has all the functionality of the latest stable Delphi version - 1.15b3. Now I finished re-creating BlueARP with WDL-OL. 
+Some more testing, and I'll continue adding features (gate per step is the next thing I want to add).
+
+There is a known bug in Mac version - GUI sometimes opens with some controls disappeared, just select any skin - it will redraw the whole window.
+Didn't yet figure out how to compile 64-bit version for Windows, it's either cause I have Visual Studio Express or Win64 home basic (need Pro version probably). 
+
+
+
+--- BlueARP v2.01 / 01-Jun-2014 (??? invalid FBB header error) ---
+
+First C++\WDL-OL version, completely re-written, but from user prospective BlueARP stays the same.
+
+Comparing to 1.15b3, features not imlemented yet:
+1. Patch (bank\program) compatibility with versions 1.1x
+2. GUI Settings (fine velocity and semitone range)
+3. Skins as separate files
+4. For OSX - skins do not work yet, PC version reads skins from skins\default.ini file
+
+
+
+--- BlueARP v1.15b3 / 22-Feb-2014 (patch format ver = 8) ---
+
+This is the last Delphi version (and the most stable of Delphi versions). All later version are made with C++ and WDL-OL
+
+Changes:
+- Shoud fix high pitch noise bug mentioned above. I added zeroing audio buffer in process().
+- Minor fix for patter chains
+
+
+
+--- BlueARP v1.15b1 / 09-Feb-2014 ---
+
+Changes:
+1. Adjustable semitone range (MENU -> GUI Settings) for more friendly touchscreen operation
+2. Fine velocity adjustments (MENU -> GUI Settings), off by default
+3. Skins moved to separate file, it will be easier to add new skins
+4. Adjusted default color scheme - dimmed colors a little bit, less contrast
+5. Reworked factory bank
+6. Still some gui optimisations
+
+
+
+--- BlueARP v1.14b5 / 20-Jan-2014 ---
+
+Main change - bugfix with Cubase (tested in SX3, 32 bit), some minor fixes for pattern chaining.
+
+I got 2 email reports for bluearp not working with Cubase, someone mentioned here also as I remember. Symptoms are:
+- Bluearp opens up in Cubase, when you hit play it runs, but it doesn't get any input notes from host
+- When you try to route MIDI track to bluuearp's midi in, you can't do it, bluearp appears to have no midi in
+
+I spent 4 hours on this and almost went crazy - but the reason was plain simple - I didn't call wantEvents() call inside Resume() call. So now it works, may be the reason for the same issue with other hosts. FL Studio doesn't care about this call, Cubase does, since Cubase is more strictly aligned with VST specification, no wonder.
+I want to examine my code more carefully for alignment with VST specification. But time, time. And plans to migrate my code to make x64 version...
+
+
+
+--- BlueARP v1.14b4 / 22-Dec-2013 ---
+
+1. Fixed '1st note missing bug' 
+2. Added copy\paste page (via main MENU) 
+3. Added automation possibility for pattern shift 
+- Buttons work as before, but you can also assign a knob, it will 
+shift pattern in a range -8 .. +8 steps. 
+4. Added 'page lock' option. When checked, bluearp will cycle through 
+the current page until you switch it off. Say you have a pattern with 64 steps 
+and you want to adjust only part of it - say steps 17-32, then you check 
+'page lock' and it cycles through steps 17-32, not 1-64. 
+5. Pattern chains seem to work as designed now, more or less. 
+I'm in the process of creating a new bank which will show all the new features 
+(force to scale, pattern chains). To get a quick idea - try to adjust 
+'current chain' parameter and see what happens 
+6. For a pattern chain, you can set pank\program number and channel volume 
+per chain. 
+Whan assigned, bluearp will send appropriate midi messages to it's midi out. 
+I had in mind the scenario when you want different patterns to be played with 
+different synth sounds. 
+
+
+
+--- BlueARP v1.14b3 / 23-Nov-2013 ---
+
+Changes: 
+1. Fixed high pitch trash notes bug 
+2. Fixed bug with negative semitone transpose 
+3. Force to scale is ready 
+
+
+
+--- BlueARP v1.14b2 / 16-Nov-2013 ---
+
+My 'crash test' FL Project in already runnung for 1 hour - 5 instances of bluarp, tempo = 500, a lot on random notes feeding in, 3 editor windows open. Before that, it crashed in first 5 minutes. 
+
+Known issues: 
+1. Pattern chains still not work 
+2. Force to scale is not finished yet. 
+3. Negative SEMITONE transpose works wrong (just noticed) 
+
+But if the crashes are gone, finally I can continue with the rest )
+
+
+
+--- BlueARP v1.14b1 / 10-Nov-2013 ---
+
+Main changes: 
+1. Fixed 'no GUI' bug with JBridge. Maybe will also help with Wusic Vm 
+2. Some GUI optimisations - I removed redundant GUI updates. 
+This may increase stability, but may also introduce minor bugs like GUI won't 
+be updated when neccessary (so pls check it for this kind of bugs) 
+
+Still didn't solve all stability issues. My methos of testing - I run 3 instances of BA is FL studio with a a lot of random notes and automation (kind of a stress test). And it still crashes sometimes.
+
+
+
+--- BlueARP v1.13b3 / 28-Oct-2013 ---
+
+Bugfixes
+1. crash in Cubase x64
+2. Switch chains ('curr. chain' param), it will automatically select program (for bluearp). If you want to associate chain with another program, just type in it's number in 'program sequence'
+   It actually didn't work (I forgot to comment debug piece of code. Now it should. 
+
+Still have random crashes when switching chains, need more debugging.
+
+
+
+--- BlueARP v1.13b2 / 26-Oct-2013 ---
+
+Features: 
+1. Force to scale (not all scales present yet) 
+2. Chord recognition + arranger-like harmonization 
+3. Pattern chains (1st prototype) 
+
+This version may be unstable, so be careful. For your projects, better use 1.12rc5. Patch format in this one is compatible with 1.12rc5, so it should pick up your saved projects. But again, before switching to it better make backups. 
+When Force to scale = auto and Root = auto, it behaves somewhat like an arranger, i.e. detects a chord and tries to fit all notes within the corresponding scale. I was not sure whether to keep this feature or not (it's too tricky), so I'm waiting for opinions. 
+
+For pattern chains - now it's possible to set only 1 program for chain (just type in number). Later, I want to implement sequences like 1-1-1-2. It's possible to configure bank\patch number for each chain, bluearp will send it to the synth when you switch chain. Set num. chains to desired number of chains. Then automate 'current chain'.
+
+
+
+--- BlueARP v1.13b1 / 27-Aug-2013 ---
+
+Changes: 
+1. Basic chord recognition (more like a root key recognition) 
+2. Added new other algorithm - 'root 1st, by pitch' 
+
+
+
+--- BlueARP v1.12rc5 / 12-Aug-2013 ---
+
+Changes 
+1. BugFix for 'octave lower' problem (had to disable all CC messages except pitch bend, aftertouch and mod wheel) 
+
+
+
+--- BlueARP v1.12rc4 / 31-Jul-2013 ---
+
+Changes: 
+1. BugFix - stability issues with multi-instance usage 
+
+
+
+--- BlueARP v1.12rc3 / 22-Jul-2013 ---
+
+Changes 
+1. BugFix: Patch reset problem
+
+
+
+--- BlueARP v1.12rc2 / 09-Jul-2013 ---
+
+Quick fix.
+Looks like factory bank fxb file was somehow broken. I didn' find the reason, but with 1.12rc1 the same error happens to me, not it's fixed. 
+PS. There are 2 new order algorithms "chord, normalized" and "chord, as played" - they don't wotk yet. I forgot to hide them after experimenting.
+
+
+
+--- BlueARP v1.12rc1 / 12-Jun-2013 ---
+
+Changes: 
+1. Added nice brown color scheme by sinkmusic, gui image with color legend included 
+2. implemented GetProgramNameIndexed method (without it FL Studio calls 
+setProgram() many times on each program change) 
+3. Fixed arp latch bug reported by ThrashJazzAssassin 
+
+
+
+--- BlueARP v1.11rc9 / 26-May-2013 ---
+
+Changes: 
+1. Fixed program change bug. Now it should remember selected program when you save-load project 
+2. Passes all controller midi data thru (CC's, pitchbend, aftertouch messages)
+
+
+
+--- BlueARP v1.11rc8 / 05-May-2013 ---
+
+Changes: 
+1. Improved patch browser, added drop-down menu 
+2. Factory bank with 64 presets 
+
+
+
+--- BlueARP v1.11rc7 / 07-Apr-2013 ---
+
+Changes: 
+1. BugFix: sometimes bluearp started from last step in RestartOnKey mode (it shouldn't affect midi events generation, but I added additional check) 
+2. BugFix: minor issue with color schemes 
+3. Minor changes in manual 
+
+This time I was careful about adjusting MIDI processing engine, cause it may have unexpected consequences, like it happened before.
+
+
+
+--- BlueARP v1.11rc6 / 18-Mar-2013 ---
+
+Changes: 
+1. Color schemes are 80% ready. Stored in BlueARP.ini. 
+To change: MENU -> Color Schemes. 
+I created 2 dummy schemes (by swapping R G B components) 
+2. Bugfix for "BlueARP is no longer loading the Initial Preset after instantiation". 
+
+Still working with bug "If RestartOnKey is enabled, and the hosts transport is running, and you press a key 'between beats', BlueARP plays Step16 before Step1". It's not as simple as seemed, and now I'm careful about making any changes to midi core engine - it may affect something else.
+
+
+
+--- BlueARP v1.11rc5 / 03-Mar-2013 ---
+
+Changes: 
+1. Problem with Cubase AI 6 at least halfway fixed. Works for me, but there's a black margin on the right of the window, around 100 pixels. Need to test more, but only next weekend; 
+2. Changes to the patch browser. "prog num" parameter can be automated. When you change it from host, it will change between 1 and "top num" value. I didn't yet decide whether to keep it 
+3. BlueARP responds to program change messages
+
+
+
+--- BlueARP v1.11rc4 / 02-Mar-2013 ---
+
+The only change - bug fix for Renoise (crashed on load). 
+Maybe it will help with Cubase 6 x64 as well.
+
+
+
+--- BlueARP v1.11rc3 / 02-Feb-2013 ---
+
+Changes: 
+1. Bugfix for timing issue in VSTHost (reported by ENV1) 
+
+ENV1 Not sure I fixed all, but at least it should fix something. I couldn't reproduce exact the same thing (with Step: -). In my case, after I change BPM, it restarts on some other step (not 1), and this step is constant until you change BPM again. 
+The issue was simple - I relied on SamplePos for better timing, but since you change BPM, you need to adjust all sample offsets. In 1.08, I relied on PPQ only. I changed it back to PPQ for this offset, since it doesn't make any difference here.
+
+
+
+--- BlueARP v1.11rc2 / 27-Jan-2013 ---
+
+Changes: 
+1. Fixed RestartOnKey bug reported by ENV1 
+2. Dots changed to down arrows for elements with menu 
+3. Improved manual 
+
+
+
+--- BlueARP v1.11rc1 / 13-Jan-2013 ---
+
+Changes: 
+- Some controls have drop-down menu (ones with "dot" buttons instead of arrows) 
+- Fixed .fxp/.fxb extenstion bug reported by ENV1 
+- Sync parameter - added 3/16, 3/8... values 
+- Fixed 2nd page (pattern invisible) bug reported by ENV1 
+- Halfway written manual (suggestions? Which things to cover) 
+
+Work in progress 
+- Color schemes (50% ready) 
+
+Tip: set sync to 3/16 and all steps to Chord to create deadmau5 style house performance (synth - supersaw pluck sound). Also try to set swing to +25% or -25%.
+
+
+
+--- BlueARP v1.10 / 23-Dec-2012 ---
+
+1. Fixed performance load issue with VSTHost reported by ENV1 
+2. Fixed PPQ bug (now plays OK is started not from PPQ 0). 
+3. Minor GUI improvements 
+
+Regarding GUI - I thought that for 'Rest' steps it's better to show real note length on the matrix. But now sure it's the best way. Also, value bricks for 'Rest' steps are greyed out, cause they don't really affect the sound.
+
+
+
+--- BlueARP v1.09 / 16-Dec-2012 ---
+
+Changes: 
+- Fixed FXP no header issue (tested in savihost) 
+- Fixed FXB no header issue (tested in savihost) 
+- Current program (index) is saved with a bank 
+- Minor bug: program name change from host now works 
+That's all I did today. mystran, thx for pointing me at this. 
+
+
+
+--- BlueARP v1.08 / 25-Nov-2012 ---
+
+Changes: 
+- Bank load/save now works OK 
+- Basic patch browser, where you can rename patches 
+(to rename a patch, click on it) 
+- Now Arp plays when sequencer stopped 
+
+I made a lot of changes to MIDI processing engine and then spent around 2 hours testing, but still not sure I didn't miss anything. But if it all works, it's close to release.
+
+
+
+--- BlueARP v1.07 / 03-Nov-2012 ---
+
+Changes: 
+1. Now it saves\loads banks (but no patch browser yet) 
+2. Hope I fixed double note bug mentioned by ENV1 before 
+(at least in my test case it's gone) 
+3. Menu -> recall program: Recalls a program to the state it had at the moment 
+of project load (a kind of undo all the changes for the current session) 
+4. Added "as played, desc." order algorithm option. 
+5. Patch structure changed again, but I implemented support for previous patch format, 
+so it should pick up patches from the previous versions. Exceptions - "order algorithm" and 
+top panel settings may be sploiled. 
+
+Important point - all changes made to any program are memorised immediatelly (but you can undo them by menu -> recall program). The entire bank (64 programs) is saved with your DAW project. Programs can be switched when playing. Later I'm going to automate it somehow. 
+
+
+
+--- BlueARP v1.06 / 18-Oct-2012 ---
+
+Changes: 
+- Automation possible for non step-related params (left and top panels) 
+- Finished patch load/save 
+- Many internal changes. I spent a lot of time reorganizing and cleaning up my code (improving class structure, wrapping arp core into separate class, hiding everything that can be hidden, etc.). I want my code to be transparent and clear - this way it will be easier to port it to Lazarus (or whatever) later, which may even make Mac port possible. 
+
+Important: This version won't pickup saved patches or data from previous version. So if you'll replace the older ver. with it and load your previously saved project, it won't work. 
+
+
+
+--- BlueARP v1.05 / 14-Oct-2012 ---
+
+Changes: 
+- Bugfix for 'restart on key' mode, improved accuracy 
+- Patch load and save 
+- Some minor GUI optimizations 
+
+Patch load\save may be unstable still, esp. when you do it when arp is playing. 
+Patch format may change also, so yet it's only for testing, don't rely on it. I'll continue working on it next weekend.
+
+
+
+--- BlueARP v1.04 / 07-Oct-2012 ---
+
+Changes: 
+- Swing option added; 
+- Restart on key/beat option adeded; 
+- Fixed crashes is FL Studio, fingers crossed ;) 
+- Now you can drag the mouse through matrix editor and quickly set values; 
+- Gate param adjusted to 1% accuracy; 
+- Added donation option (MENU - Make a Donation, it will go to 
+URL http://www.graywolf2004.net/donate/) 
+
+Restart on key option is still buggy. It made MIDI logic more complicated, so I have more to test. Swing wasn't easy for me either. Until I drew a graph on paper with formulas how to calculate relative (swing affected) step number, I couldn't get it work ;) So test it and let me know if I got it right. Patch load\save will wait one more week, cause this weekend I decided to do what's possible to do in one day. 
+
+
+
+--- BlueARP v1.03 / 01-Oct-2012 ---
+
+Changes: 
+- Extended to 64 steps! (it was sometimes tricky) 
+- Attempt to fix transparent GUI issue (can't check so it's just a guess) 
+- Fixed some MIDI logic flaws (stuck notes sometimes) 
+
+
+
+--- BlueARP v1.02 / 28-Sep-2012 ---
+
+Changes in v1.02 
+- fake audio outputs to make it work in Ableton Live 
+- GUI elements for page selection are there, but do nothing yet 
+
+Still working on 64 steps and pages.
+
+
+
+--- BlueARP v1.01 / 27-Sep-2012 ---
+
+Initial release on KVR audiuo forums.
+
+Actual prototyping started in February 2012.
