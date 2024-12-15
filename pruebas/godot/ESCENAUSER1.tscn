@@ -1,10 +1,42 @@
-[gd_scene format=3 uid="uid://kg2lxue8sxk4"]
+[gd_scene load_steps=4 format=3 uid="uid://kg2lxue8sxk4"]
+
+[ext_resource type="Script" path="res://addons/godOSC/demo/ANTONIO_ACTION_MESSAGE_1.gd" id="1_tdh4o"]
+[ext_resource type="Script" path="res://addons/godOSC/scripts/OSCClient.gd" id="2_3ksjf"]
+[ext_resource type="Script" path="res://GESTORESCENAUSER1.gd" id="3_exn85"]
 
 [node name="Node2D" type="Node2D"]
+
+[node name="GESTORESCENAUSER1" type="Node2D" parent="." node_paths=PackedStringArray("scene_client")]
+script = ExtResource("3_exn85")
+scene_client = NodePath("../OSCClient")
 
 [node name="Label" type="Label" parent="."]
 offset_left = 197.0
 offset_top = 86.0
 offset_right = 561.0
 offset_bottom = 148.0
-text = "Bienvenido Usuario 1 "
+theme_override_colors/font_color = Color(0.941176, 0.105882, 0.160784, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 34
+text = "Bienvenido Antonio"
+
+[node name="VolumenBajos" type="HSlider" parent="."]
+offset_left = 182.0
+offset_top = 217.0
+offset_right = 544.0
+offset_bottom = 298.0
+max_value = 2.0
+step = 0.1
+
+[node name="OSCMessage" type="Node" parent="VolumenBajos" node_paths=PackedStringArray("target_client")]
+script = ExtResource("1_tdh4o")
+target_client = NodePath("../../OSCClient")
+osc_address = "U1/vol"
+osc_argument = "0.0"
+
+[node name="OSCClient" type="Node" parent="."]
+script = ExtResource("2_3ksjf")
+port = 3000
+
+[connection signal="drag_ended" from="VolumenBajos" to="VolumenBajos/OSCMessage" method="_on_volumen_bajos_drag_ended"]

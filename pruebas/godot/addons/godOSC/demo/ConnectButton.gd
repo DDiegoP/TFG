@@ -17,7 +17,7 @@ func _on_pressed():
 	print("Me conecto wiii" + str($"..".text))
 	#el ordenador al que nos vamos a conectar
 	AppManager.curremtHostname=$"..".text
-	
+	AppManager.curremtHostport = 3000
 	target_client.connect_socket_to_host(AppManager.curremtHostname,3000)
 	
 	##target_client.send_broadcast_message((broadcast_address), [str(osc_argument)]	)

@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://addons/godOSC/demo/demo_receiver.gd" id="3_6wxh7"]
 [ext_resource type="Script" path="res://addons/godOSC/demo/demo_receiver2.gd" id="4_sttfi"]
 [ext_resource type="Script" path="res://addons/godOSC/demo/demo_messagePLAY.gd" id="5_cyf88"]
-[ext_resource type="Script" path="res://addons/godOSC/demo/demo_messageSTOP.gd" id="6_o8je7"]
+[ext_resource type="Script" path="res://addons/godOSC/demo/ANTONIO_ACTION_MESSAGE_1.gd" id="6_xvc31"]
 [ext_resource type="Script" path="res://addons/godOSC/demo/PianoButton.gd" id="7_j3r6q"]
 [ext_resource type="Script" path="res://addons/godOSC/demo/ConnectButton.gd" id="8_wggom"]
 
@@ -80,7 +80,7 @@ step = 0.01
 value = 1.0
 
 [node name="OSCMessage" type="Node" parent="Cube 2 Slider" node_paths=PackedStringArray("target_client")]
-script = ExtResource("6_o8je7")
+script = ExtResource("6_xvc31")
 target_client = NodePath("../../OSCClient")
 osc_address = "t/stop"
 osc_argument = "stoptext"

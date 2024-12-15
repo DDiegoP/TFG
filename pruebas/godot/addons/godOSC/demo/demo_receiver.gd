@@ -15,6 +15,7 @@ func _process(delta):
 		#El host nos dara una slot de usuario libre y dependiendo de cual nos toque cargamso una escena u otra
 		var sceneid 
 		sceneid =  target_server.incoming_messages[osc_address][0]
+		#sceneid =  0
 		print(sceneid)
 		match  sceneid:
 			0:

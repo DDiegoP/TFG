@@ -14,7 +14,8 @@ var client = PacketPeerUDP.new()
 
 func _ready():
 	#get_deviceIPs()
-	connect_socket(port)
+	#connect_socket(port)
+	pass
 
 ## Connect to an OSC server. Can only send to one OSC server at a time.
 #func connect_socket ():
@@ -114,3 +115,11 @@ func send_broadcast_message(osc_address : String, args : Array):
 	var packet = prepare_message(osc_address, args)
 	print("sending message " +osc_address)
 	client.put_packet(packet)
+	
+func transfer_AppManagerData():
+		client.set_dest_address(AppManager.curremtHostname, 3012)
+		pass
+		
+	
+	
+
