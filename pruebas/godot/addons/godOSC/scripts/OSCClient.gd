@@ -42,10 +42,19 @@ func connect_socket_to_host(new_address = "127.0.0.1", new_port = 3005):
 	client.set_dest_address(new_address, new_port)
 	#le decimos al host nuestra direccion 
 	var myaddress
-	for address in IP.get_local_addresses():
-		myaddress=IP.resolve_hostname(str(OS.get_environment("COMPUTERNAME")),1)
+	var androidname = []
 	##IMPORTANTE ESTO ES PARA WINDOWS , COMPUTERNAME ES UNA VARIABLE DE WINDOWS 
-	##PARA ANDROID HAY QUE CAMBIARLO	
+	##PARA ANDROID HAY QUE CAMBIARLO
+	if OS.get_name() == "Windows":
+		for address in IP.get_local_addresses():
+			myaddress=IP.resolve_hostname(str(OS.get_environment("COMPUTERNAME")),1)
+	if OS.get_name() == "Android":	
+		#var output = [];
+		#OS.execute("getprop",["net.hostname"],output) no est aseteado en todos los moviles :/
+		#myaddress = IP.get_local_addresses()[6]#En android se supone qeu el wifi siempre es el primero 
+		for address in IP.get_local_addresses():
+			if address.begins_with("192.168.") or address.begins_with("10.") or (address.begins_with("172.") and int(address.split(".")[1]) >= 16 and int(address.split(".")[1]) <= 31):
+				myaddress=address
 	var packet = prepare_message("t/connect",[myaddress])
 	print("sending message " + myaddress)
 	client.put_packet(packet)
