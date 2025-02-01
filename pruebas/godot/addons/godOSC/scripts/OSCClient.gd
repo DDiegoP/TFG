@@ -61,6 +61,16 @@ func connect_socket_to_host(new_address = "127.0.0.1", new_port = 3005):
 	##ip_address = client.get_packet_ip()
 	##print("client ip " + ip_address)
 	
+	
+func disconnect_socket_from_host(new_address :String, new_port : int, osc_address : String, args : Array):
+	#Nos desconectamso del canal de efectos
+	close_socket()
+	#Mandmos un mensaje a ReaServer para informar de la desconexion
+	client.set_dest_address(new_address, new_port)
+	send_message(osc_address,args)
+	#cerramos el socket 
+	close_socket()
+	pass
 func close_socket():
 	if client.is_socket_connected():
 		client.close()
