@@ -45,23 +45,34 @@ maxusers = 2 --cuantos usuarios simultaneos podemos gestionar
 for i = 0, maxusers do
   users[i]=i
 end
-
+reaper.ShowConsoleMsg(#users)-- # es el lenght opeerator en lua :0
 local function Main()
  for address, values in osc.enumReceive(udp) do
+     --obtenemos los argumentos una vez por mensaje y dependiendo del tipo de mensaje gestionamos.    
+     args = {}
+     i = 0
+     for k ,v in ipairs(values) do
+      args[i] = v
+      i = i+1
+     end 
      --Gestionamos los distintos tipos de mensajes :
      --Conexion de un usuario nuevo : 
-     if address == 't/connect' then 
-       args = {}
-       i = 0
-       for k ,v in ipairs(values) do
-        args[i] = v
-        i = i+1
-       end 
-      u = math.random(0,maxusers -1)
+      if address == 't/connect' then 
+      u = math.random(0,#users -1)
+   
       local msg1 = osc.encode('/t connect', users[u], 3.14, 'hello world!')
       udp:sendto(msg1,args[0],3003)
       table.remove(users,u+1) --ese slot de usuario ya no esta disponible
       print('currenusers',users)
+      end
+     
+      --Desconexion de un usuario 
+      --nos envia su token y lo devolvemos a la lista
+      if address == 't/disconnect' then
+      table.insert(users,args[0])
+      a = args[0]
+      reaper.ShowConsoleMsg('user disconected')
+      reaper.ShowConsoleMsg(args[0])
       end
      -- print('address: ', address)
       --print('This message haves '..#values..' values:')
