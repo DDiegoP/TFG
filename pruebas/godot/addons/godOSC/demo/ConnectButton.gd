@@ -3,6 +3,7 @@ extends OSCMessage
 #@export var broadcast_address = "255.255.255.255"
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	#var a : float  =  123542525%10000 no puedes pillar el resto de un float ?!  
 	
 	pass # Replace with function body.
 

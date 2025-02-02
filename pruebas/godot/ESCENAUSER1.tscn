@@ -1,32 +1,39 @@
-[gd_scene load_steps=5 format=3 uid="uid://kg2lxue8sxk4"]
+[gd_scene load_steps=8 format=3 uid="uid://kg2lxue8sxk4"]
 
+[ext_resource type="Script" path="res://addons/godOSC/scripts/OSCServer.gd" id="1_mnrgl"]
 [ext_resource type="Script" path="res://addons/godOSC/demo/ANTONIO_ACTION_MESSAGE_1.gd" id="1_tdh4o"]
 [ext_resource type="Script" path="res://addons/godOSC/scripts/OSCClient.gd" id="2_3ksjf"]
 [ext_resource type="Script" path="res://GESTORESCENAUSER1.gd" id="3_exn85"]
 [ext_resource type="Script" path="res://DisConnectButton.gd" id="4_eyrxf"]
+[ext_resource type="Script" path="res://LatencyReciever.gd" id="6_qhtr6"]
+[ext_resource type="Script" path="res://LatencySender.gd" id="7_3mxe3"]
 
 [node name="Node2D" type="Node2D"]
+
+[node name="OSCServer" type="Node" parent="."]
+script = ExtResource("1_mnrgl")
+port = 3003
 
 [node name="GESTORESCENAUSER1" type="Node2D" parent="." node_paths=PackedStringArray("scene_client")]
 script = ExtResource("3_exn85")
 scene_client = NodePath("../OSCClient")
 
 [node name="Label" type="Label" parent="."]
-offset_left = 197.0
-offset_top = 86.0
-offset_right = 561.0
-offset_bottom = 148.0
+offset_left = 172.0
+offset_top = 69.0
+offset_right = 536.0
+offset_bottom = 131.0
 theme_override_colors/font_color = Color(0.941176, 0.105882, 0.160784, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 34
+theme_override_font_sizes/font_size = 45
 text = "Bienvenido Antonio"
 
 [node name="VolumenBajos" type="HSlider" parent="."]
-offset_left = 182.0
-offset_top = 217.0
-offset_right = 544.0
-offset_bottom = 298.0
+offset_left = 155.0
+offset_top = 117.0
+offset_right = 596.0
+offset_bottom = 235.0
 max_value = 2.0
 step = 0.1
 
@@ -41,10 +48,10 @@ script = ExtResource("2_3ksjf")
 port = 3000
 
 [node name="DisConnectButton" type="Button" parent="."]
-offset_left = 59.0
-offset_top = 304.0
-offset_right = 668.0
-offset_bottom = 365.0
+offset_left = 72.0
+offset_top = 210.0
+offset_right = 681.0
+offset_bottom = 271.0
 scale = Vector2(0.993655, 0.851524)
 text = "DESCONECTAR "
 
@@ -54,5 +61,22 @@ target_client = NodePath("../../OSCClient")
 osc_address = "t/disconnect"
 osc_argument = "0.0"
 
+[node name="CheckLatencyButton" type="Button" parent="." node_paths=PackedStringArray("target_server")]
+offset_left = 72.0
+offset_top = 287.0
+offset_right = 681.0
+offset_bottom = 348.0
+scale = Vector2(0.993655, 0.851524)
+text = "PRUEBA DE LATENCIA"
+script = ExtResource("6_qhtr6")
+target_server = NodePath("../OSCServer")
+osc_address = "/latency"
+
+[node name="OSCMessage" type="Node" parent="CheckLatencyButton" node_paths=PackedStringArray("target_client")]
+script = ExtResource("7_3mxe3")
+target_client = NodePath("../../OSCClient")
+osc_address = "/latency"
+
 [connection signal="drag_ended" from="VolumenBajos" to="VolumenBajos/OSCMessage" method="_on_volumen_bajos_drag_ended"]
 [connection signal="pressed" from="DisConnectButton" to="DisConnectButton/OSCMessage" method="_on_dis_connect_button_pressed"]
+[connection signal="pressed" from="CheckLatencyButton" to="CheckLatencyButton/OSCMessage" method="_on_check_latency_button_pressed"]

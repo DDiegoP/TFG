@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cwmcuvud7mcp4"]
+[gd_scene load_steps=6 format=3 uid="uid://cwmcuvud7mcp4"]
 
 [ext_resource type="Script" path="res://GESTORESCENAUSER2.gd" id="1_inn86"]
 [ext_resource type="Script" path="res://FELIPE_ACTION_MESSAGE.gd" id="2_x3mjb"]
 [ext_resource type="Script" path="res://addons/godOSC/scripts/OSCClient.gd" id="2_yp04u"]
+[ext_resource type="Script" path="res://addons/godOSC/scripts/OSCServer.gd" id="4_2c4nq"]
 
 [sub_resource type="Theme" id="Theme_pigco"]
 
@@ -41,5 +42,9 @@ osc_argument = "0.0"
 [node name="OSCClient" type="Node" parent="."]
 script = ExtResource("2_yp04u")
 port = 3000
+
+[node name="OSCServer" type="Node" parent="."]
+script = ExtResource("4_2c4nq")
+port = 3003
 
 [connection signal="drag_ended" from="volumen_altos" to="volumen_altos/OSCMessage" method="_on_volumen_altos_drag_ended"]
