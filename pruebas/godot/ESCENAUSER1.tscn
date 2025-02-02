@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://kg2lxue8sxk4"]
+[gd_scene load_steps=5 format=3 uid="uid://kg2lxue8sxk4"]
 
 [ext_resource type="Script" path="res://addons/godOSC/demo/ANTONIO_ACTION_MESSAGE_1.gd" id="1_tdh4o"]
 [ext_resource type="Script" path="res://addons/godOSC/scripts/OSCClient.gd" id="2_3ksjf"]
 [ext_resource type="Script" path="res://GESTORESCENAUSER1.gd" id="3_exn85"]
+[ext_resource type="Script" path="res://DisConnectButton.gd" id="4_eyrxf"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -39,4 +40,19 @@ osc_argument = "0.0"
 script = ExtResource("2_3ksjf")
 port = 3000
 
+[node name="DisConnectButton" type="Button" parent="."]
+offset_left = 59.0
+offset_top = 304.0
+offset_right = 668.0
+offset_bottom = 365.0
+scale = Vector2(0.993655, 0.851524)
+text = "DESCONECTAR "
+
+[node name="OSCMessage" type="Node" parent="DisConnectButton" node_paths=PackedStringArray("target_client")]
+script = ExtResource("4_eyrxf")
+target_client = NodePath("../../OSCClient")
+osc_address = "t/disconnect"
+osc_argument = "0.0"
+
 [connection signal="drag_ended" from="VolumenBajos" to="VolumenBajos/OSCMessage" method="_on_volumen_bajos_drag_ended"]
+[connection signal="pressed" from="DisConnectButton" to="DisConnectButton/OSCMessage" method="_on_dis_connect_button_pressed"]
