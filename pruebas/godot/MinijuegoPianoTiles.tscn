@@ -1,0 +1,53 @@
+[gd_scene load_steps=2 format=3 uid="uid://defja54tn6vq8"]
+
+[ext_resource type="Texture2D" uid="uid://df8e78jiq637a" path="res://Sprites/EmptyCircle.png" id="1_sip2u"]
+
+[node name="MinijuegoPianoTiles" type="Node2D"]
+
+[node name="Carril1" type="Line2D" parent="."]
+position = Vector2(250, -41)
+points = PackedVector2Array(0, 0, 0, 750)
+width = 40.0
+
+[node name="SpawnPoint" type="Marker2D" parent="Carril1"]
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="Carril1"]
+position = Vector2(-52, 566)
+scale = Vector2(0.3, 0.3)
+texture_normal = ExtResource("1_sip2u")
+
+[node name="Carril2" type="Line2D" parent="."]
+position = Vector2(400, -41)
+points = PackedVector2Array(0, 0, 0, 750)
+width = 40.0
+
+[node name="SpawnPoint" type="Marker2D" parent="Carril2"]
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="Carril2"]
+position = Vector2(-52, 566)
+scale = Vector2(0.3, 0.3)
+texture_normal = ExtResource("1_sip2u")
+
+[node name="Carril3" type="Line2D" parent="."]
+position = Vector2(550, -41)
+points = PackedVector2Array(0, 0, 0, 750)
+width = 40.0
+
+[node name="SpawnPoint" type="Marker2D" parent="Carril3"]
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="Carril3"]
+position = Vector2(-52, 566)
+scale = Vector2(0.3, 0.3)
+texture_normal = ExtResource("1_sip2u")
+
+[node name="Carril4" type="Line2D" parent="."]
+position = Vector2(700, -41)
+points = PackedVector2Array(0, 0, 0, 750)
+width = 40.0
+
+[node name="SpawnPoint" type="Marker2D" parent="Carril4"]
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="Carril4"]
+position = Vector2(-52, 566)
+scale = Vector2(0.3, 0.3)
+texture_normal = ExtResource("1_sip2u")
