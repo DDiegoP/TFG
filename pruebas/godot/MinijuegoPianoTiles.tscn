@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://defja54tn6vq8"]
+[gd_scene load_steps=6 format=3 uid="uid://defja54tn6vq8"]
 
+[ext_resource type="Texture2D" uid="uid://ds4ggfnek7bg7" path="res://Sprites/RedCircle.png" id="1_ao3tq"]
 [ext_resource type="Texture2D" uid="uid://df8e78jiq637a" path="res://Sprites/EmptyCircle.png" id="1_sip2u"]
+[ext_resource type="Script" path="res://scripts/NoteController.gd" id="2_f1s4a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_27gvm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_80q6s"]
+size = Vector2(381.876, 384.997)
 
 [node name="MinijuegoPianoTiles" type="Node2D"]
 
@@ -11,10 +18,31 @@ width = 40.0
 
 [node name="SpawnPoint" type="Marker2D" parent="Carril1"]
 
-[node name="TouchScreenButton" type="TouchScreenButton" parent="Carril1"]
-position = Vector2(-52, 566)
-scale = Vector2(0.3, 0.3)
-texture_normal = ExtResource("1_sip2u")
+[node name="Nota" type="Area2D" parent="Carril1/SpawnPoint"]
+script = ExtResource("2_f1s4a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Carril1/SpawnPoint/Nota"]
+scale = Vector2(2.82, 2.82)
+shape = SubResource("RectangleShape2D_27gvm")
+
+[node name="Sprite2D" type="Sprite2D" parent="Carril1/SpawnPoint/Nota"]
+scale = Vector2(0.09, 0.09)
+texture = ExtResource("1_ao3tq")
+
+[node name="Boton" type="Button" parent="Carril1"]
+offset_left = -57.0
+offset_top = 559.0
+offset_right = 311.0
+offset_bottom = 927.0
+scale = Vector2(0.319999, 0.320002)
+icon = ExtResource("1_sip2u")
+flat = true
+
+[node name="Area2D" type="Area2D" parent="Carril1/Boton"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Carril1/Boton/Area2D"]
+position = Vector2(180.938, 182.498)
+shape = SubResource("RectangleShape2D_80q6s")
 
 [node name="Carril2" type="Line2D" parent="."]
 position = Vector2(400, -41)
@@ -23,10 +51,14 @@ width = 40.0
 
 [node name="SpawnPoint" type="Marker2D" parent="Carril2"]
 
-[node name="TouchScreenButton" type="TouchScreenButton" parent="Carril2"]
-position = Vector2(-52, 566)
-scale = Vector2(0.3, 0.3)
-texture_normal = ExtResource("1_sip2u")
+[node name="Boton" type="Button" parent="Carril2"]
+offset_left = -57.0
+offset_top = 559.0
+offset_right = 311.0
+offset_bottom = 927.0
+scale = Vector2(0.319999, 0.320002)
+icon = ExtResource("1_sip2u")
+flat = true
 
 [node name="Carril3" type="Line2D" parent="."]
 position = Vector2(550, -41)
@@ -35,10 +67,14 @@ width = 40.0
 
 [node name="SpawnPoint" type="Marker2D" parent="Carril3"]
 
-[node name="TouchScreenButton" type="TouchScreenButton" parent="Carril3"]
-position = Vector2(-52, 566)
-scale = Vector2(0.3, 0.3)
-texture_normal = ExtResource("1_sip2u")
+[node name="Boton" type="Button" parent="Carril3"]
+offset_left = -57.0
+offset_top = 559.0
+offset_right = 311.0
+offset_bottom = 927.0
+scale = Vector2(0.319999, 0.320002)
+icon = ExtResource("1_sip2u")
+flat = true
 
 [node name="Carril4" type="Line2D" parent="."]
 position = Vector2(700, -41)
@@ -47,7 +83,13 @@ width = 40.0
 
 [node name="SpawnPoint" type="Marker2D" parent="Carril4"]
 
-[node name="TouchScreenButton" type="TouchScreenButton" parent="Carril4"]
-position = Vector2(-52, 566)
-scale = Vector2(0.3, 0.3)
-texture_normal = ExtResource("1_sip2u")
+[node name="Boton" type="Button" parent="Carril4"]
+offset_left = -57.0
+offset_top = 559.0
+offset_right = 311.0
+offset_bottom = 927.0
+scale = Vector2(0.319999, 0.320002)
+icon = ExtResource("1_sip2u")
+flat = true
+
+[connection signal="pressed" from="Carril1/Boton" to="Carril1/SpawnPoint/Nota" method="_on_boton_pressed"]

@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvq8qooyr2at7"]
+
+[ext_resource type="Texture2D" uid="uid://df8e78jiq637a" path="res://Sprites/EmptyCircle.png" id="1_wcewc"]
+
+[node name="Carril1" type="Line2D"]
+position = Vector2(250, -41)
+points = PackedVector2Array(0, 0, 0, 750)
+width = 40.0
+
+[node name="SpawnPoint" type="Marker2D" parent="."]
+
+[node name="Boton" type="Button" parent="."]
+offset_left = -57.0
+offset_top = 559.0
+offset_right = 311.0
+offset_bottom = 927.0
+scale = Vector2(0.319999, 0.320002)
+icon = ExtResource("1_wcewc")
+flat = true
