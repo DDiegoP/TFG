@@ -1,10 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://defja54tn6vq8"]
+[gd_scene load_steps=5 format=3 uid="uid://defja54tn6vq8"]
 
-[ext_resource type="Texture2D" uid="uid://ds4ggfnek7bg7" path="res://Sprites/RedCircle.png" id="1_ao3tq"]
+[ext_resource type="PackedScene" uid="uid://cblwij4xngnpr" path="res://nota.tscn" id="1_s8wu0"]
 [ext_resource type="Texture2D" uid="uid://df8e78jiq637a" path="res://Sprites/EmptyCircle.png" id="1_sip2u"]
-[ext_resource type="Script" path="res://scripts/NoteController.gd" id="2_f1s4a"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_27gvm"]
+[ext_resource type="Script" path="res://scripts/StringButton.gd" id="3_dx1av"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_80q6s"]
 size = Vector2(381.876, 384.997)
@@ -16,18 +14,11 @@ position = Vector2(250, -41)
 points = PackedVector2Array(0, 0, 0, 750)
 width = 40.0
 
-[node name="SpawnPoint" type="Marker2D" parent="Carril1"]
-
-[node name="Nota" type="Area2D" parent="Carril1/SpawnPoint"]
-script = ExtResource("2_f1s4a")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Carril1/SpawnPoint/Nota"]
-scale = Vector2(2.82, 2.82)
-shape = SubResource("RectangleShape2D_27gvm")
-
-[node name="Sprite2D" type="Sprite2D" parent="Carril1/SpawnPoint/Nota"]
-scale = Vector2(0.09, 0.09)
-texture = ExtResource("1_ao3tq")
+[node name="SpawnPoint" type="Marker2D" parent="Carril1" node_paths=PackedStringArray("button")]
+script = ExtResource("3_dx1av")
+nota = ExtResource("1_s8wu0")
+button = NodePath("../Boton")
+key = "G2"
 
 [node name="Boton" type="Button" parent="Carril1"]
 offset_left = -57.0
@@ -49,7 +40,11 @@ position = Vector2(400, -41)
 points = PackedVector2Array(0, 0, 0, 750)
 width = 40.0
 
-[node name="SpawnPoint" type="Marker2D" parent="Carril2"]
+[node name="SpawnPoint" type="Marker2D" parent="Carril2" node_paths=PackedStringArray("button")]
+script = ExtResource("3_dx1av")
+nota = ExtResource("1_s8wu0")
+button = NodePath("../Boton")
+key = "D2"
 
 [node name="Boton" type="Button" parent="Carril2"]
 offset_left = -57.0
@@ -60,12 +55,22 @@ scale = Vector2(0.319999, 0.320002)
 icon = ExtResource("1_sip2u")
 flat = true
 
+[node name="Area2D" type="Area2D" parent="Carril2/Boton"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Carril2/Boton/Area2D"]
+position = Vector2(180.938, 182.498)
+shape = SubResource("RectangleShape2D_80q6s")
+
 [node name="Carril3" type="Line2D" parent="."]
 position = Vector2(550, -41)
 points = PackedVector2Array(0, 0, 0, 750)
 width = 40.0
 
-[node name="SpawnPoint" type="Marker2D" parent="Carril3"]
+[node name="SpawnPoint" type="Marker2D" parent="Carril3" node_paths=PackedStringArray("button")]
+script = ExtResource("3_dx1av")
+nota = ExtResource("1_s8wu0")
+button = NodePath("../Boton")
+key = "C2"
 
 [node name="Boton" type="Button" parent="Carril3"]
 offset_left = -57.0
@@ -76,12 +81,22 @@ scale = Vector2(0.319999, 0.320002)
 icon = ExtResource("1_sip2u")
 flat = true
 
+[node name="Area2D" type="Area2D" parent="Carril3/Boton"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Carril3/Boton/Area2D"]
+position = Vector2(180.938, 182.498)
+shape = SubResource("RectangleShape2D_80q6s")
+
 [node name="Carril4" type="Line2D" parent="."]
 position = Vector2(700, -41)
 points = PackedVector2Array(0, 0, 0, 750)
 width = 40.0
 
-[node name="SpawnPoint" type="Marker2D" parent="Carril4"]
+[node name="SpawnPoint" type="Marker2D" parent="Carril4" node_paths=PackedStringArray("button")]
+script = ExtResource("3_dx1av")
+nota = ExtResource("1_s8wu0")
+button = NodePath("../Boton")
+key = "E2"
 
 [node name="Boton" type="Button" parent="Carril4"]
 offset_left = -57.0
@@ -92,4 +107,8 @@ scale = Vector2(0.319999, 0.320002)
 icon = ExtResource("1_sip2u")
 flat = true
 
-[connection signal="pressed" from="Carril1/Boton" to="Carril1/SpawnPoint/Nota" method="_on_boton_pressed"]
+[node name="Area2D" type="Area2D" parent="Carril4/Boton"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Carril4/Boton/Area2D"]
+position = Vector2(180.938, 182.498)
+shape = SubResource("RectangleShape2D_80q6s")
