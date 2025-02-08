@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://defja54tn6vq8"]
+[gd_scene load_steps=6 format=3 uid="uid://defja54tn6vq8"]
 
+[ext_resource type="Script" path="res://scripts/Spawner.gd" id="1_kwh5s"]
 [ext_resource type="PackedScene" uid="uid://cblwij4xngnpr" path="res://nota.tscn" id="1_s8wu0"]
 [ext_resource type="Texture2D" uid="uid://df8e78jiq637a" path="res://Sprites/EmptyCircle.png" id="1_sip2u"]
 [ext_resource type="Script" path="res://scripts/StringButton.gd" id="3_dx1av"]
@@ -7,7 +8,16 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_80q6s"]
 size = Vector2(381.876, 384.997)
 
-[node name="MinijuegoPianoTiles" type="Node2D"]
+[node name="MinijuegoPianoTiles" type="Node2D" node_paths=PackedStringArray("string1", "string2", "string3", "string4")]
+script = ExtResource("1_kwh5s")
+string1 = NodePath("Carril1/SpawnPoint")
+string1Notes = ["C1"]
+string2 = NodePath("Carril2/SpawnPoint")
+string2Notes = ["G3"]
+string3 = NodePath("Carril3/SpawnPoint")
+string3Notes = ["A2"]
+string4 = NodePath("Carril4/SpawnPoint")
+string4Notes = ["B4"]
 
 [node name="Carril1" type="Line2D" parent="."]
 position = Vector2(250, -41)
