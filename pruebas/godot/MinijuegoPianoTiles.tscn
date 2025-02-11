@@ -8,16 +8,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_80q6s"]
 size = Vector2(381.876, 384.997)
 
-[node name="MinijuegoPianoTiles" type="Node2D" node_paths=PackedStringArray("string1", "string2", "string3", "string4")]
+[node name="MinijuegoPianoTiles" type="Node2D" node_paths=PackedStringArray("bassStrings")]
 script = ExtResource("1_kwh5s")
-string1 = NodePath("Carril1/SpawnPoint")
-string1Notes = ["C1"]
-string2 = NodePath("Carril2/SpawnPoint")
-string2Notes = ["G3"]
-string3 = NodePath("Carril3/SpawnPoint")
-string3Notes = ["A2"]
-string4 = NodePath("Carril4/SpawnPoint")
-string4Notes = ["B4"]
+bassStrings = [NodePath("Carril1/SpawnPoint"), NodePath("Carril2/SpawnPoint"), NodePath("Carril3/SpawnPoint"), NodePath("Carril4/SpawnPoint")]
+stringNotes = ["C1", "E2", "G3"]
+noteStamps = [3, 5, 7]
 
 [node name="Carril1" type="Line2D" parent="."]
 position = Vector2(250, -41)
