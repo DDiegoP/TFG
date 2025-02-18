@@ -10,7 +10,7 @@ size = Vector2(381.876, 384.997)
 
 [node name="MinijuegoPianoTiles" type="Node2D" node_paths=PackedStringArray("bassStrings")]
 script = ExtResource("1_kwh5s")
-bassStrings = [NodePath("Carril1/SpawnPoint"), NodePath("Carril2/SpawnPoint"), NodePath("Carril3/SpawnPoint"), NodePath("Carril4/SpawnPoint")]
+bassStrings = [null, null, null, null]
 stringNotes = ["C1", "E2", "G3"]
 noteStamps = [3, 5, 7]
 
@@ -19,10 +19,9 @@ position = Vector2(250, -41)
 points = PackedVector2Array(0, 0, 0, 750)
 width = 40.0
 
-[node name="SpawnPoint" type="Marker2D" parent="Carril1" node_paths=PackedStringArray("button")]
+[node name="SpawnPoint" type="Marker2D" parent="Carril1"]
 script = ExtResource("3_dx1av")
 nota = ExtResource("1_s8wu0")
-button = NodePath("../Boton")
 key = "G2"
 
 [node name="Boton" type="Button" parent="Carril1"]
@@ -45,10 +44,9 @@ position = Vector2(400, -41)
 points = PackedVector2Array(0, 0, 0, 750)
 width = 40.0
 
-[node name="SpawnPoint" type="Marker2D" parent="Carril2" node_paths=PackedStringArray("button")]
+[node name="SpawnPoint" type="Marker2D" parent="Carril2"]
 script = ExtResource("3_dx1av")
 nota = ExtResource("1_s8wu0")
-button = NodePath("../Boton")
 key = "D2"
 
 [node name="Boton" type="Button" parent="Carril2"]
@@ -71,10 +69,9 @@ position = Vector2(550, -41)
 points = PackedVector2Array(0, 0, 0, 750)
 width = 40.0
 
-[node name="SpawnPoint" type="Marker2D" parent="Carril3" node_paths=PackedStringArray("button")]
+[node name="SpawnPoint" type="Marker2D" parent="Carril3"]
 script = ExtResource("3_dx1av")
 nota = ExtResource("1_s8wu0")
-button = NodePath("../Boton")
 key = "C2"
 
 [node name="Boton" type="Button" parent="Carril3"]
@@ -97,10 +94,9 @@ position = Vector2(700, -41)
 points = PackedVector2Array(0, 0, 0, 750)
 width = 40.0
 
-[node name="SpawnPoint" type="Marker2D" parent="Carril4" node_paths=PackedStringArray("button")]
+[node name="SpawnPoint" type="Marker2D" parent="Carril4"]
 script = ExtResource("3_dx1av")
 nota = ExtResource("1_s8wu0")
-button = NodePath("../Boton")
 key = "E2"
 
 [node name="Boton" type="Button" parent="Carril4"]

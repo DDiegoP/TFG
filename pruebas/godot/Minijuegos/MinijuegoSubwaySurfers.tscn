@@ -1,0 +1,122 @@
+[gd_scene load_steps=4 format=3 uid="uid://defja54tn6vq8"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bfxey"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1wu77"]
+size = Vector3(20, 1, 200)
+
+[sub_resource type="BoxMesh" id="BoxMesh_35h8w"]
+size = Vector3(20, 1, 200)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.876046, 0.482227, 0, -0.482227, 0.876046, 0, 31.1281, 0)
+
+[node name="Carril1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0.000785409, 0, -0.000785409, 1, -54.9781, -2.763, -137.815)
+physics_material_override = SubResource("PhysicsMaterial_bfxey")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Carril1"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_1wu77")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Carril1"]
+mesh = SubResource("BoxMesh_35h8w")
+
+[node name="PlayerPos" type="Marker3D" parent="Carril1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 74.9696)
+
+[node name="ObstaclePos" type="Marker3D" parent="Carril1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -85.1521)
+
+[node name="Carril2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.999999, 0.00157082, 0, -0.00157082, 0.999999, -32.9781, -2.763, -137.815)
+physics_material_override = SubResource("PhysicsMaterial_bfxey")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Carril2"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_1wu77")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Carril2"]
+mesh = SubResource("BoxMesh_35h8w")
+skeleton = NodePath("../../Carril5")
+
+[node name="PlayerPos" type="Marker3D" parent="Carril2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 74.9696)
+
+[node name="ObstaclePos" type="Marker3D" parent="Carril2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -85.1521)
+
+[node name="Carril3" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.999999, 0.00157082, 0, -0.00157082, 0.999999, -10.9781, -2.763, -137.815)
+physics_material_override = SubResource("PhysicsMaterial_bfxey")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Carril3"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_1wu77")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Carril3"]
+mesh = SubResource("BoxMesh_35h8w")
+skeleton = NodePath("../../Carril5")
+
+[node name="PlayerPos" type="Marker3D" parent="Carril3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 74.9696)
+
+[node name="ObstaclePos" type="Marker3D" parent="Carril3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -85.1521)
+
+[node name="Carril4" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0.000785409, 0, -0.000785409, 1, 11.0219, -2.76267, -137.815)
+physics_material_override = SubResource("PhysicsMaterial_bfxey")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Carril4"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_1wu77")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Carril4"]
+mesh = SubResource("BoxMesh_35h8w")
+
+[node name="PlayerPos" type="Marker3D" parent="Carril4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 74.9696)
+
+[node name="ObstaclePos" type="Marker3D" parent="Carril4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -85.1521)
+
+[node name="Carril5" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.999999, 0.00157082, 0, -0.00157082, 0.999999, 33.0219, -2.763, -137.815)
+physics_material_override = SubResource("PhysicsMaterial_bfxey")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Carril5"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_1wu77")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Carril5"]
+mesh = SubResource("BoxMesh_35h8w")
+
+[node name="PlayerPos" type="Marker3D" parent="Carril5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 74.9696)
+
+[node name="ObstaclePos" type="Marker3D" parent="Carril5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -85.1521)
+
+[node name="Carril6" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.999999, 0.00157082, 0, -0.00157082, 0.999999, 55.0219, -2.763, -137.815)
+physics_material_override = SubResource("PhysicsMaterial_bfxey")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Carril6"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_1wu77")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Carril6"]
+mesh = SubResource("BoxMesh_35h8w")
+skeleton = NodePath("../../Carril5")
+
+[node name="PlayerPos" type="Marker3D" parent="Carril6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 74.9696)
+
+[node name="ObstaclePos" type="Marker3D" parent="Carril6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -85.1521)
+
+[node name="DestructionPos" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.07269)
