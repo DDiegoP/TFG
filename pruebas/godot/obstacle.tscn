@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://ornqx5m0p35h"]
+
+[ext_resource type="Script" path="res://Scripts/ObstacleController.gd" id="1_7jf46"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_2a3dg"]
+radius = 8.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qknjt"]
+albedo_color = Color(0.321728, 0.321728, 0.321728, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_2ymyk"]
+material = SubResource("StandardMaterial3D_qknjt")
+radius = 8.0
+height = 16.0
+
+[node name="Obstacle" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.68887, -1.52588e-05)
+script = ExtResource("1_7jf46")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_2a3dg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_2ymyk")

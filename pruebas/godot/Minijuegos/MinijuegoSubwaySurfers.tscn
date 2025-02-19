@@ -1,4 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://defja54tn6vq8"]
+[gd_scene load_steps=6 format=3 uid="uid://defja54tn6vq8"]
+
+[ext_resource type="Script" path="res://Scripts/ObstacleSpawner.gd" id="1_4c7pq"]
+[ext_resource type="PackedScene" uid="uid://ornqx5m0p35h" path="res://obstacle.tscn" id="2_mp5k1"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bfxey"]
 
@@ -8,7 +11,12 @@ size = Vector3(20, 1, 200)
 [sub_resource type="BoxMesh" id="BoxMesh_35h8w"]
 size = Vector3(20, 1, 200)
 
-[node name="Node3D" type="Node3D"]
+[node name="Node3D" type="Node3D" node_paths=PackedStringArray("guitarStrings")]
+script = ExtResource("1_4c7pq")
+guitarStrings = [NodePath("Carril1/ObstaclePos"), NodePath("Carril2/ObstaclePos"), NodePath("Carril3/ObstaclePos"), NodePath("Carril4/ObstaclePos"), NodePath("Carril5/ObstaclePos"), NodePath("Carril6/ObstaclePos")]
+stringNotes = ["C1", "E2", "G3", "E4", "B5", "A6"]
+noteStamps = [1.0, 3.0, 5.0, 7.0, 9.0, 11.0]
+obstacle = ExtResource("2_mp5k1")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.876046, 0.482227, 0, -0.482227, 0.876046, 0, 31.1281, 0)
@@ -117,6 +125,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 74.9696)
 
 [node name="ObstaclePos" type="Marker3D" parent="Carril6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -85.1521)
-
-[node name="DestructionPos" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.07269)
