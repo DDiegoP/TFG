@@ -6,12 +6,14 @@ extends RigidBody3D
 @export var rightButton : Button
 var targetPos
 @export var currentIndex = 0
+var initialPos
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	leftButton.connect("pressed",moveLeft)
 	rightButton.connect("pressed",moveRight)
 	targetPos = playerPositions[currentIndex]
+	initialPos = currentIndex
 	position = targetPos.global_position
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -27,3 +29,8 @@ func moveRight():
 	if(currentIndex < playerPositions.size()-1):
 		currentIndex += 1;
 		targetPos = playerPositions[currentIndex];
+
+#die
+func _on_body_entered(body):
+	targetPos = playerPositions[initialPos]
+	currentIndex = initialPos
