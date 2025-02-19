@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://defja54tn6vq8"]
+[gd_scene load_steps=10 format=3 uid="uid://defja54tn6vq8"]
 
 [ext_resource type="Script" path="res://Scripts/ObstacleSpawner.gd" id="1_4c7pq"]
 [ext_resource type="PackedScene" uid="uid://ornqx5m0p35h" path="res://obstacle.tscn" id="2_mp5k1"]
+[ext_resource type="Script" path="res://Scripts/SubwaySurfersPlayer.gd" id="3_wbfd6"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bfxey"]
 
@@ -10,6 +11,18 @@ size = Vector3(20, 1, 200)
 
 [sub_resource type="BoxMesh" id="BoxMesh_35h8w"]
 size = Vector3(20, 1, 200)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n6tpq"]
+radius = 3.0
+height = 9.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hlpkk"]
+albedo_color = Color(0.731059, 0.0340082, 0.226413, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_rxlo5"]
+material = SubResource("StandardMaterial3D_hlpkk")
+radius = 3.0
+height = 9.0
 
 [node name="Node3D" type="Node3D" node_paths=PackedStringArray("guitarStrings")]
 script = ExtResource("1_4c7pq")
@@ -33,7 +46,7 @@ shape = SubResource("BoxShape3D_1wu77")
 mesh = SubResource("BoxMesh_35h8w")
 
 [node name="PlayerPos" type="Marker3D" parent="Carril1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 74.9696)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 74.97)
 
 [node name="ObstaclePos" type="Marker3D" parent="Carril1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -85.1521)
@@ -51,7 +64,7 @@ mesh = SubResource("BoxMesh_35h8w")
 skeleton = NodePath("../../Carril5")
 
 [node name="PlayerPos" type="Marker3D" parent="Carril2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 74.9696)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 74.97)
 
 [node name="ObstaclePos" type="Marker3D" parent="Carril2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -85.1521)
@@ -69,7 +82,7 @@ mesh = SubResource("BoxMesh_35h8w")
 skeleton = NodePath("../../Carril5")
 
 [node name="PlayerPos" type="Marker3D" parent="Carril3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 74.9696)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 74.97)
 
 [node name="ObstaclePos" type="Marker3D" parent="Carril3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -85.1521)
@@ -86,7 +99,7 @@ shape = SubResource("BoxShape3D_1wu77")
 mesh = SubResource("BoxMesh_35h8w")
 
 [node name="PlayerPos" type="Marker3D" parent="Carril4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 74.9696)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 74.97)
 
 [node name="ObstaclePos" type="Marker3D" parent="Carril4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -85.1521)
@@ -103,7 +116,7 @@ shape = SubResource("BoxShape3D_1wu77")
 mesh = SubResource("BoxMesh_35h8w")
 
 [node name="PlayerPos" type="Marker3D" parent="Carril5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 74.9696)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 74.97)
 
 [node name="ObstaclePos" type="Marker3D" parent="Carril5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -85.1521)
@@ -121,7 +134,31 @@ mesh = SubResource("BoxMesh_35h8w")
 skeleton = NodePath("../../Carril5")
 
 [node name="PlayerPos" type="Marker3D" parent="Carril6"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 74.9696)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 74.97)
 
 [node name="ObstaclePos" type="Marker3D" parent="Carril6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -85.1521)
+
+[node name="Player" type="RigidBody3D" parent="." node_paths=PackedStringArray("playerPositions", "leftButton", "rightButton")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.3957, 5.94493, -61.3596)
+script = ExtResource("3_wbfd6")
+playerPositions = [NodePath("../Carril1/PlayerPos"), NodePath("../Carril2/PlayerPos"), NodePath("../Carril3/PlayerPos"), NodePath("../Carril4/PlayerPos"), NodePath("../Carril5/PlayerPos"), NodePath("../Carril6/PlayerPos")]
+leftButton = NodePath("../LeftButton")
+rightButton = NodePath("../RightButton")
+currentIndex = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+shape = SubResource("CapsuleShape3D_n6tpq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
+mesh = SubResource("CapsuleMesh_rxlo5")
+
+[node name="LeftButton" type="Button" parent="."]
+offset_right = 505.0
+offset_bottom = 650.0
+
+[node name="RightButton" type="Button" parent="."]
+offset_left = 576.0
+offset_top = 2.0
+offset_right = 1081.0
+offset_bottom = 652.0
