@@ -1,3 +1,6 @@
+--referencia a nuestro server 
+server = require("testlocal")
+
 tracknum = 0 -- que pista queremos traducir 
 codifiedTrack = {} -- array de pares (nota, tiempo )
 

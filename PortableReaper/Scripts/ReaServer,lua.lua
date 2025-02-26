@@ -46,6 +46,11 @@ for i = 0, maxusers do
   users[i]=i
 end
 reaper.ShowConsoleMsg(#users)-- # es el lenght opeerator en lua :0
+userips = {1,2,3,4}
+--Funciones para las otras actions
+function getUserIP(id)
+    return userips[id]
+  end
 local function Main()
  for address, values in osc.enumReceive(udp) do
      --obtenemos los argumentos una vez por mensaje y dependiendo del tipo de mensaje gestionamos.    
