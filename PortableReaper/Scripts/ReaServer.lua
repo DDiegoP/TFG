@@ -13,6 +13,7 @@ local script_path = info.source:match[[^@?(.*[\/])[^\/]-$]];
 package.cpath = package.cpath .. ";" .. script_path .. "/socket module/?."..extension  -- Add current folder/socket module for looking at .dll (need for loading basic luasocket)
 package.path = package.path .. ";" .. script_path .. "/socket module/?.lua" -- Add current folder/socket module for looking at .lua ( Only need for loading the other functions packages lua osc.lua, url.lua etc... You can change those files path and update this line)ssssssssssssssssssssssssssssssssssss
 
+--local body = {}
 -- Functions
 function print(...) 
   local t = {}
@@ -45,12 +46,22 @@ maxusers = 2 --cuantos usuarios simultaneos podemos gestionar
 for i = 0, maxusers do
   users[i]=i
 end
-reaper.ShowConsoleMsg(#users)-- # es el lenght opeerator en lua :0
+--reaper.ShowConsoleMsg(#users)-- # es el lenght opeerator en lua :0
 userips = {1,2,3,4}
 --Funciones para las otras actions
 function getUserIP(id)
+    reaper.ShowConsoleMsg(id)
     return userips[id]
   end
+function createUserSlots()
+  for i = 0, maxusers do
+    users[i]=i
+  end
+  reaper.ShowConsoleMsg(#users)
+end  
+
+--b = getUserIP(1)
+--reaper.ShowConsoleMsg(str(b))
 local function Main()
  for address, values in osc.enumReceive(udp) do
      --obtenemos los argumentos una vez por mensaje y dependiendo del tipo de mensaje gestionamos.    
@@ -90,4 +101,4 @@ local function Main()
 end
 --- Script: 
 Main()
-
+--return body
