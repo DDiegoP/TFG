@@ -32,6 +32,7 @@ offset_bottom = 927.0
 scale = Vector2(0.319999, 0.320002)
 icon = ExtResource("1_sip2u")
 flat = true
+metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" type="Area2D" parent="Carril1/Boton"]
 
@@ -57,6 +58,7 @@ offset_bottom = 927.0
 scale = Vector2(0.319999, 0.320002)
 icon = ExtResource("1_sip2u")
 flat = true
+metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" type="Area2D" parent="Carril2/Boton"]
 
@@ -82,6 +84,7 @@ offset_bottom = 927.0
 scale = Vector2(0.319999, 0.320002)
 icon = ExtResource("1_sip2u")
 flat = true
+metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" type="Area2D" parent="Carril3/Boton"]
 
@@ -107,6 +110,7 @@ offset_bottom = 927.0
 scale = Vector2(0.319999, 0.320002)
 icon = ExtResource("1_sip2u")
 flat = true
+metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" type="Area2D" parent="Carril4/Boton"]
 

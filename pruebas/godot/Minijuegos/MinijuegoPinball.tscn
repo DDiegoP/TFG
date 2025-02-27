@@ -1,0 +1,118 @@
+[gd_scene load_steps=8 format=3 uid="uid://oforkb5ivmi6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ew0k"]
+size = Vector2(162.785, 20)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_88wm6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i60v5"]
+size = Vector2(337, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ltaci"]
+size = Vector2(19, 378)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tx4et"]
+size = Vector2(89.5537, 15)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wh32x"]
+radius = 15.0
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_5sjf2"]
+
+[node name="MinijuegoPinball" type="Node2D"]
+
+[node name="Paredes" type="Node" parent="."]
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Paredes"]
+position = Vector2(663, 498)
+rotation = 2.00713
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/StaticBody2D2"]
+shape = SubResource("RectangleShape2D_3ew0k")
+
+[node name="Sprite2D" type="Sprite2D" parent="Paredes/StaticBody2D2"]
+position = Vector2(0.136616, 0.038728)
+scale = Vector2(162.64, 16.727)
+texture = SubResource("PlaceholderTexture2D_88wm6")
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="Paredes"]
+position = Vector2(538, 61)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/StaticBody2D5"]
+shape = SubResource("RectangleShape2D_i60v5")
+
+[node name="Sprite2D" type="Sprite2D" parent="Paredes/StaticBody2D5"]
+position = Vector2(0.136616, 0.038728)
+scale = Vector2(308.88, 16.727)
+texture = SubResource("PlaceholderTexture2D_88wm6")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Paredes"]
+position = Vector2(696, 240)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/StaticBody2D4"]
+shape = SubResource("RectangleShape2D_ltaci")
+
+[node name="Sprite2D" type="Sprite2D" parent="Paredes/StaticBody2D4"]
+position = Vector2(7.62939e-06, 1.00002)
+scale = Vector2(16, 376)
+texture = SubResource("PlaceholderTexture2D_88wm6")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Paredes"]
+position = Vector2(379, 241)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/StaticBody2D3"]
+shape = SubResource("RectangleShape2D_ltaci")
+
+[node name="Sprite2D" type="Sprite2D" parent="Paredes/StaticBody2D3"]
+position = Vector2(7.62939e-06, 1.00002)
+scale = Vector2(16, 376)
+texture = SubResource("PlaceholderTexture2D_88wm6")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Paredes"]
+position = Vector2(413, 498)
+rotation = 1.13446
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/StaticBody2D"]
+shape = SubResource("RectangleShape2D_3ew0k")
+
+[node name="Sprite2D" type="Sprite2D" parent="Paredes/StaticBody2D"]
+position = Vector2(0.136616, 0.038728)
+scale = Vector2(162.64, 16.727)
+texture = SubResource("PlaceholderTexture2D_88wm6")
+
+[node name="Pala2" type="StaticBody2D" parent="."]
+position = Vector2(636, 568)
+rotation = 2.95833
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pala2"]
+position = Vector2(45, 0)
+shape = SubResource("RectangleShape2D_tx4et")
+
+[node name="Sprite2D" type="Sprite2D" parent="Pala2"]
+position = Vector2(44.9033, -0.830798)
+scale = Vector2(86.4161, 13.3566)
+texture = SubResource("PlaceholderTexture2D_88wm6")
+
+[node name="Pala1" type="StaticBody2D" parent="."]
+position = Vector2(439, 568)
+rotation = 0.182613
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pala1"]
+position = Vector2(45, 0)
+shape = SubResource("RectangleShape2D_tx4et")
+
+[node name="Sprite2D" type="Sprite2D" parent="Pala1"]
+position = Vector2(44.9033, -0.830798)
+scale = Vector2(86.4161, 13.3566)
+texture = SubResource("PlaceholderTexture2D_88wm6")
+
+[node name="Ball" type="RigidBody2D" parent="."]
+position = Vector2(531, 155)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
+scale = Vector2(1.1, 1.1)
+shape = SubResource("CircleShape2D_wh32x")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ball"]
+scale = Vector2(25, 25)
+texture = SubResource("PlaceholderTexture2D_5sjf2")
