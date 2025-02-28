@@ -9,7 +9,11 @@ require("ReaServer") --Usamos nuestra clase de utilidad y la modificamos con la 
 --Nuestro Juego es para 4 jugadores asi qeu especificamos 4 slots de usuario
 maxusers = 4
 createUserSlots()
+setUp()
+
 
 
 a = getUserIP(1)
-reaper.ShowConsoleMsg(str(a))
+reaper.ShowConsoleMsg(a)
+
+Main()

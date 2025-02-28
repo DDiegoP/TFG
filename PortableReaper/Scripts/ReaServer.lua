@@ -1,5 +1,5 @@
 -- @noindex
--- Load the socket module
+-- Cargaremos nuestro modulo de lua socket
 local opsys = reaper.GetOS()
 local extension 
 if opsys:match('Win') then
@@ -10,11 +10,33 @@ end
 
 local info = debug.getinfo(1, 'S');
 local script_path = info.source:match[[^@?(.*[\/])[^\/]-$]];
-package.cpath = package.cpath .. ";" .. script_path .. "/socket module/?."..extension  -- Add current folder/socket module for looking at .dll (need for loading basic luasocket)
-package.path = package.path .. ";" .. script_path .. "/socket module/?.lua" -- Add current folder/socket module for looking at .lua ( Only need for loading the other functions packages lua osc.lua, url.lua etc... You can change those files path and update this line)ssssssssssssssssssssssssssssssssssss
+package.cpath = package.cpath .. ";" .. script_path .. "/socket module/?."..extension  -- En nuestra carpeta actual + "/socket module"  encontramos la  .dll para cargar las funciones exportadas de luasocket :)
+package.path = package.path .. ";" .. script_path .. "/socket module/?.lua" -- En nuestra carpeta actual + "/socket module" vamos a buscar tambien archivos .lua ( osc.lua, url.lua etc... )
 
---local body = {}
--- Functions
+-- Conseguimos los modulos socket y osc
+local socket = require('socket.core')
+local osc = require('osc')
+
+--Variables del servidor base
+port = 3000 -- el puerto donde se aloja el server , la ip se obtiene automaticamente
+users = {} --el servidor gestiona los slots de usuarios disponibles 
+maxusers = 2 --cuantos usuarios simultaneos podemos gestionar
+userips = {1,2,3,4}
+-- Funciones que nos ofrece el servidor base : 
+
+--- Obtiene la IP del dispositivo donde se está ejecutando e inicializa el socket del servidor :D
+function setUp()
+  -- Abrimos e inicializamos los sockets udp
+  udp1 = assert(socket.udp())
+  udp = assert(socket.udp())
+  assert(udp1:setpeername("177.44.4.1",3004)) -- Informacion aleatoria es solo para inicializarlo
+  ip,n = udp1:getsockname()--tras inicializarlo nos puede dar la IP de este oredenador :)
+  reaper.ShowConsoleMsg(ip)
+  --Hemos establecido que el servidor de nuestro programa estara en el puerto 3000:
+  assert(udp:setsockname(ip,port))
+  udp:settimeout(0.0001) -- Dont forget to set a low timeout! udp:receive block until have a message or timeout. values like (1) will make REAPER laggy.
+end
+
 function print(...) 
   local t = {}
   for i, v in ipairs( { ... } ) do
@@ -23,46 +45,32 @@ function print(...)
   reaper.ShowConsoleMsg( table.concat( t, " " ) .. "\n" )
 end
 
--- Get socket and osc modules
-local socket = require('socket.core')
-local osc = require('osc')
-
--- Get UDP
-local udp1 = assert(socket.udp())
-local udp = assert(socket.udp())
---assert(udp:setsockname("127.0.0.1",9004)) -- Set IP and PORT
-assert(udp1:setpeername("177.44.4.1",3004)) -- Informacion aleatoria es solo para inicializarlo
-s,n = udp1:getsockname()--tras inicializarlo nos puede dar la IP de este oredenador :)
-reaper.ShowConsoleMsg(s)
---Hemos establecido que el servidor de nuestro programa estara en el puerto 3004:
-assert(udp:setsockname(s,3000))
-udp:settimeout(0.0001) -- Dont forget to set a low timeout! udp:receive block until have a message or timeout. values like (1) will make REAPER laggy.
-
-local msg1 = osc.encode('/t connect', 666, 3.14, 'hello world!')
-udp:sendto(msg1, "192.168.1.56",3003)
-users = {} --el servidor gestiona los slpts de usuarios disponibles 
-maxusers = 2 --cuantos usuarios simultaneos podemos gestionar
-
+function getUserIP(id)
+  reaper.ShowConsoleMsg(id)
+  return userips[id]
+end
+function createUserSlots()
+users = {}
 for i = 0, maxusers do
   users[i]=i
 end
---reaper.ShowConsoleMsg(#users)-- # es el lenght opeerator en lua :0
-userips = {1,2,3,4}
---Funciones para las otras actions
-function getUserIP(id)
-    reaper.ShowConsoleMsg(id)
-    return userips[id]
-  end
-function createUserSlots()
-  for i = 0, maxusers do
-    users[i]=i
-  end
-  reaper.ShowConsoleMsg(#users)
+reaper.ShowConsoleMsg(#users)
 end  
 
---b = getUserIP(1)
---reaper.ShowConsoleMsg(str(b))
-local function Main()
+
+--testing
+--assert(udp:setsockname("127.0.0.1",9004)) -- Set IP and PORT
+--local msg1 = osc.encode('/t connect', 666, 3.14, 'hello world!')
+--udp:sendto(msg1, "192.168.1.56",3003)
+
+
+
+--reaper.ShowConsoleMsg(#users)-- # es el lenght opeerator en lua :0
+
+--Funciones para las otras actions
+
+--Vamos a dejar esta funcion escuchando para gestionar la conexion y desocnexion de usuarios  eso es el reaper.defer()
+ function Main()
  for address, values in osc.enumReceive(udp) do
      --obtenemos los argumentos una vez por mensaje y dependiendo del tipo de mensaje gestionamos.    
      args = {}
@@ -100,5 +108,5 @@ local function Main()
     
 end
 --- Script: 
-Main()
+--Main()
 --return body
