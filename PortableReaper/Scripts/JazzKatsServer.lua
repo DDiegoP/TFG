@@ -4,8 +4,14 @@ local ScriptPath = Info.source:match[[^@?(.*[\/])[^\/]-$]];
 package.path     = ScriptPath .. '?.lua;'  .. package.path;--Que realmente es donde estamos pero no busca aqui por defecto
 
 require("ReaServer") --Usamos nuestra clase de utilidad y la modificamos con la funcionaliad especifica de nuestro jeugo
---Esto ejecuta todo el set up y nos imprimer la ip en consola y eso :)
-
+--Esto ejecuta todo el set up y nos imprime la ip en consola y eso :)
+function onConnect(a) -- override de que pasa en mi juego en especifico cuando se concecta alguien
+  reaper.ShowConsoleMsg("b")
+  end
+  
+function onDisconnect(a) -- override de que pasa en mi juego en especifico cuando se desconcecta alguien
+  reaper.ShowConsoleMsg("b")
+  end  
 --Nuestro Juego es para 4 jugadores asi qeu especificamos 4 slots de usuario
 maxusers = 4
 createUserSlots()

@@ -22,6 +22,8 @@ port = 3000 -- el puerto donde se aloja el server , la ip se obtiene automaticam
 users = {} --el servidor gestiona los slots de usuarios disponibles 
 maxusers = 2 --cuantos usuarios simultaneos podemos gestionar
 userips = {1,2,3,4}
+
+userServerPort = 3003 -- el puerto donde esta el server de Godot en los moviles/ otros pcs
 -- Funciones que nos ofrece el servidor base : 
 
 --- Obtiene la IP del dispositivo donde se está ejecutando e inicializa el socket del servidor :D
@@ -85,9 +87,15 @@ end
       u = math.random(0,#users -1)
    
       local msg1 = osc.encode('/t connect', users[u], 3.14, 'hello world!')
-      udp:sendto(msg1,args[0],3003)
+      onConnect("a")
+      userIP , userPort = udp:getsockname()
+      --reaper.ShowConsoleMsg('user ip')
+     -- reaper.ShowConsoleMsg(userIP)
+      --reaper.ShowConsoleMsg('user port')
+     -- reaper.ShowConsoleMsg(userPort)
+      udp:sendto(msg1,args[0],userServerPort)
       table.remove(users,u+1) --ese slot de usuario ya no esta disponible
-      print('currenusers',users)
+      --print('currenusers',users)
       end
      
       --Desconexion de un usuario 
@@ -107,6 +115,14 @@ end
     reaper.defer(Main) -- Se usa defer para que la funcion siga ejecutandose y procesando input similar a runloop()
     
 end
+
+function onConnect(a)
+  reaper.ShowConsoleMsg(a)
+  end
+function onDisconnect(a)
+   reaper.ShowConsoleMsg(a)
+  end
+
 --- Script: 
 --Main()
 --return body
