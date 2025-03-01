@@ -120,7 +120,6 @@ offset_bottom = 648.0
 [node name="PaddleL" type="RigidBody2D" parent="."]
 position = Vector2(439, 568)
 rotation = 0.182613
-scale = Vector2(1, 1)
 freeze = true
 freeze_mode = 1
 
@@ -152,7 +151,6 @@ texture = SubResource("PlaceholderTexture2D_88wm6")
 position = Vector2(471, 251)
 rotation = 0.785821
 scale = Vector2(1, 2.55558)
-collision_layer = 3
 script = ExtResource("2_p7y7d")
 key = "E2"
 
@@ -168,7 +166,6 @@ texture = SubResource("PlaceholderTexture2D_ny4g3")
 position = Vector2(605, 255)
 rotation = 2.35619
 scale = Vector2(1, 2.55558)
-collision_layer = 3
 script = ExtResource("2_p7y7d")
 key = "C1"
 
