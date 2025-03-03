@@ -1,0 +1,80 @@
+[gd_scene load_steps=6 format=3 uid="uid://d4l311r66gap8"]
+
+[ext_resource type="Script" path="res://Minijuegos/MinijuegoGatoRodante.gd" id="1_mwjr0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i60v5"]
+size = Vector2(1069, 20)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_88wm6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wh32x"]
+radius = 15.0
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_5sjf2"]
+
+[node name="MinijuegoGato" type="Node2D" node_paths=PackedStringArray("ball")]
+script = ExtResource("1_mwjr0")
+ball = NodePath("Ball")
+ballSpeed = 10.0
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(534, 637)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2(9.5, 0)
+shape = SubResource("RectangleShape2D_i60v5")
+
+[node name="Sprite2D" type="Sprite2D" parent="Floor"]
+position = Vector2(0.136616, 0.038728)
+scale = Vector2(1000, 16.727)
+texture = SubResource("PlaceholderTexture2D_88wm6")
+
+[node name="Ball" type="RigidBody2D" parent="."]
+position = Vector2(523, 585)
+max_contacts_reported = 5
+contact_monitor = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
+scale = Vector2(1.1, 1.1)
+shape = SubResource("CircleShape2D_wh32x")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ball"]
+scale = Vector2(25, 25)
+texture = SubResource("PlaceholderTexture2D_5sjf2")
+
+[node name="ButtonLeft" type="Button" parent="."]
+offset_left = 6.0
+offset_top = 366.0
+offset_right = 441.0
+offset_bottom = 648.0
+
+[node name="ButtonRight" type="Button" parent="."]
+offset_left = 629.0
+offset_top = 366.0
+offset_right = 1078.0
+offset_bottom = 648.0
+
+[node name="SpawnPoints" type="Node" parent="."]
+
+[node name="SpawnPoint" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(105, 138)
+
+[node name="SpawnPoint2" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(262, 138)
+
+[node name="SpawnPoint3" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(444, 138)
+
+[node name="SpawnPoint4" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(619, 138)
+
+[node name="SpawnPoint5" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(781, 138)
+
+[node name="SpawnPoint6" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(918, 138)
+
+[connection signal="button_down" from="ButtonLeft" to="." method="_on_button_left_button_down"]
+[connection signal="button_up" from="ButtonLeft" to="." method="_on_button_left_button_up"]
+[connection signal="button_down" from="ButtonRight" to="." method="_on_button_right_button_down"]
+[connection signal="button_up" from="ButtonRight" to="." method="_on_button_right_button_up"]
