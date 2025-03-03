@@ -1,6 +1,9 @@
 
 --Acoplamos la info midi que nos llega por OSC si is permamnent esta a true no se borra al terminar
-function translateMessage(msg,tracknum,ispermanent)
+
+tracknum = 0 --Debe ser global para poder usar la funcion en defer
+
+function translateMessage(msg)
   
   --mitake = reaper.AddTakeToMediaItem(mit)
  
@@ -57,23 +60,51 @@ function translateMessage(msg,tracknum,ispermanent)
   endppq =  reaper.MIDI_GetProjTimeFromPPQPos(take , endpos)
   reaper.MIDI_InsertNote(take,false,false,ppq,endpos,1,pitch,68,true)
   reaper.SetEditCurPos(endppq,true , true )
-  if not ispermanent then 
-  reaper.defer(removeAtEnd(take,1,endpos))
+  reaper.defer(removeFirst)
+ -- if not ispermanent then 
+ -- reaper.defer(removeAtEnd(take,0,endpos))
  -- while cur_pos < endpos do
   --   cur_pos = reaper.GetCursorPosition()
  -- end
  -- reaper.MIDI_DeleteNote(take,false,false,ppq,endpos,1,pitch,68,true)
-  end
+  --end
  -- reaper.MIDI_GetProjTimeFromPPQPos() 
  end
 end
-
+--Si haces defer no puedes tener argumentos XD
 function removeAtEnd(take,index,endtime)
- if cur_pos < endtime then
-     cur_pos = reaper.GetCursorPosition()
-   end
-   reaper.ShowConsoleMsg("a")
+  playhead_pos = reaper.GetPlayPosition()
+  
+  if playhead_pos < reaper.MIDI_GetProjTimeFromPPQPos( endtime) then  
+    --reaper.ShowConsoleMsg("a")
    reaper.MIDI_DeleteNote(take,index)
+   end
+   
+end
+
+-- La funcion para defer bien hecha
+function removeFirst ()
+  -- si no esta vacia vemos si la primera nota ya se ha acabado
+  reaper.ShowConsoleMsg("ay la puta madre")
+  pista = reaper.GetTrack(0,tracknum)
+  objeto = reaper.GetTrackMediaItem(pista,0)
+  toma = reaper.GetActiveTake(objeto)
+  nNotes = reaper.MIDI_CountEvts(toma)
+  if nNotes > 0 then
+   playhead_pos = reaper.GetPlayPosition()
+   local retval, selected, muted, startppqpos, endppqpos, chan, pitch,vel 
+          = reaper.MIDI_GetNote(toma,0)
+   
+     if playhead_pos < reaper.MIDI_GetProjTimeFromPPQPos(toma,endppqpos) then  
+     --reaper.ShowConsoleMsg("a")
+     reaper.MIDI_DeleteNote(toma,0) 
+    
+     end
+     reaper.defer(removeFirst)
+  end
+  
+  
+  
 end
 
 
