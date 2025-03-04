@@ -1,6 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://d4l311r66gap8"]
+[gd_scene load_steps=11 format=3 uid="uid://d4l311r66gap8"]
 
 [ext_resource type="Script" path="res://Minijuegos/MinijuegoGatoRodante.gd" id="1_mwjr0"]
+[ext_resource type="Script" path="res://Scripts/Spawner.gd" id="2_mk2d1"]
+[ext_resource type="Script" path="res://Minijuegos/SpawnPoint.gd" id="3_fxfg4"]
+[ext_resource type="PackedScene" uid="uid://es6dvdkm1yxx" path="res://notaGato.tscn" id="4_byeo8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i60v5"]
 size = Vector2(1069, 20)
@@ -11,6 +14,11 @@ size = Vector2(1069, 20)
 radius = 15.0
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_5sjf2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1egfa"]
+size = Vector2(20, 271)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_umnma"]
 
 [node name="MinijuegoGato" type="Node2D" node_paths=PackedStringArray("ball")]
 script = ExtResource("1_mwjr0")
@@ -42,6 +50,30 @@ shape = SubResource("CircleShape2D_wh32x")
 scale = Vector2(25, 25)
 texture = SubResource("PlaceholderTexture2D_5sjf2")
 
+[node name="Wall1" type="StaticBody2D" parent="."]
+position = Vector2(12, 638)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall1"]
+position = Vector2(9.5, -125.5)
+shape = SubResource("RectangleShape2D_1egfa")
+
+[node name="Sprite2D" type="Sprite2D" parent="Wall1"]
+position = Vector2(12, -127.299)
+scale = Vector2(14, 271.402)
+texture = SubResource("PlaceholderTexture2D_umnma")
+
+[node name="Wall2" type="StaticBody2D" parent="."]
+position = Vector2(1048, 638)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2"]
+position = Vector2(9.5, -125.5)
+shape = SubResource("RectangleShape2D_1egfa")
+
+[node name="Sprite2D" type="Sprite2D" parent="Wall2"]
+position = Vector2(12, -127.299)
+scale = Vector2(14, 271.402)
+texture = SubResource("PlaceholderTexture2D_umnma")
+
 [node name="ButtonLeft" type="Button" parent="."]
 offset_left = 6.0
 offset_top = 366.0
@@ -54,25 +86,47 @@ offset_top = 366.0
 offset_right = 1078.0
 offset_bottom = 648.0
 
-[node name="SpawnPoints" type="Node" parent="."]
+[node name="SpawnPoints" type="Node" parent="." node_paths=PackedStringArray("spawnPoints")]
+script = ExtResource("2_mk2d1")
+spawnPoints = [NodePath("SpawnPoint"), NodePath("SpawnPoint2"), NodePath("SpawnPoint3"), NodePath("SpawnPoint4"), NodePath("SpawnPoint5"), NodePath("SpawnPoint6")]
+notes = Array[String](["C1", "E2", "B3", "G4"])
+noteStamps = Array[float]([1.0, 3.0, 5.0, 8.0])
 
-[node name="SpawnPoint" type="Marker2D" parent="SpawnPoints"]
+[node name="SpawnPoint" type="Marker2D" parent="SpawnPoints" node_paths=PackedStringArray("cat")]
 position = Vector2(105, 138)
+script = ExtResource("3_fxfg4")
+nota = ExtResource("4_byeo8")
+cat = NodePath("../../Ball")
 
-[node name="SpawnPoint2" type="Marker2D" parent="SpawnPoints"]
+[node name="SpawnPoint2" type="Marker2D" parent="SpawnPoints" node_paths=PackedStringArray("cat")]
 position = Vector2(262, 138)
+script = ExtResource("3_fxfg4")
+nota = ExtResource("4_byeo8")
+cat = NodePath("../../Ball")
 
-[node name="SpawnPoint3" type="Marker2D" parent="SpawnPoints"]
+[node name="SpawnPoint3" type="Marker2D" parent="SpawnPoints" node_paths=PackedStringArray("cat")]
 position = Vector2(444, 138)
+script = ExtResource("3_fxfg4")
+nota = ExtResource("4_byeo8")
+cat = NodePath("../../Ball")
 
-[node name="SpawnPoint4" type="Marker2D" parent="SpawnPoints"]
+[node name="SpawnPoint4" type="Marker2D" parent="SpawnPoints" node_paths=PackedStringArray("cat")]
 position = Vector2(619, 138)
+script = ExtResource("3_fxfg4")
+nota = ExtResource("4_byeo8")
+cat = NodePath("../../Ball")
 
-[node name="SpawnPoint5" type="Marker2D" parent="SpawnPoints"]
+[node name="SpawnPoint5" type="Marker2D" parent="SpawnPoints" node_paths=PackedStringArray("cat")]
 position = Vector2(781, 138)
+script = ExtResource("3_fxfg4")
+nota = ExtResource("4_byeo8")
+cat = NodePath("../../Ball")
 
-[node name="SpawnPoint6" type="Marker2D" parent="SpawnPoints"]
+[node name="SpawnPoint6" type="Marker2D" parent="SpawnPoints" node_paths=PackedStringArray("cat")]
 position = Vector2(918, 138)
+script = ExtResource("3_fxfg4")
+nota = ExtResource("4_byeo8")
+cat = NodePath("../../Ball")
 
 [connection signal="button_down" from="ButtonLeft" to="." method="_on_button_left_button_down"]
 [connection signal="button_up" from="ButtonLeft" to="." method="_on_button_left_button_up"]

@@ -4,22 +4,27 @@ extends Node
 var timer = 0
 #Indice del array actual
 var currentIndex = 0
+#Indice maximo de puntos de spawn
+var maxIndex = 0
 
 #Puntos de spawn de las notas
-@export var bassStrings: Array[Marker2D] = []
+@export var spawnPoints: Array[Marker2D] = []
 #Array con strings de las notas
-@export var stringNotes = []
+@export var notes : Array[String] = []
 #Tiempo en el que van a aparecer las notas
-@export var noteStamps = []
+@export var noteStamps : Array[float] = []
+
+func _ready():
+	maxIndex = spawnPoints.size()-1
 
 # Avanza un timer que recorre noteStamps y las va spawneando en las cuerdas de forma aleatoria
 # en su tiempo correspondiente al llegar al final vuelve al inicio de las notas
 func _process(delta):
 	timer += delta
 	if(noteStamps[currentIndex] < timer):
-		var chosen = randi_range(0,3)
-		bassStrings[chosen].spawnNote(stringNotes[currentIndex])
-		if(currentIndex + 1 == noteStamps.size() || currentIndex + 1 == stringNotes.size()):
+		var chosen = randi_range(0,maxIndex)
+		spawnPoints[chosen].spawnNote(notes[currentIndex])
+		if(currentIndex + 1 == noteStamps.size() || currentIndex + 1 == notes.size()):
 			currentIndex = 0
 			timer = 0
 		else:
