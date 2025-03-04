@@ -77,6 +77,12 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(180.938, 182.498)
 shape = SubResource("RectangleShape2D_80q6s")
 
+[node name="OSCMessage" type="Node" parent="Carril2/Boton" node_paths=PackedStringArray("target_client")]
+script = ExtResource("5_3aw17")
+target_client = NodePath("../../../Networking/OSCClient")
+osc_address = "/BassNote"
+osc_argument = "66"
+
 [node name="Carril3" type="Line2D" parent="."]
 position = Vector2(550, -41)
 points = PackedVector2Array(0, 0, 0, 750)
@@ -102,6 +108,12 @@ metadata/_edit_use_anchors_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Carril3/Boton/Area2D"]
 position = Vector2(180.938, 182.498)
 shape = SubResource("RectangleShape2D_80q6s")
+
+[node name="OSCMessage" type="Node" parent="Carril3/Boton" node_paths=PackedStringArray("target_client")]
+script = ExtResource("5_3aw17")
+target_client = NodePath("../../../Networking/OSCClient")
+osc_address = "/BassNote"
+osc_argument = "68"
 
 [node name="Carril4" type="Line2D" parent="."]
 position = Vector2(700, -41)
@@ -129,6 +141,12 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(180.938, 182.498)
 shape = SubResource("RectangleShape2D_80q6s")
 
+[node name="OSCMessage" type="Node" parent="Carril4/Boton" node_paths=PackedStringArray("target_client")]
+script = ExtResource("5_3aw17")
+target_client = NodePath("../../../Networking/OSCClient")
+osc_address = "/BassNote"
+osc_argument = "70"
+
 [node name="Networking" type="Node2D" parent="." node_paths=PackedStringArray("scene_client")]
 script = ExtResource("6_qxn1s")
 scene_client = NodePath("OSCClient")
@@ -147,3 +165,6 @@ target_server = NodePath("../OSCServer")
 osc_address = "t/BassLine"
 
 [connection signal="pressed" from="Carril1/Boton" to="Carril1/Boton/OSCMessage" method="_on_boton_pressed"]
+[connection signal="pressed" from="Carril2/Boton" to="Carril2/Boton/OSCMessage" method="_on_boton_pressed"]
+[connection signal="pressed" from="Carril3/Boton" to="Carril3/Boton/OSCMessage" method="_on_boton_pressed"]
+[connection signal="pressed" from="Carril4/Boton" to="Carril4/Boton/OSCMessage" method="_on_boton_pressed"]
