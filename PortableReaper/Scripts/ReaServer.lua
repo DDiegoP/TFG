@@ -15,7 +15,7 @@ package.path = package.path .. ";" .. script_path .. "/socket module/?.lua" -- E
 
 -- Conseguimos los modulos socket y osc
 local socket = require('socket.core')
-local osc = require('osc')
+ osc = require('osc')
 
 --Variables del servidor base
 port = 3000 -- el puerto donde se aloja el server , la ip se obtiene automaticamente
@@ -85,16 +85,18 @@ end
      --Conexion de un usuario nuevo : 
       if address == 't/connect' then 
       u = math.random(0,#users -1)
-   
-      local msg1 = osc.encode('/t connect', users[u], 3.14, 'hello world!')
-      onConnect("a")
+      userips[2] = args[0]--cableado para el bajista
+      --local msg1 = osc.encode('/t connect', users[u], 3.14, 'hello world!')
+      --Voy a cablear el 2 para probar el bajo
+      local msg1 = osc.encode('/t connect', 2, 3.14, 'hello world!')
+      onConnect(2)--Forzado par ael Bass player , deberia ser la U 
       userIP , userPort = udp:getsockname()
       --reaper.ShowConsoleMsg('user ip')
      -- reaper.ShowConsoleMsg(userIP)
       --reaper.ShowConsoleMsg('user port')
      -- reaper.ShowConsoleMsg(userPort)
       udp:sendto(msg1,args[0],userServerPort)
-      table.remove(users,u+1) --ese slot de usuario ya no esta disponible
+     -- table.remove(users,u+1) --ese slot de usuario ya no esta disponible
       --print('currenusers',users)
       end
      

@@ -1,9 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://defja54tn6vq8"]
+[gd_scene load_steps=11 format=3 uid="uid://defja54tn6vq8"]
 
 [ext_resource type="Script" path="res://scripts/Spawner.gd" id="1_kwh5s"]
 [ext_resource type="PackedScene" uid="uid://cblwij4xngnpr" path="res://nota.tscn" id="1_s8wu0"]
 [ext_resource type="Texture2D" uid="uid://df8e78jiq637a" path="res://Sprites/EmptyCircle.png" id="1_sip2u"]
 [ext_resource type="Script" path="res://scripts/StringButton.gd" id="3_dx1av"]
+[ext_resource type="Script" path="res://scripts/MInijuegos/Bassplayer/BassNoteOSCMessage.gd" id="5_3aw17"]
+[ext_resource type="Script" path="res://addons/godOSC/scripts/OSCClient.gd" id="6_3ehlr"]
+[ext_resource type="Script" path="res://scripts/MInijuegos/Bassplayer/BassPlayerSceneManager.gd" id="6_qxn1s"]
+[ext_resource type="Script" path="res://addons/godOSC/scripts/OSCServer.gd" id="7_e81yf"]
+[ext_resource type="Script" path="res://scripts/MInijuegos/Bassplayer/BassReceiver.gd" id="9_she84"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_80q6s"]
 size = Vector2(381.876, 384.997)
@@ -39,6 +44,12 @@ metadata/_edit_use_anchors_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Carril1/Boton/Area2D"]
 position = Vector2(180.938, 182.498)
 shape = SubResource("RectangleShape2D_80q6s")
+
+[node name="OSCMessage" type="Node" parent="Carril1/Boton" node_paths=PackedStringArray("target_client")]
+script = ExtResource("5_3aw17")
+target_client = NodePath("../../../Networking/OSCClient")
+osc_address = "/BassNote"
+osc_argument = "64"
 
 [node name="Carril2" type="Line2D" parent="."]
 position = Vector2(400, -41)
@@ -117,3 +128,22 @@ metadata/_edit_use_anchors_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Carril4/Boton/Area2D"]
 position = Vector2(180.938, 182.498)
 shape = SubResource("RectangleShape2D_80q6s")
+
+[node name="Networking" type="Node2D" parent="." node_paths=PackedStringArray("scene_client")]
+script = ExtResource("6_qxn1s")
+scene_client = NodePath("OSCClient")
+
+[node name="OSCClient" type="Node" parent="Networking"]
+script = ExtResource("6_3ehlr")
+port = 3000
+
+[node name="OSCServer" type="Node" parent="Networking"]
+script = ExtResource("7_e81yf")
+port = 3003
+
+[node name="Receiver" type="Node2D" parent="Networking" node_paths=PackedStringArray("target_server")]
+script = ExtResource("9_she84")
+target_server = NodePath("../OSCServer")
+osc_address = "t/BassLine"
+
+[connection signal="pressed" from="Carril1/Boton" to="Carril1/Boton/OSCMessage" method="_on_boton_pressed"]

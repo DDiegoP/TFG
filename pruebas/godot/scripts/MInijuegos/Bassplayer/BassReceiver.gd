@@ -1,10 +1,6 @@
+extends  OSCReceiver
 
-extends Node
-#Singleton con info persistente
-var curremtHostname : String = "s" 
-var curremtHostport : int = 0 
-var currentUserId : int =  1
-var currentActionsPort = 3012
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -12,5 +8,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if target_server.incoming_messages.has(osc_address):
+	#	parent.position.x = target_server.incoming_messages[osc_address][0]
+		print(target_server.incoming_messages)
+	
 	pass
-

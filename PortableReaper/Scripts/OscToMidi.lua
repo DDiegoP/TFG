@@ -59,7 +59,7 @@ function translateMessage(msg)
   endppq =  reaper.MIDI_GetProjTimeFromPPQPos(take,ppq + lenght)
   endppq =  reaper.MIDI_GetProjTimeFromPPQPos(take , endpos)
   reaper.MIDI_InsertNote(take,false,false,ppq,endpos,1,pitch,68,true)
-  reaper.SetEditCurPos(endppq,true , true )
+ -- reaper.SetEditCurPos(endppq,true , true )
   reaper.defer(removeFirst)
  -- if not ispermanent then 
  -- reaper.defer(removeAtEnd(take,0,endpos))
@@ -95,7 +95,7 @@ function removeFirst ()
    local retval, selected, muted, startppqpos, endppqpos, chan, pitch,vel 
           = reaper.MIDI_GetNote(toma,0)
    
-     if playhead_pos < reaper.MIDI_GetProjTimeFromPPQPos(toma,endppqpos) then  
+     if playhead_pos - 0.25  > reaper.MIDI_GetProjTimeFromPPQPos(toma,endppqpos) then  
      --reaper.ShowConsoleMsg("a")
      reaper.MIDI_DeleteNote(toma,0) 
     

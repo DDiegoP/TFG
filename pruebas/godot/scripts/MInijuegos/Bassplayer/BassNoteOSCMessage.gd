@@ -1,10 +1,6 @@
+extends OSCMessage
 
-extends Node
-#Singleton con info persistente
-var curremtHostname : String = "s" 
-var curremtHostport : int = 0 
-var currentUserId : int =  1
-var currentActionsPort = 3012
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -14,3 +10,7 @@ func _ready():
 func _process(delta):
 	pass
 
+
+func _on_boton_pressed():
+	target_client.send_message(osc_address, [str(osc_argument)]	)
+	pass # Replace with function body.

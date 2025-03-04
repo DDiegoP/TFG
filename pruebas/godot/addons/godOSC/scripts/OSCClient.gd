@@ -136,7 +136,7 @@ func send_broadcast_message(osc_address : String, args : Array):
 	client.put_packet(packet)
 	
 func transfer_AppManagerData():
-		client.set_dest_address(AppManager.curremtHostname, 3012)
+		client.set_dest_address(AppManager.curremtHostname, AppManager.currentActionsPort)
 		pass
 		
 	

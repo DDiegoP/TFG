@@ -23,5 +23,7 @@ func _process(delta):
 				get_tree().change_scene_to_file("res://ESCENAUSER1.tscn")
 			1:
 				get_tree().change_scene_to_file("res://ESCENAUSER2.tscn")
+			2:
+				get_tree().change_scene_to_file("res://Minijuegos/MinijuegoPianoTiles.tscn")
 	
 	pass

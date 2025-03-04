@@ -4,10 +4,10 @@ local ScriptPath = Info.source:match[[^@?(.*[\/])[^\/]-$]];
 package.path     = ScriptPath .. '?.lua;'  .. package.path;--Que realmente es donde estamos pero no busca aqui por defecto
 
 require("OscToMidi")
---pista en la que esta el item que queremos escribimos
+--pista en la que esta el item que queremos escribimos 
 tracknum=1 --A que los arrays empiezan en 1 pero las tracks de reaper empiezan en 0
 --accedemos al poryecto actual v 
-prj = reaper.EnumProjects(-1)   
+prj = reaper.EnumProjects(-1)    
 reaper.ShowConsoleMsg(reaper.GetPlayPosition())
  
 translateMessage(68) 
