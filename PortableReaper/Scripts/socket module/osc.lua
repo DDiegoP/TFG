@@ -145,4 +145,44 @@ function OSC.Receive(udp)
   return t
 end
 
+function OSC.papa()
+  return "asd"
+end
+---Encode an OSC message with address and an array of values. 
+---@param address string OSC address
+---@param ... number|string the values to send in this message
+---@return string osc_message return the address and values as the osc message 
+function OSC.encodeArray(address,v)
+  -- append \0 at the end of the string. https://opensoundcontrol.stanford.edu/spec-1_0-examples.html. for 'data' (4bytes) it adds 4, for 'osc'(3bytes) it adds 1. Return the 
+  ---@param str string string 
+  ---@return string string the appended string, like \0\0\0\0
+  ---@return number nul_count count of null added
+  local function append(str) 
+    local len = str:len()
+    local nul = '\0'
+    local n = 4 - (len%4)
+    return str..nul:rep(n), n
+  end
+  local values = v
+
+  local types_str, val_str = ',', ''
+  for k, v in ipairs(values) do
+    if type(v) == 'number' then
+      if math.type(v) == 'integer' then
+        types_str = types_str..'i'
+        val_str = val_str .. string.pack('>i',v)
+      else --float
+        types_str = types_str..'f'
+        val_str = val_str .. string.pack('>f',v)
+      end
+    elseif type(v) == 'string' then -- string
+      types_str = types_str..'s'
+      val_str = val_str .. append(v)
+    end
+  end
+  local osc = append(address)
+  types_str = append(types_str)
+  return osc..types_str..val_str
+end
+
 return OSC

@@ -1,7 +1,6 @@
 --Script que traduce una pista de midi ya compuesta para poder pasarla por OSC
 tracknum = 0 -- que pista queremos traducir 
 codifiedTrack = {} -- array de pares (nota, tiempo )
-
 --example = {23,4}
 --codifiedTrack[1]= example
 --reaper.ShowConsoleMsg(tostring( codifiedTrack[1][1])) funciona :)
@@ -29,18 +28,21 @@ function translateTrack(t)
     --https://www.drumthrash.com/help-guide/understanding-pulses-per-quarter-note.html#:~:text=The%20term%20pulses%20per%20quarter,as%20MIDI%20sequencers%20and%20synthesizers.
    local retval, selected, muted, startppqpos, endppqpos, chan, pitch,vel 
        = reaper.MIDI_GetNote(take, i)
-          reaper.ShowConsoleMsg(tostring(startppqpos))
-          reaper.ShowConsoleMsg("S ")
-          reaper.ShowConsoleMsg(tostring((endppqpos)))
-          reaper.ShowConsoleMsg("E ")
+          --reaper.ShowConsoleMsg(tostring(startppqpos))
+         -- reaper.ShowConsoleMsg("S ")
+         -- reaper.ShowConsoleMsg(tostring((endppqpos)))
+         -- reaper.ShowConsoleMsg("E ")
     -- Pitch es la nota y va desde 0 a 128 
-        notepair = {startppqpos,pitch}
+        --notepair = {startppqpos,pitch}
+        notepair =startppqpos
         codifiedTrack[i] = notepair
     -- https://inspiredacoustics.com/en/MIDI_note_numbers_and_center_frequencies
     end
  -- reaper.MIDI_GetNote()
-  --reaper.ShowConsoleMsg(tostring(codifiedTrack[1][2]))
+  reaper.ShowConsoleMsg(tostring(codifiedTrack[1]))
   end
   return codifiedTrack
 end
 --reaper.ShowConsoleMsg(tostring(take))
+
+--translateTrack(2)

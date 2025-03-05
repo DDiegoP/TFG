@@ -12,7 +12,8 @@ function onConnect(a) -- override de que pasa en mi juego en especifico cuando s
   reaper.ShowConsoleMsg("bass player connected")
   --Se conecto el que toca el bajo le mandamos a godot nuestra linea de bajo
   bassline = translateTrack(0)
-  local msg =osc.encode("t/BassLine",bassline) 
+  reaper.ShowConsoleMsg(bassline[1])
+  local msg =osc.encodeArray("t/BassLine",bassline) 
   udp:sendto(msg,userips[2],userServerPort)
  end
   
