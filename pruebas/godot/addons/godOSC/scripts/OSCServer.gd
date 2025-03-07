@@ -75,4 +75,7 @@ func parse_message(packet: PackedByteArray):
 			98:  #b: blob
 				vals.append(args)
 	
-	incoming_messages[address] = vals
+	incoming_messages[address]=vals
+func transfer_AppManagerData():
+	incoming_messages = AppManager.currentMessages
+	pass

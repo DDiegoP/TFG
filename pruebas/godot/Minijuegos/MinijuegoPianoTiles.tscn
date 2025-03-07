@@ -13,11 +13,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_80q6s"]
 size = Vector2(381.876, 384.997)
 
-[node name="MinijuegoPianoTiles" type="Node2D" node_paths=PackedStringArray("bassStrings")]
+[node name="MinijuegoPianoTiles" type="Node2D"]
 script = ExtResource("1_kwh5s")
-bassStrings = [NodePath("Carril1/SpawnPoint"), NodePath("Carril2/SpawnPoint"), NodePath("Carril3/SpawnPoint"), NodePath("Carril4/SpawnPoint")]
-stringNotes = ["C1", "E2", "G3"]
-noteStamps = [3, 5, 7]
+noteStamps = Array[float]([3.0, 5.0, 7.0])
 
 [node name="Carril1" type="Line2D" parent="."]
 position = Vector2(250, -41)
@@ -147,9 +145,10 @@ target_client = NodePath("../../../Networking/OSCClient")
 osc_address = "/BassNote"
 osc_argument = "70"
 
-[node name="Networking" type="Node2D" parent="." node_paths=PackedStringArray("scene_client")]
+[node name="Networking" type="Node2D" parent="." node_paths=PackedStringArray("scene_client", "scene_server")]
 script = ExtResource("6_qxn1s")
 scene_client = NodePath("OSCClient")
+scene_server = NodePath("OSCServer")
 
 [node name="OSCClient" type="Node" parent="Networking"]
 script = ExtResource("6_3ehlr")
@@ -159,10 +158,12 @@ port = 3000
 script = ExtResource("7_e81yf")
 port = 3003
 
-[node name="Receiver" type="Node2D" parent="Networking" node_paths=PackedStringArray("target_server")]
+[node name="Receiver" type="Node2D" parent="Networking" node_paths=PackedStringArray("target_spawner", "target_server")]
 script = ExtResource("9_she84")
+target_spawner = NodePath("../..")
+osc_address2 = "t/BassLineTime"
 target_server = NodePath("../OSCServer")
-osc_address = "t/BassLine"
+osc_address = "t/BassLineNote"
 
 [connection signal="pressed" from="Carril1/Boton" to="Carril1/Boton/OSCMessage" method="_on_boton_pressed"]
 [connection signal="pressed" from="Carril2/Boton" to="Carril2/Boton/OSCMessage" method="_on_boton_pressed"]

@@ -1,3 +1,4 @@
+class_name NoteSpawner
 extends Node
 
 #Contador de tiempo
@@ -10,7 +11,7 @@ var maxIndex = 0
 #Puntos de spawn de las notas
 @export var spawnPoints: Array[Marker2D] = []
 #Array con strings de las notas
-@export var notes : Array[String] = []
+@export var notes : Array[int] = []
 #Tiempo en el que van a aparecer las notas
 @export var noteStamps : Array[float] = []
 
@@ -30,3 +31,14 @@ func _process(delta):
 		else:
 			currentIndex += 1
 	
+func transferData(times,innotes):
+	notes = []
+	noteStamps = []
+	for time in times:
+		noteStamps.push_back(time)	 
+	pass
+	
+	for note in innotes:
+		notes.push_back(note)	 
+	pass
+	print("BasslPLayer data Transfered")

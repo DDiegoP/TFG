@@ -16,6 +16,7 @@ func _process(delta):
 		var sceneid 
 		sceneid =  target_server.incoming_messages[osc_address][0]
 		AppManager.currentUserId = sceneid
+		AppManager.currentMessages = target_server.incoming_messages
 		#sceneid =  1
 		print(sceneid)
 		match  sceneid:
