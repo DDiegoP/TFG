@@ -89,7 +89,7 @@ offset_bottom = 648.0
 [node name="SpawnPoints" type="Node" parent="." node_paths=PackedStringArray("spawnPoints")]
 script = ExtResource("2_mk2d1")
 spawnPoints = [NodePath("SpawnPoint"), NodePath("SpawnPoint2"), NodePath("SpawnPoint3"), NodePath("SpawnPoint4"), NodePath("SpawnPoint5"), NodePath("SpawnPoint6")]
-notes = Array[String](["C1", "E2", "B3", "G4"])
+notes = Array[int]([2, 4, 6, 8])
 noteStamps = Array[float]([1.0, 3.0, 5.0, 8.0])
 
 [node name="SpawnPoint" type="Marker2D" parent="SpawnPoints" node_paths=PackedStringArray("cat")]

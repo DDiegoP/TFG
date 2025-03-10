@@ -139,14 +139,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 74.97)
 [node name="ObstaclePos" type="Marker3D" parent="Carril6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -85.1521)
 
-[node name="Player" type="RigidBody3D" parent="." node_paths=PackedStringArray("playerPositions", "leftButton", "rightButton")]
+[node name="Player" type="RigidBody3D" parent="." node_paths=PackedStringArray("playerPositions")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.3957, 5.94493, -61.3596)
 max_contacts_reported = 1
 contact_monitor = true
 script = ExtResource("3_wbfd6")
 playerPositions = [NodePath("../Carril1/PlayerPos"), NodePath("../Carril2/PlayerPos"), NodePath("../Carril3/PlayerPos"), NodePath("../Carril4/PlayerPos"), NodePath("../Carril5/PlayerPos"), NodePath("../Carril6/PlayerPos")]
-leftButton = NodePath("../LeftButton")
-rightButton = NodePath("../RightButton")
 currentIndex = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
@@ -154,15 +152,5 @@ shape = SubResource("CapsuleShape3D_n6tpq")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
 mesh = SubResource("CapsuleMesh_rxlo5")
-
-[node name="LeftButton" type="Button" parent="."]
-offset_right = 505.0
-offset_bottom = 650.0
-
-[node name="RightButton" type="Button" parent="."]
-offset_left = 576.0
-offset_top = 2.0
-offset_right = 1081.0
-offset_bottom = 652.0
 
 [connection signal="body_entered" from="Player" to="Player" method="_on_body_entered"]
