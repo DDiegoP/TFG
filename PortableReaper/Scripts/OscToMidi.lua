@@ -49,11 +49,13 @@ function translateMessage(msg)
    
   --pitch = value
   pitch = 68
-  lenght = 0.15 --duracio de la nota en segundos
-  cur_pos = reaper.GetCursorPosition()
+  --lenght = 0.15 --duracio de la nota en segundos
+  lenght = 0.5
+  --cur_pos = reaper.GetCursorPosition()
+  cur_pos = reaper.GetPlayPosition()
   --reaper.ShowConsoleMsg(tostring(cur_pos).."\n")
-  
-  cur_pos = reaper.GetCursorPosition()
+  reaper.ShowConsoleMsg(tostring(cur_pos))
+  --cur_pos = reaper.GetCursorPosition()
   endpos =  reaper.MIDI_GetPPQPosFromProjTime(take , cur_pos+lenght)
   ppq = reaper.MIDI_GetPPQPosFromProjTime(take, cur_pos)
   endppq =  reaper.MIDI_GetProjTimeFromPPQPos(take,ppq + lenght)
