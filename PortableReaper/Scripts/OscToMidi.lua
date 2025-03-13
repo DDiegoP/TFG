@@ -3,7 +3,7 @@
 
 tracknum = 0 --Debe ser global para poder usar la funcion en defer
 
-function translateMessage(msg)
+function translateMessage()
   
   --mitake = reaper.AddTakeToMediaItem(mit)
  
@@ -25,7 +25,7 @@ function translateMessage(msg)
   
   -- Que la nota nos viene desde el pianito de godot , loquisimo esto 
   
-  --msg = {}
+    msg = {}
   
   --Obtenemos acceso al take midi 
     track = reaper.GetTrack(0,tracknum)
@@ -37,18 +37,18 @@ function translateMessage(msg)
        reaper.ShowConsoleMsg("yay Midi Track")
     is_new, name, sec, cmd, rel, res, val, ctx = reaper.get_action_context()
    --traduciomos el mesaje para poner la nota
-   -- msg.address = ctx:match("^osc:/([^:[]+)")
+    msg.address = ctx:match("^osc:/([^:[]+)")
     
-    --value_type, value = ctx:match(":([fs])=([^%]]+)")
+    value_type, value = ctx:match(":([fs])=([^%]]+)")
        
-     --  if value_type == "f" then
-        --   msg.arg = tonumber(value)
-      -- elseif value_type == "s" then
-      --     msg.arg = value
-      -- end
+       if value_type == "f" then
+          msg.arg = tonumber(value)
+       elseif value_type == "s" then
+          msg.arg = value
+       end
    
   --pitch = value
-  pitch = 68
+  pitch = value
   --lenght = 0.15 --duracio de la nota en segundos
   lenght = 0.5
   --cur_pos = reaper.GetCursorPosition()

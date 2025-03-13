@@ -10,4 +10,4 @@ tracknum=1 --A que los arrays empiezan en 1 pero las tracks de reaper empiezan e
 prj = reaper.EnumProjects(-1)    
 reaper.ShowConsoleMsg(reaper.GetPlayPosition())
  
-translateMessage(68) 
+translateMessage() 
