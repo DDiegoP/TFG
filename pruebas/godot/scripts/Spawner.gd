@@ -1,4 +1,3 @@
-class_name NoteSpawner
 extends Node
 
 #Contador de tiempo
@@ -13,19 +12,21 @@ var maxIndex = 0
 #Array con strings de las notas
 @export var notes : Array[int] = []
 #Tiempo en el que van a aparecer las notas
+@export var noteSpawnStamps : Array[float] = []
+#Tiempo en el que la nota se tendría que pulsar
 @export var noteStamps : Array[float] = []
 
 func _ready():
 	maxIndex = spawnPoints.size()-1
 
-# Avanza un timer que recorre noteStamps y las va spawneando en las cuerdas de forma aleatoria
+# Avanza un timer que recorre noteSpawnStamps y las va spawneando en las cuerdas de forma aleatoria
 # en su tiempo correspondiente al llegar al final vuelve al inicio de las notas
 func _process(delta):
 	timer += delta
-	if(noteStamps[currentIndex] < timer):
+	if(noteSpawnStamps[currentIndex] < timer):
 		var chosen = randi_range(0,maxIndex)
-		spawnPoints[chosen].spawnNote(notes[currentIndex])
-		if(currentIndex + 1 == noteStamps.size() || currentIndex + 1 == notes.size()):
+		spawnPoints[chosen].spawnNote(notes[currentIndex], noteStamps[currentIndex]-timer)
+		if(currentIndex + 1 == noteSpawnStamps.size() || currentIndex + 1 == notes.size()):
 			currentIndex = 0
 			timer = 0
 		else:
@@ -33,9 +34,12 @@ func _process(delta):
 	
 func transferData(times,innotes):
 	notes = []
-	noteStamps = []
+	noteSpawnStamps = []
+	var speed = spawnPoints[0].getNoteSpeed()
+	var targetPos = spawnPoints[0].position.y
 	for time in times:
-		noteStamps.push_back(time)	 
+		noteSpawnStamps.push_back(time - targetPos/speed)	 
+		noteStamps.push_back(time)
 	pass
 	
 	for note in innotes:

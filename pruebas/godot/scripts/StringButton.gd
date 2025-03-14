@@ -6,8 +6,9 @@ extends Node
 @export var button: Button
 
 # Spawnea la nota en el punto de spawn y conecta la senial del boton a la funcion de la nota
-func spawnNote(note):
+func spawnNote(note, noteStamp):
 	var newNote = nota.instantiate()
 	add_child(newNote)
+	newNote.targetTime = noteStamp
 	newNote.key = note
 	button.pressed.connect(newNote._on_boton_pressed)
