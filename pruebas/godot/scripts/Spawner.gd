@@ -1,3 +1,4 @@
+class_name NoteSpawner
 extends Node
 
 #Contador de tiempo
@@ -23,9 +24,10 @@ func _ready():
 # en su tiempo correspondiente al llegar al final vuelve al inicio de las notas
 func _process(delta):
 	timer += delta
-	if(noteSpawnStamps[currentIndex] < timer):
-		var chosen = randi_range(0,maxIndex)
-		spawnPoints[chosen].spawnNote(notes[currentIndex], noteStamps[currentIndex]-timer)
+	if(noteSpawnStamps.size()>0):
+		if(noteSpawnStamps[currentIndex] < timer):
+			var chosen = randi_range(0,maxIndex)
+			spawnPoints[chosen].spawnNote(notes[currentIndex], noteStamps[currentIndex]-timer)
 		if(currentIndex + 1 == noteSpawnStamps.size() || currentIndex + 1 == notes.size()):
 			currentIndex = 0
 			timer = 0
@@ -35,11 +37,13 @@ func _process(delta):
 func transferData(times,innotes):
 	notes = []
 	noteSpawnStamps = []
-	var speed = spawnPoints[0].getNoteSpeed()
+	noteStamps = []
+	#var speed = spawnPoints[0].getNoteSpeed() este metodo no exisitia 
+	var speed = 0.2
 	var targetPos = spawnPoints[0].position.y
 	for time in times:
-		noteSpawnStamps.push_back(time - targetPos/speed)	 
-		noteStamps.push_back(time)
+		noteSpawnStamps.push_back((time - targetPos/speed)/10)	 
+		noteStamps.push_back(time/10)
 	pass
 	
 	for note in innotes:
