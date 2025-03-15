@@ -13,9 +13,13 @@ function onConnect(a) -- override de que pasa en mi juego en especifico cuando s
   --Se conecto el que toca el bajo le mandamos a godot nuestra linea de bajo
   basslineTimes,basslineNotes = translateTrack(0)
   --reaper.ShowConsoleMsg(bassline[1])
+  --por que momento de la pieza estamos tambien es informacion util 
   local msg =osc.encodeArray("t/BassLineTime",basslineTimes) 
   udp:sendto(msg,userips[2],userServerPort)
   local msg =osc.encodeArray("t/BassLineNote",basslineNotes) 
+  udp:sendto(msg,userips[2],userServerPort)
+  currentTime = reaper.GetPlayPosition()
+  local msg = osc.encode("t/CurrentTime",currentTime)
   udp:sendto(msg,userips[2],userServerPort)
  end
   

@@ -1,4 +1,4 @@
-<REAPER_PROJECT 0.1 "7.25/win64" 1742071002
+<REAPER_PROJECT 0.1 "7.25/win64" 1742077543
   <NOTES 0 2
   >
   RIPPLE 0
@@ -18,8 +18,8 @@
   VIDEO_CONFIG 0 0 65792
   PANMODE 3
   PANLAWFLAGS 3
-  CURSOR 11.5
-  ZOOM 198.12061739149763 0 0
+  CURSOR 7
+  ZOOM 100 0 0
   VZOOMEX 20.88153648 0
   USE_REC_CFG 0
   RECMODE 1
@@ -104,7 +104,7 @@
     BEAT -1
     AUTOMODE 0
     PANLAWFLAGS 3
-    VOLPAN 0 0 -1 -1 1
+    VOLPAN 0.00101967616365 0 -1 -1 1
     MUTESOLO 0 0 0
     IPHASE 0
     PLAYOFFS 0 1
@@ -112,7 +112,7 @@
     BUSCOMP 0 0 0 0 0
     SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0
     FIXEDLANES 9 0 0 0 0
-    SEL 0
+    SEL 1
     REC 0 0 1 0 0 0 0 0
     VU 2
     TRACKHEIGHT 140 0 0 0 0 0 0
@@ -131,8 +131,8 @@
       BYPASS 0 0 0
       <VST "VSTi: ReaSynth (Cockos)" reasynth.dll 0 "" 1919251321<5653547265737972656173796E746800> ""
         eXNlcu9e7f4AAAAAAgAAAAEAAAAAAAAAAgAAAAAAAABEAAAAAAAAAAAAEAA=
-        776t3g3wrd5mqmA9BTLDOkw3CT4AAAAAVOOlPZ7xoD+O9tM9/KnxPQAAAD+dP8o/AACAPwAAAD8AAAAAqOnUOQAAAAA=
-        AFByb2dyYW0gMQAQAAAA
+        776t3g3wrd6G/nM8AAAAAEw3iT0AAAAA16MQP57xoD9BjiY8AAAAAAAAAAAAAAAAAAAAAAAAAD8AAAAAAAAAAAAAAAA=
+        AAAQAAAA
       >
       FLOATPOS 0 0 0 0
       FXID {1FEB3F50-3976-4D42-A75A-36F702D2083E}
@@ -141,13 +141,13 @@
     <ITEM
       POSITION 0
       SNAPOFFS 0
-      LENGTH 2.5
+      LENGTH 8
       LOOP 1
       ALLTAKES 0
       FADEIN 1 0 0 1 0 0 0
       FADEOUT 1 0 0 1 0 0 0
       MUTE 0 0
-      SEL 0
+      SEL 1
       IGUID {95F6B76D-08DE-41FA-8B0C-F919B1E75E02}
       IID 1
       NAME 01-MIDI
@@ -160,28 +160,50 @@
         HASDATA 1 960 QN
         CCINTERP 32
         POOLEDEVTS {C4B8A277-81B7-451D-A68E-DEE865A3C147}
-        E 0 90 24 4f
-        E 960 80 24 00
-        E 0 90 28 3d
-        E 960 80 28 00
-        E 0 90 2b 4e
-        E 960 80 2b 00
-        E 0 90 2f 5e
-        E 960 80 2f 00
-        E 0 90 31 4f
-        E 960 80 31 00
-        E 0 b0 7b 00
+        E 0 90 39 43
+        E 960 80 39 00
+        E 0 90 36 50
+        E 960 80 36 00
+        E 0 90 35 50
+        E 960 80 35 00
+        E 0 90 36 50
+        E 960 80 36 00
+        E 0 90 39 55
+        E 960 80 39 00
+        E 0 90 34 55
+        E 960 80 34 00
+        E 0 90 35 55
+        E 960 80 35 00
+        E 0 90 34 55
+        E 960 80 34 00
+        E 0 90 39 43
+        E 960 90 36 50
+        E 8 80 39 00
+        E 952 90 35 50
+        E 8 80 36 00
+        E 952 90 36 50
+        E 8 80 35 00
+        E 952 90 39 55
+        E 8 80 36 00
+        E 952 90 34 55
+        E 8 80 39 00
+        E 952 90 35 55
+        E 8 80 34 00
+        E 952 90 34 55
+        E 8 80 35 00
+        E 960 80 34 00
+        E 952 b0 7b 00
         CCINTERP 32
         CHASE_CC_TAKEOFFS 1
         GUID {2BE3ED0C-1D6D-4454-87EA-B82578B4E28D}
         IGNTEMPO 0 120 4 4
         SRCCOLOR 6
         VELLANE -1 100 0 0 1
-        CFGEDITVIEW 0 0.23877 66 12 0 -1 0 0 0 0.5
+        CFGEDITVIEW -162.750473 0.241557 58 12 0 -1 0 0 0 0.5
         KEYSNAP 0
         TRACKSEL 0
         EVTFILTER 0 -1 -1 -1 -1 0 0 0 0 -1 -1 -1 -1 0 -1 0 -1 -1
-        CFGEDIT 1 1 0 1 0 0 1 1 1 1 1 1 774 63 1623 733 0 0 0 0 0 0 0 0 0 0.5 0 0 1 64
+        CFGEDIT 1 1 0 1 0 0 1 1 1 1 1 1 611 229 1460 899 0 0 0 0 0 0 0 0 0 0.5 0 0 1 64
       >
     >
   >
@@ -228,7 +250,7 @@
     <ITEM
       POSITION 0
       SNAPOFFS 0
-      LENGTH 5
+      LENGTH 8
       LOOP 1
       ALLTAKES 0
       FADEIN 1 0 0 1 0 0 0
@@ -258,7 +280,7 @@
         KEYSNAP 0
         TRACKSEL 0
         EVTFILTER 0 -1 -1 -1 -1 0 0 0 0 -1 -1 -1 -1 0 -1 0 -1 -1
-        CFGEDIT 1 1 0 1 0 0 1 1 1 1 1 1 774 63 1623 733 0 0 0 0 0 0 0 0 0 0.5 0 0 1 64
+        CFGEDIT 1 1 0 1 0 0 1 1 1 1 1 1 611 229 1460 899 0 0 0 0 0 0 0 0 0 0.5 0 0 1 64
       >
     >
   >

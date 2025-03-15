@@ -164,6 +164,7 @@ port = 3003
 script = ExtResource("9_she84")
 target_spawner = NodePath("../..")
 osc_address2 = "t/BassLineTime"
+osc_address3 = "t/CurrentTime"
 target_server = NodePath("../OSCServer")
 osc_address = "t/BassLineNote"
 

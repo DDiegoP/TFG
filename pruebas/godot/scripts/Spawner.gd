@@ -1,5 +1,8 @@
 class_name NoteSpawner
 extends Node
+#Estos son los arrays que van a llegar desde reaper : 
+#Notas [54, 53, 54, 57, 52, 53, 52, 57, 54, 53, 54, 57, 52, 53, 52]
+#Tiempos [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5]
 
 #Contador de tiempo
 var timer = 0
@@ -34,7 +37,8 @@ func _process(delta):
 		else:
 			currentIndex += 1
 	
-func transferData(times,innotes):
+func transferData(times,innotes,curtime):
+	timer=curtime
 	notes = []
 	noteSpawnStamps = []
 	noteStamps = []
