@@ -35,6 +35,7 @@ offset_top = 559.0
 offset_right = 311.0
 offset_bottom = 927.0
 scale = Vector2(0.319999, 0.320002)
+action_mode = 0
 icon = ExtResource("1_sip2u")
 flat = true
 metadata/_edit_use_anchors_ = true
@@ -47,8 +48,9 @@ shape = SubResource("RectangleShape2D_80q6s")
 
 [node name="OSCMessage" type="Node" parent="Carril1/Boton" node_paths=PackedStringArray("target_client")]
 script = ExtResource("5_3aw17")
+osc_address2 = "/BassNoteOff"
 target_client = NodePath("../../../Networking/OSCClient")
-osc_address = "/BassNote"
+osc_address = "/BassNoteOn"
 osc_argument = "64"
 
 [node name="Carril2" type="Line2D" parent="."]
@@ -79,8 +81,9 @@ shape = SubResource("RectangleShape2D_80q6s")
 
 [node name="OSCMessage" type="Node" parent="Carril2/Boton" node_paths=PackedStringArray("target_client")]
 script = ExtResource("5_3aw17")
+osc_address2 = "/BassNoteOff"
 target_client = NodePath("../../../Networking/OSCClient")
-osc_address = "/BassNote"
+osc_address = "/BassNoteOn"
 osc_argument = "66"
 
 [node name="Carril3" type="Line2D" parent="."]
@@ -111,8 +114,9 @@ shape = SubResource("RectangleShape2D_80q6s")
 
 [node name="OSCMessage" type="Node" parent="Carril3/Boton" node_paths=PackedStringArray("target_client")]
 script = ExtResource("5_3aw17")
+osc_address2 = "/BassNoteOff"
 target_client = NodePath("../../../Networking/OSCClient")
-osc_address = "/BassNote"
+osc_address = "/BassNoteOn"
 osc_argument = "68"
 
 [node name="Carril4" type="Line2D" parent="."]
@@ -143,8 +147,9 @@ shape = SubResource("RectangleShape2D_80q6s")
 
 [node name="OSCMessage" type="Node" parent="Carril4/Boton" node_paths=PackedStringArray("target_client")]
 script = ExtResource("5_3aw17")
+osc_address2 = "/BassNoteOff"
 target_client = NodePath("../../../Networking/OSCClient")
-osc_address = "/BassNote"
+osc_address = "/BassNoteOn"
 osc_argument = "70"
 
 [node name="Networking" type="Node2D" parent="." node_paths=PackedStringArray("scene_client", "scene_server")]
@@ -168,7 +173,15 @@ osc_address3 = "t/CurrentTime"
 target_server = NodePath("../OSCServer")
 osc_address = "t/BassLineNote"
 
+[connection signal="button_down" from="Carril1/Boton" to="Carril1/Boton/OSCMessage" method="_on_boton_button_down"]
+[connection signal="button_up" from="Carril1/Boton" to="Carril1/Boton/OSCMessage" method="_on_boton_button_up"]
 [connection signal="pressed" from="Carril1/Boton" to="Carril1/Boton/OSCMessage" method="_on_boton_pressed"]
+[connection signal="button_down" from="Carril2/Boton" to="Carril2/Boton/OSCMessage" method="_on_boton_button_down"]
+[connection signal="button_up" from="Carril2/Boton" to="Carril2/Boton/OSCMessage" method="_on_boton_button_up"]
 [connection signal="pressed" from="Carril2/Boton" to="Carril2/Boton/OSCMessage" method="_on_boton_pressed"]
+[connection signal="button_down" from="Carril3/Boton" to="Carril3/Boton/OSCMessage" method="_on_boton_button_down"]
+[connection signal="button_up" from="Carril3/Boton" to="Carril3/Boton/OSCMessage" method="_on_boton_button_up"]
 [connection signal="pressed" from="Carril3/Boton" to="Carril3/Boton/OSCMessage" method="_on_boton_pressed"]
+[connection signal="button_down" from="Carril4/Boton" to="Carril4/Boton/OSCMessage" method="_on_boton_button_down"]
+[connection signal="button_up" from="Carril4/Boton" to="Carril4/Boton/OSCMessage" method="_on_boton_button_up"]
 [connection signal="pressed" from="Carril4/Boton" to="Carril4/Boton/OSCMessage" method="_on_boton_pressed"]

@@ -38,19 +38,27 @@ func _process(delta):
 			currentIndex += 1
 	
 func transferData(times,innotes,curtime):
-	timer=curtime
+	timer=curtime/10
 	notes = []
 	noteSpawnStamps = []
 	noteStamps = []
+	currentIndex=0
 	#var speed = spawnPoints[0].getNoteSpeed() este metodo no exisitia 
 	var speed = 0.2
 	var targetPos = spawnPoints[0].position.y
 	for time in times:
+		
 		noteSpawnStamps.push_back((time - targetPos/speed)/10)	 
-		noteStamps.push_back(time/10)
+		var t = time/10
+		noteStamps.push_back(t)
+		#nos aseguramos de empezar en la nota que toca
+		if( t < timer):
+			currentIndex = currentIndex +1
+			
 	pass
 	
 	for note in innotes:
 		notes.push_back(note)	 
 	pass
+	
 	print("BasslPLayer data Transfered")

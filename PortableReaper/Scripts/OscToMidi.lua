@@ -121,5 +121,8 @@ function removeFirst ()
   
   
 end
+--0x90 note on , 0x80 note off
+function stuffMidiChanel(cc,note)
+    reaper.StuffMIDIMessage(0,cc,note,67)
 
-
+end
