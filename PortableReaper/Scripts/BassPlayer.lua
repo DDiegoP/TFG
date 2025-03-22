@@ -8,7 +8,7 @@ require("OscToMidi")
 tracknum=1 --A que los arrays empiezan en 1 pero las tracks de reaper empiezan en 0
 --accedemos al poryecto actual v 
 prj = reaper.EnumProjects(-1)    
-reaper.ShowConsoleMsg(reaper.GetPlayPosition())
+--reaper.ShowConsoleMsg(reaper.GetPlayPosition())
  
 --translateMessage()
    msg = {}

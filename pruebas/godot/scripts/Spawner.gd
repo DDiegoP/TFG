@@ -20,6 +20,10 @@ var maxIndex = 0
 #Tiempo en el que la nota se tendría que pulsar
 @export var noteStamps : Array[float] = []
 
+var noteSpeed = 0.5
+#asignaremos cada nota a un canal
+var  SpawnPointMap= {} 
+
 func _ready():
 	maxIndex = spawnPoints.size()-1
 
@@ -28,17 +32,27 @@ func _ready():
 func _process(delta):
 	timer += delta
 	if(noteSpawnStamps.size()>0):
-		if(noteSpawnStamps[currentIndex] < timer):
-			var chosen = randi_range(0,maxIndex)
-			spawnPoints[chosen].spawnNote(notes[currentIndex], noteStamps[currentIndex]-timer)
-		if(currentIndex + 1 == noteSpawnStamps.size() || currentIndex + 1 == notes.size()):
+		if(currentIndex >= noteSpawnStamps.size()-1):#se acabo la cancion vuevlo a empezar
 			currentIndex = 0
-			timer = 0
-		else:
-			currentIndex += 1
-	
+			timer=0
+		else: #siguiente nota que tengo que spanear si la hay
+			var downtime=  noteSpawnStamps[currentIndex] -timer
+			if downtime <=0:
+				var chosen = randi_range(0,maxIndex)
+				SpawnPointMap[notes[currentIndex]].spawnNote(notes[currentIndex], noteStamps[currentIndex]-timer)
+				currentIndex += 1
+				
+		#if(currentIndex  >= noteSpawnStamps.size() -1 || currentIndex  >= notes.size()-1):
+			#currentIndex = 0
+			#timer = 0
+		#else:
+			#currentIndex += 1
+		#if(noteSpawnStamps[currentIndex] < timer):
+			#var chosen = randi_range(0,maxIndex)
+			#spawnPoints[chosen].spawnNote(notes[currentIndex], noteStamps[currentIndex]-timer)
+	##print(timer)
 func transferData(times,innotes,curtime):
-	timer=curtime/10
+	timer=curtime
 	notes = []
 	noteSpawnStamps = []
 	noteStamps = []
@@ -48,17 +62,24 @@ func transferData(times,innotes,curtime):
 	var targetPos = spawnPoints[0].position.y
 	for time in times:
 		
-		noteSpawnStamps.push_back((time - targetPos/speed)/10)	 
-		var t = time/10
+		noteSpawnStamps.push_back((time - targetPos/speed))	 
+		var t = time
 		noteStamps.push_back(t)
 		#nos aseguramos de empezar en la nota que toca
 		if( t < timer):
 			currentIndex = currentIndex +1
 			
 	pass
-	
+	var parsednotes = []
+	var si = 0 #spawnpoints index
 	for note in innotes:
-		notes.push_back(note)	 
+		notes.push_back(note)	
+		if not parsednotes.has(note):
+			#SpawnPointMap.set(key : note, value : spawnPoints[si])
+			SpawnPointMap[note] = spawnPoints[si]
+			si+=1
+			parsednotes.push_back(note)
+					 
 	pass
 	
 	print("BasslPLayer data Transfered")
