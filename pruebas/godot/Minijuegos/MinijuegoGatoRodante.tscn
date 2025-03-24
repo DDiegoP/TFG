@@ -1,8 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://d4l311r66gap8"]
+[gd_scene load_steps=14 format=3 uid="uid://d4l311r66gap8"]
 
 [ext_resource type="Script" path="res://Minijuegos/MinijuegoGatoRodante.gd" id="1_mwjr0"]
-[ext_resource type="Script" path="res://Scripts/Spawner.gd" id="2_mk2d1"]
+[ext_resource type="Script" path="res://scripts/ReaSensorManager.gd" id="2_n0fdw"]
 [ext_resource type="Script" path="res://Minijuegos/SpawnPoint.gd" id="3_fxfg4"]
+[ext_resource type="Script" path="res://scripts/Spawner.gd" id="3_hb7qc"]
+[ext_resource type="Script" path="res://scripts/Interaction.gd" id="3_seo3x"]
 [ext_resource type="PackedScene" uid="uid://es6dvdkm1yxx" path="res://notaGato.tscn" id="4_byeo8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i60v5"]
@@ -19,6 +21,14 @@ radius = 15.0
 size = Vector2(20, 271)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_umnma"]
+
+[sub_resource type="Resource" id="Resource_pdlub"]
+script = ExtResource("3_seo3x")
+active = false
+sensor = 0
+trackNum = 0
+control = 0
+customRoute = ""
 
 [node name="MinijuegoGato" type="Node2D" node_paths=PackedStringArray("ball")]
 script = ExtResource("1_mwjr0")
@@ -87,10 +97,8 @@ offset_right = 1078.0
 offset_bottom = 648.0
 
 [node name="SpawnPoints" type="Node" parent="." node_paths=PackedStringArray("spawnPoints")]
-script = ExtResource("2_mk2d1")
+script = ExtResource("3_hb7qc")
 spawnPoints = [NodePath("SpawnPoint"), NodePath("SpawnPoint2"), NodePath("SpawnPoint3"), NodePath("SpawnPoint4"), NodePath("SpawnPoint5"), NodePath("SpawnPoint6")]
-notes = Array[int]([2, 4, 6, 8])
-noteStamps = Array[float]([1.0, 3.0, 5.0, 8.0])
 
 [node name="SpawnPoint" type="Marker2D" parent="SpawnPoints" node_paths=PackedStringArray("cat")]
 position = Vector2(105, 138)
@@ -127,6 +135,10 @@ position = Vector2(918, 138)
 script = ExtResource("3_fxfg4")
 nota = ExtResource("4_byeo8")
 cat = NodePath("../../Ball")
+
+[node name="ReaSensorManager" type="Node" parent="."]
+script = ExtResource("2_n0fdw")
+interactions = Array[Object]([SubResource("Resource_pdlub")])
 
 [connection signal="button_down" from="ButtonLeft" to="." method="_on_button_left_button_down"]
 [connection signal="button_up" from="ButtonLeft" to="." method="_on_button_left_button_up"]
