@@ -44,7 +44,6 @@ function print(...)
   for i, v in ipairs( { ... } ) do
       t[i] = tostring( v )
   end
-  reaper.ShowConsoleMsg( table.concat( t, " " ) .. "\n" )
 end
 
 function getUserIP(id)
@@ -85,7 +84,7 @@ end
      --Conexion de un usuario nuevo : 
       if address == 't/connect' then 
       u = math.random(0,#users -1)
-      userips[2] = args[0]--cableado para el bajista
+      userips[3] = args[0]--cableado para el bajista
       --local msg1 = osc.encode('/t connect', users[u], 3.14, 'hello world!')
       --Voy a cablear el 2 para probar el bajo
       local msg1 = osc.encode('/t connect', 2, 3.14, 'hello world!')
@@ -94,8 +93,8 @@ end
       --reaper.ShowConsoleMsg('user ip')
      -- reaper.ShowConsoleMsg(userIP)
       --reaper.ShowConsoleMsg('user port')
-     -- reaper.ShowConsoleMsg(userPort)
       udp:sendto(msg1,args[0],userServerPort)
+      reaper.ShowConsoleMsg("enviado")
      -- table.remove(users,u+1) --ese slot de usuario ya no esta disponible
       --print('currenusers',users)
       end

@@ -1,4 +1,3 @@
-@tool
 class_name Interaction extends Resource
 
 enum Sensors {
@@ -20,3 +19,4 @@ var sensorValue
 @export var control : Controls = Controls.Volume
 @export var customRoute : String = ""
 var callable : Callable
+var result

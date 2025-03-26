@@ -26,8 +26,8 @@ size = Vector2(20, 271)
 script = ExtResource("3_seo3x")
 active = false
 sensor = 0
-trackNum = 0
-control = 0
+trackNum = 1
+control = 1
 customRoute = ""
 
 [node name="MinijuegoGato" type="Node2D" node_paths=PackedStringArray("ball")]
@@ -138,7 +138,7 @@ cat = NodePath("../../Ball")
 
 [node name="ReaSensorManager" type="Node" parent="."]
 script = ExtResource("2_n0fdw")
-interactions = Array[Object]([SubResource("Resource_pdlub")])
+interactions = Array[ExtResource("3_seo3x")]([SubResource("Resource_pdlub")])
 
 [connection signal="button_down" from="ButtonLeft" to="." method="_on_button_left_button_down"]
 [connection signal="button_up" from="ButtonLeft" to="." method="_on_button_left_button_up"]
