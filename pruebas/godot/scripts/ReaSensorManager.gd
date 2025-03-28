@@ -1,4 +1,4 @@
-extends Node
+class_name ReaSensorManager extends Node
 
 enum Sensors {
 	Gyroscope,
@@ -37,7 +37,11 @@ func sendInfo(interaction):
 		Controls.Volume:
 			pass
 		Controls.Pan:
-			client.send_message("/play",[])
+			if(interaction.trackNum==0):
+				client.send_message("/master/pan",[interaction.result])
 			pass
 		Controls.Custom:
 			pass
+
+func getInteractionAt(index) -> Interaction:
+	return interactions[index]

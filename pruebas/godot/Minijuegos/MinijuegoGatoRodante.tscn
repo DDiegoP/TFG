@@ -26,13 +26,15 @@ size = Vector2(20, 271)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_umnma"]
 
-[node name="MinijuegoGato" type="Node2D" node_paths=PackedStringArray("ball")]
+[node name="MinijuegoGato" type="Node2D" node_paths=PackedStringArray("ball", "rsManager")]
+position = Vector2(10, 3)
 script = ExtResource("1_mwjr0")
 ball = NodePath("Ball")
 ballSpeed = 10.0
+rsManager = NodePath("ReaSensorManager")
 
 [node name="Floor" type="StaticBody2D" parent="."]
-position = Vector2(534, 637)
+position = Vector2(-2, 633)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
 position = Vector2(9.5, 0)
@@ -44,7 +46,7 @@ scale = Vector2(1000, 16.727)
 texture = SubResource("PlaceholderTexture2D_88wm6")
 
 [node name="Ball" type="RigidBody2D" parent="."]
-position = Vector2(523, 585)
+position = Vector2(-13, 581)
 max_contacts_reported = 5
 contact_monitor = true
 
@@ -57,7 +59,7 @@ scale = Vector2(25, 25)
 texture = SubResource("PlaceholderTexture2D_5sjf2")
 
 [node name="Wall1" type="StaticBody2D" parent="."]
-position = Vector2(12, 638)
+position = Vector2(-524, 634)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall1"]
 position = Vector2(9.5, -125.5)
@@ -69,7 +71,7 @@ scale = Vector2(14, 271.402)
 texture = SubResource("PlaceholderTexture2D_umnma")
 
 [node name="Wall2" type="StaticBody2D" parent="."]
-position = Vector2(1048, 638)
+position = Vector2(512, 634)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2"]
 position = Vector2(9.5, -125.5)
@@ -81,53 +83,55 @@ scale = Vector2(14, 271.402)
 texture = SubResource("PlaceholderTexture2D_umnma")
 
 [node name="ButtonLeft" type="Button" parent="."]
-offset_left = 6.0
-offset_top = 366.0
-offset_right = 441.0
-offset_bottom = 648.0
+offset_left = -530.0
+offset_top = 362.0
+offset_right = -95.0
+offset_bottom = 644.0
+metadata/_edit_use_anchors_ = true
 
 [node name="ButtonRight" type="Button" parent="."]
-offset_left = 629.0
-offset_top = 366.0
-offset_right = 1078.0
-offset_bottom = 648.0
+offset_left = 93.0
+offset_top = 362.0
+offset_right = 542.0
+offset_bottom = 644.0
+metadata/_edit_use_anchors_ = true
 
 [node name="SpawnPoints" type="Node" parent="." node_paths=PackedStringArray("spawnPoints")]
 script = ExtResource("3_hb7qc")
 spawnPoints = [NodePath("SpawnPoint"), NodePath("SpawnPoint2"), NodePath("SpawnPoint3"), NodePath("SpawnPoint4"), NodePath("SpawnPoint5"), NodePath("SpawnPoint6")]
 
 [node name="SpawnPoint" type="Marker2D" parent="SpawnPoints" node_paths=PackedStringArray("cat")]
-position = Vector2(105, 138)
+position = Vector2(-421, 137)
 script = ExtResource("3_fxfg4")
 nota = ExtResource("4_byeo8")
 cat = NodePath("../../Ball")
 
 [node name="SpawnPoint2" type="Marker2D" parent="SpawnPoints" node_paths=PackedStringArray("cat")]
-position = Vector2(262, 138)
+position = Vector2(-264, 137)
 script = ExtResource("3_fxfg4")
 nota = ExtResource("4_byeo8")
 cat = NodePath("../../Ball")
 
 [node name="SpawnPoint3" type="Marker2D" parent="SpawnPoints" node_paths=PackedStringArray("cat")]
-position = Vector2(444, 138)
+position = Vector2(-82, 137)
 script = ExtResource("3_fxfg4")
 nota = ExtResource("4_byeo8")
 cat = NodePath("../../Ball")
 
 [node name="SpawnPoint4" type="Marker2D" parent="SpawnPoints" node_paths=PackedStringArray("cat")]
-position = Vector2(619, 138)
+position = Vector2(93, 137)
 script = ExtResource("3_fxfg4")
 nota = ExtResource("4_byeo8")
 cat = NodePath("../../Ball")
 
 [node name="SpawnPoint5" type="Marker2D" parent="SpawnPoints" node_paths=PackedStringArray("cat")]
-position = Vector2(781, 138)
+position = Vector2(255, 137)
 script = ExtResource("3_fxfg4")
 nota = ExtResource("4_byeo8")
 cat = NodePath("../../Ball")
 
 [node name="SpawnPoint6" type="Marker2D" parent="SpawnPoints" node_paths=PackedStringArray("cat")]
-position = Vector2(918, 138)
+position = Vector2(392, 137)
 script = ExtResource("3_fxfg4")
 nota = ExtResource("4_byeo8")
 cat = NodePath("../../Ball")
@@ -153,6 +157,9 @@ port = 3003
 [node name="Receiver" type="Node2D" parent="Networking" node_paths=PackedStringArray("target_server")]
 script = ExtResource("10_glad5")
 target_server = NodePath("../OSCServer")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(2, 323)
 
 [connection signal="button_down" from="ButtonLeft" to="." method="_on_button_left_button_down"]
 [connection signal="button_up" from="ButtonLeft" to="." method="_on_button_left_button_up"]

@@ -1,13 +1,22 @@
 extends Node2D
 
+const LEFTX = -488
+const RIGHTX = 495
+
 #Bola sobre la que se aplica la fuerza
 @export var ball : RigidBody2D
 #Valor de fuerza que se aplica a la vola
 @export var ballSpeed : float
+#ReaSensorManager
+@export var rsManager : ReaSensorManager
 
+var catInteraction : Interaction
 #Fuerza que se esta aplicando en la bola
 var forceToApply : Vector2
 
+func _ready():
+	catInteraction = rsManager.getInteractionAt(0)
+	catInteraction.callable = Callable(self, "sendCatXToInteraction")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -33,3 +42,13 @@ func _on_button_right_button_down():
 #Al levantar el boton derecho se añade elimina la fuerza
 func _on_button_right_button_up():
 	changeForce(0)
+
+func sendCatXToInteraction(interaction):
+	var total
+	
+	if(ball.position.x>=0):
+		total = ball.position.x/RIGHTX
+	else:
+		total = -ball.position.x/LEFTX
+	
+	interaction.result = (total+1)/2
