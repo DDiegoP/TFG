@@ -14,6 +14,8 @@ enum Controls {
 
 @export var interactions : Array[Interaction] = []
 
+@export var client : OSCClient
+
 func _process(delta):
 	for interaction in interactions:
 		getSensorData(interaction)
@@ -31,10 +33,11 @@ func getSensorData(interaction):
 			interaction.sensorValue = Input.get_accelerometer()
 		
 func sendInfo(interaction):
-	match interaction.Controls:
+	match interaction.control:
 		Controls.Volume:
 			pass
 		Controls.Pan:
+			client.send_message("/play",[])
 			pass
 		Controls.Custom:
 			pass

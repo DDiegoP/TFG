@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Interaction" load_steps=2 format=3 uid="uid://bc1n1ld80mnbs"]
+
+[ext_resource type="Script" path="res://scripts/Interaction.gd" id="1_465ax"]
+
+[resource]
+script = ExtResource("1_465ax")
+active = false
+sensor = 0
+trackNum = 0
+control = 1
+customRoute = ""
