@@ -1,0 +1,446 @@
+[gd_scene load_steps=19 format=3 uid="uid://bnn4v7x1gettg"]
+
+[ext_resource type="Script" path="res://addons/godOSC/scripts/OSCClient.gd" id="1_ueenc"]
+[ext_resource type="Script" path="res://addons/godOSC/scripts/OSCServer.gd" id="2_102je"]
+[ext_resource type="Script" path="res://StopButton.gd" id="2_bmjjo"]
+[ext_resource type="Script" path="res://TrackSelector.gd" id="2_bu8cy"]
+[ext_resource type="Script" path="res://OscPanMessage.gd" id="3_5yyr0"]
+[ext_resource type="Script" path="res://MIDIControllerSceneManager.gd" id="4_hwemr"]
+[ext_resource type="Script" path="res://OscVolumeMessage.gd" id="4_xsy7t"]
+[ext_resource type="Script" path="res://addons/godOSC/demo/demo_messagePLAY.gd" id="5_tlsrh"]
+[ext_resource type="Script" path="res://addons/godOSC/demo/ANTONIO_ACTION_MESSAGE_1.gd" id="6_mkkdf"]
+[ext_resource type="Script" path="res://scripts/MIDIControllerReceiver.gd" id="6_ohvrb"]
+[ext_resource type="Script" path="res://GenericOscMessage.gd" id="6_xirj1"]
+[ext_resource type="Script" path="res://addons/godOSC/demo/PianoButton.gd" id="7_7fxfg"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_q867h"]
+
+[sub_resource type="Theme" id="Theme_ehevk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dwkxb"]
+bg_color = Color(0.87451, 0.878431, 0.882353, 1)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ev6sg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8bl3e"]
+bg_color = Color(0.117647, 0.117647, 0.117647, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8necu"]
+font_size = 18
+
+[node name="Node2D" type="Node2D"]
+
+[node name="MIDIController" type="Node2D" parent="."]
+
+[node name="WhiteKeys" type="Button" parent="MIDIController" node_paths=PackedStringArray("target_client")]
+material = SubResource("CanvasItemMaterial_q867h")
+offset_left = 93.0
+offset_top = 337.0
+offset_right = 147.0
+offset_bottom = 514.0
+scale = Vector2(1.75173, 1.75173)
+theme = SubResource("Theme_ehevk")
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_dwkxb")
+icon = SubResource("CanvasTexture_ev6sg")
+script = ExtResource("7_7fxfg")
+target_client = NodePath("../../NETWORKING/OSCClient")
+osc_address = "/midiP"
+osc_argument = "60.0"
+
+[node name="Button" type="Button" parent="MIDIController/WhiteKeys" node_paths=PackedStringArray("target_client")]
+material = SubResource("CanvasItemMaterial_q867h")
+layout_mode = 0
+offset_left = 62.0
+offset_top = 2.0
+offset_right = 116.0
+offset_bottom = 175.0
+theme = SubResource("Theme_ehevk")
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_dwkxb")
+icon = SubResource("CanvasTexture_ev6sg")
+script = ExtResource("7_7fxfg")
+target_client = NodePath("../../../NETWORKING/OSCClient")
+osc_address = "/midiP"
+osc_argument = "62.0"
+
+[node name="Button" type="Button" parent="MIDIController/WhiteKeys/Button" node_paths=PackedStringArray("target_client")]
+material = SubResource("CanvasItemMaterial_q867h")
+layout_mode = 0
+offset_left = 65.0
+offset_right = 119.0
+offset_bottom = 173.0
+theme = SubResource("Theme_ehevk")
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_dwkxb")
+icon = SubResource("CanvasTexture_ev6sg")
+script = ExtResource("7_7fxfg")
+target_client = NodePath("../../../../NETWORKING/OSCClient")
+osc_address = "/midiP"
+osc_argument = "64.0"
+
+[node name="Button" type="Button" parent="MIDIController/WhiteKeys/Button/Button" node_paths=PackedStringArray("target_client")]
+material = SubResource("CanvasItemMaterial_q867h")
+layout_mode = 0
+offset_left = 126.0
+offset_top = 1.0
+offset_right = 180.0
+offset_bottom = 173.0
+theme = SubResource("Theme_ehevk")
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_dwkxb")
+icon = SubResource("CanvasTexture_ev6sg")
+script = ExtResource("7_7fxfg")
+target_client = NodePath("../../../../../NETWORKING/OSCClient")
+osc_address = "/midiP"
+osc_argument = "67.0"
+
+[node name="Button" type="Button" parent="MIDIController/WhiteKeys/Button/Button/Button" node_paths=PackedStringArray("target_client")]
+material = SubResource("CanvasItemMaterial_q867h")
+layout_mode = 0
+offset_left = 65.0
+offset_right = 119.0
+offset_bottom = 172.0
+theme = SubResource("Theme_ehevk")
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_dwkxb")
+icon = SubResource("CanvasTexture_ev6sg")
+script = ExtResource("7_7fxfg")
+target_client = NodePath("../../../../../../NETWORKING/OSCClient")
+osc_address = "/midiP"
+osc_argument = "69.0"
+
+[node name="Button" type="Button" parent="MIDIController/WhiteKeys/Button/Button/Button/Button" node_paths=PackedStringArray("target_client")]
+material = SubResource("CanvasItemMaterial_q867h")
+layout_mode = 0
+offset_left = 65.0
+offset_right = 119.0
+offset_bottom = 172.0
+theme = SubResource("Theme_ehevk")
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_dwkxb")
+icon = SubResource("CanvasTexture_ev6sg")
+script = ExtResource("7_7fxfg")
+target_client = NodePath("../../../../../../../NETWORKING/OSCClient")
+osc_address = "/midiP"
+osc_argument = "71.0"
+
+[node name="Button2" type="Button" parent="MIDIController/WhiteKeys/Button/Button" node_paths=PackedStringArray("target_client")]
+material = SubResource("CanvasItemMaterial_q867h")
+layout_mode = 0
+offset_left = 62.0
+offset_top = 1.0
+offset_right = 116.0
+offset_bottom = 174.0
+theme = SubResource("Theme_ehevk")
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_dwkxb")
+icon = SubResource("CanvasTexture_ev6sg")
+script = ExtResource("7_7fxfg")
+target_client = NodePath("../../../../../NETWORKING/OSCClient")
+osc_address = "/midiP"
+osc_argument = "65.0"
+
+[node name="BlackKeys" type="Button" parent="MIDIController" node_paths=PackedStringArray("target_client")]
+material = SubResource("CanvasItemMaterial_q867h")
+offset_left = 277.0
+offset_top = 305.0
+offset_right = 315.0
+offset_bottom = 427.0
+scale = Vector2(1.68, 1.68)
+theme = SubResource("Theme_ehevk")
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_8bl3e")
+icon = SubResource("CanvasTexture_ev6sg")
+script = ExtResource("7_7fxfg")
+target_client = NodePath("../../NETWORKING/OSCClient")
+osc_address = "/midiP"
+osc_argument = "63.0"
+
+[node name="Button2" type="Button" parent="MIDIController/BlackKeys" node_paths=PackedStringArray("target_client")]
+material = SubResource("CanvasItemMaterial_q867h")
+layout_mode = 0
+offset_left = 137.0
+offset_top = 1.0
+offset_right = 175.0
+offset_bottom = 123.0
+theme = SubResource("Theme_ehevk")
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_8bl3e")
+icon = SubResource("CanvasTexture_ev6sg")
+script = ExtResource("7_7fxfg")
+target_client = NodePath("../../../NETWORKING/OSCClient")
+osc_address = "/midiP"
+osc_argument = "66.0"
+
+[node name="Button2" type="Button" parent="MIDIController/BlackKeys/Button2" node_paths=PackedStringArray("target_client")]
+material = SubResource("CanvasItemMaterial_q867h")
+layout_mode = 0
+offset_left = 62.0
+offset_top = 2.0
+offset_right = 100.0
+offset_bottom = 124.0
+theme = SubResource("Theme_ehevk")
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_8bl3e")
+icon = SubResource("CanvasTexture_ev6sg")
+script = ExtResource("7_7fxfg")
+target_client = NodePath("../../../../NETWORKING/OSCClient")
+osc_address = "/midiP"
+osc_argument = "68.0"
+
+[node name="Button3" type="Button" parent="MIDIController/BlackKeys/Button2/Button2" node_paths=PackedStringArray("target_client")]
+material = SubResource("CanvasItemMaterial_q867h")
+layout_mode = 0
+offset_left = -260.0
+offset_top = -1.0
+offset_right = -222.0
+offset_bottom = 121.0
+theme = SubResource("Theme_ehevk")
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_8bl3e")
+icon = SubResource("CanvasTexture_ev6sg")
+script = ExtResource("7_7fxfg")
+target_client = NodePath("../../../../../NETWORKING/OSCClient")
+osc_address = "/midiP"
+osc_argument = "61.0"
+
+[node name="Button4" type="Button" parent="MIDIController/BlackKeys/Button2/Button2/Button3" node_paths=PackedStringArray("target_client")]
+material = SubResource("CanvasItemMaterial_q867h")
+layout_mode = 0
+offset_left = 319.0
+offset_top = -1.0
+offset_right = 357.0
+offset_bottom = 121.0
+scale = Vector2(1, 1.00559)
+theme = SubResource("Theme_ehevk")
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_8bl3e")
+icon = SubResource("CanvasTexture_ev6sg")
+script = ExtResource("7_7fxfg")
+target_client = NodePath("../../../../../../NETWORKING/OSCClient")
+osc_address = "/midiP"
+osc_argument = "70.0"
+
+[node name="PlayButton" type="Button" parent="MIDIController" node_paths=PackedStringArray("target_client")]
+offset_left = 645.0
+offset_top = 183.0
+offset_right = 738.0
+offset_bottom = 218.0
+text = "PLAY
+"
+script = ExtResource("2_bmjjo")
+target_client = NodePath("../../NETWORKING/OSCClient")
+osc_address = "t/play"
+
+[node name="StopButton" type="Button" parent="MIDIController" node_paths=PackedStringArray("target_client")]
+offset_left = 644.0
+offset_top = 231.0
+offset_right = 740.0
+offset_bottom = 270.0
+text = "STOP
+"
+script = ExtResource("2_bmjjo")
+target_client = NodePath("../../NETWORKING/OSCClient")
+osc_address = "t/stop"
+
+[node name="Mixer" type="Label" parent="MIDIController"]
+offset_left = 53.0
+offset_top = 30.0
+offset_right = 203.0
+offset_bottom = 53.0
+text = "MIXER
+"
+
+[node name="PAN" type="HSlider" parent="MIDIController/Mixer" node_paths=PackedStringArray("target_client")]
+layout_mode = 0
+offset_left = -7.0
+offset_top = 52.0
+offset_right = 116.0
+offset_bottom = 68.0
+min_value = -1.0
+max_value = 1.0
+step = 0.01
+script = ExtResource("3_5yyr0")
+target_client = NodePath("../../../NETWORKING/OSCClient")
+osc_address = "/SetPan"
+
+[node name="Label" type="Label" parent="MIDIController/Mixer/PAN"]
+layout_mode = 0
+offset_left = -16.0
+offset_top = -3.0
+offset_right = -3.0
+offset_bottom = 29.0
+scale = Vector2(1.11462, 0.737887)
+text = "L
+"
+label_settings = SubResource("LabelSettings_8necu")
+
+[node name="Label" type="Label" parent="MIDIController/Mixer/PAN/Label"]
+layout_mode = 0
+offset_left = 124.706
+offset_top = -2.71044
+offset_right = 139.706
+offset_bottom = 37.2896
+scale = Vector2(1.11462, 1.06314)
+text = "R
+"
+label_settings = SubResource("LabelSettings_8necu")
+
+[node name="VOLUME" type="VSlider" parent="MIDIController/Mixer" node_paths=PackedStringArray("target_client")]
+layout_mode = 0
+offset_left = 213.0
+offset_top = 29.0
+offset_right = 229.0
+offset_bottom = 122.0
+scale = Vector2(1.68, 2.08)
+max_value = 2.0
+step = 0.01
+script = ExtResource("4_xsy7t")
+target_client = NodePath("../../../NETWORKING/OSCClient")
+osc_address = "/SetVolume"
+
+[node name="Label2" type="Label" parent="MIDIController/Mixer/VOLUME"]
+layout_mode = 0
+offset_left = 12.5
+offset_top = -6.25
+offset_right = 23.5
+offset_bottom = 20.75
+scale = Vector2(1.89589, 0.909641)
+text = "+
+"
+label_settings = SubResource("LabelSettings_8necu")
+
+[node name="Label" type="Label" parent="MIDIController/Mixer/VOLUME"]
+layout_mode = 0
+offset_left = 20.8333
+offset_top = 72.1154
+offset_right = 28.8333
+offset_bottom = 104.115
+scale = Vector2(2.23531, 0.761153)
+text = "-
+"
+label_settings = SubResource("LabelSettings_8necu")
+
+[node name="MIDISelect" type="Label" parent="MIDIController"]
+offset_left = 721.0
+offset_top = 67.0
+offset_right = 871.0
+offset_bottom = 90.0
+text = "SELECT MIDI TRACK
+"
+
+[node name="TrackSelector" type="OptionButton" parent="MIDIController/MIDISelect" node_paths=PackedStringArray("target_client")]
+layout_mode = 0
+offset_left = -9.0
+offset_top = 34.0
+offset_right = 162.0
+offset_bottom = 68.0
+script = ExtResource("2_bu8cy")
+target_client = NodePath("../../../NETWORKING/OSCClient")
+osc_address = "/SelectTrack"
+
+[node name="ClearButton" type="Button" parent="MIDIController" node_paths=PackedStringArray("target_client")]
+offset_left = 590.0
+offset_top = 104.0
+offset_right = 692.0
+offset_bottom = 137.0
+text = "CLEAR
+"
+script = ExtResource("6_xirj1")
+target_client = NodePath("../../NETWORKING/OSCClient")
+osc_address = "/clearMidi"
+
+[node name="NETWORKING" type="Node" parent="." node_paths=PackedStringArray("scene_client", "scene_server")]
+script = ExtResource("4_hwemr")
+scene_client = NodePath("OSCClient")
+scene_server = NodePath("OSCClient/OSCServer")
+
+[node name="OSCClient" type="Node" parent="NETWORKING"]
+script = ExtResource("1_ueenc")
+port = 3000
+
+[node name="OSCServer" type="Node" parent="NETWORKING/OSCClient"]
+script = ExtResource("2_102je")
+port = 3003
+
+[node name="Receiver" type="Node2D" parent="NETWORKING" node_paths=PackedStringArray("targetSelector", "target_server")]
+script = ExtResource("6_ohvrb")
+targetSelector = NodePath("../../MIDIController/MIDISelect/TrackSelector")
+target_server = NodePath("../OSCClient/OSCServer")
+osc_address = "t/NumOfTracks"
+
+[node name="Cube 1 Slider" type="HSlider" parent="."]
+offset_left = 1468.0
+offset_top = 376.0
+offset_right = 2001.0
+offset_bottom = 392.0
+min_value = 300.0
+max_value = 600.0
+value = 300.0
+
+[node name="OSCMessage" type="Node" parent="Cube 1 Slider" node_paths=PackedStringArray("target_client")]
+script = ExtResource("5_tlsrh")
+target_client = NodePath("../../NETWORKING/OSCClient")
+osc_address = "t/play"
+osc_argument = "als"
+
+[node name="Cube 2 Slider" type="HSlider" parent="."]
+offset_left = 1471.0
+offset_top = 291.0
+offset_right = 1982.0
+offset_bottom = 307.0
+max_value = 2.0
+step = 0.01
+value = 1.0
+
+[node name="OSCMessage" type="Node" parent="Cube 2 Slider" node_paths=PackedStringArray("target_client")]
+script = ExtResource("6_mkkdf")
+target_client = NodePath("../../NETWORKING/OSCClient")
+osc_address = "t/stop"
+osc_argument = "stoptext"
+
+[node name="TextEdit" type="TextEdit" parent="."]
+offset_left = 1393.0
+offset_top = 370.0
+offset_right = 1451.0
+offset_bottom = 401.0
+text = "PLAY"
+
+[node name="TextEdit2" type="TextEdit" parent="."]
+offset_left = 1399.0
+offset_top = 285.0
+offset_right = 1457.0
+offset_bottom = 316.0
+text = "STOP
+"
+
+[node name="TextEdit2" type="TextEdit" parent="TextEdit2"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 402.0
+offset_right = 102.0
+offset_bottom = 433.0
+text = "STOP
+"
+
+[connection signal="pressed" from="MIDIController/WhiteKeys" to="MIDIController/WhiteKeys" method="_on_pressed"]
+[connection signal="pressed" from="MIDIController/WhiteKeys/Button" to="MIDIController/WhiteKeys/Button" method="_on_pressed"]
+[connection signal="pressed" from="MIDIController/WhiteKeys/Button/Button" to="MIDIController/WhiteKeys/Button/Button" method="_on_pressed"]
+[connection signal="pressed" from="MIDIController/WhiteKeys/Button/Button/Button" to="MIDIController/WhiteKeys/Button/Button/Button" method="_on_pressed"]
+[connection signal="pressed" from="MIDIController/WhiteKeys/Button/Button/Button/Button" to="MIDIController/WhiteKeys/Button/Button/Button/Button" method="_on_pressed"]
+[connection signal="pressed" from="MIDIController/WhiteKeys/Button/Button/Button/Button/Button" to="MIDIController/WhiteKeys/Button/Button/Button/Button/Button" method="_on_pressed"]
+[connection signal="pressed" from="MIDIController/WhiteKeys/Button/Button/Button2" to="MIDIController/WhiteKeys/Button/Button/Button2" method="_on_pressed"]
+[connection signal="pressed" from="MIDIController/BlackKeys" to="MIDIController/BlackKeys" method="_on_pressed"]
+[connection signal="pressed" from="MIDIController/BlackKeys/Button2" to="MIDIController/BlackKeys/Button2" method="_on_pressed"]
+[connection signal="pressed" from="MIDIController/BlackKeys/Button2/Button2" to="MIDIController/BlackKeys/Button2/Button2" method="_on_pressed"]
+[connection signal="pressed" from="MIDIController/BlackKeys/Button2/Button2/Button3" to="MIDIController/BlackKeys/Button2/Button2/Button3" method="_on_pressed"]
+[connection signal="pressed" from="MIDIController/BlackKeys/Button2/Button2/Button3/Button4" to="MIDIController/BlackKeys/Button2/Button2/Button3/Button4" method="_on_pressed"]
+[connection signal="pressed" from="MIDIController/PlayButton" to="MIDIController/PlayButton" method="_on_pressed"]
+[connection signal="pressed" from="MIDIController/StopButton" to="MIDIController/StopButton" method="_on_pressed"]
+[connection signal="value_changed" from="MIDIController/Mixer/PAN" to="MIDIController/Mixer/PAN" method="_on_value_changed"]
+[connection signal="value_changed" from="MIDIController/Mixer/VOLUME" to="MIDIController/Mixer/VOLUME" method="_on_value_changed"]
+[connection signal="item_selected" from="MIDIController/MIDISelect/TrackSelector" to="MIDIController/MIDISelect/TrackSelector" method="_on_item_selected"]
+[connection signal="pressed" from="MIDIController/ClearButton" to="MIDIController/ClearButton" method="_on_pressed"]
+[connection signal="drag_ended" from="Cube 1 Slider" to="Cube 1 Slider/OSCMessage" method="_on_cube_1_slider_drag_ended"]
+[connection signal="drag_ended" from="Cube 2 Slider" to="Cube 2 Slider/OSCMessage" method="_on_cube_2_slider_drag_ended"]

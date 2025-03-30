@@ -21,9 +21,13 @@ func _process(delta):
 		print(sceneid)
 		match  sceneid:
 			0:
-				get_tree().change_scene_to_file("res://ESCENAUSER1.tscn")
+				#get_tree().change_scene_to_file("res://ESCENAUSER1.tscn")
+				get_tree().change_scene_to_file("res://Minijuegos/MinijuegoPianoTiles.tscn")
+				
 			1:
-				get_tree().change_scene_to_file("res://ESCENAUSER2.tscn")
+				#get_tree().change_scene_to_file("res://ESCENAUSER2.tscn")
+				get_tree().change_scene_to_file("res://MiniMIDIController.tscn")
+				
 			2:
 				get_tree().change_scene_to_file("res://Minijuegos/MinijuegoPianoTiles.tscn")
 			3:
