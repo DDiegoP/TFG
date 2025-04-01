@@ -161,7 +161,6 @@ rotation = 0.785821
 scale = Vector2(1, 2.55558)
 script = ExtResource("2_p7y7d")
 pinballController = NodePath("..")
-type = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SensorL"]
 shape = SubResource("CapsuleShape2D_rmu41")

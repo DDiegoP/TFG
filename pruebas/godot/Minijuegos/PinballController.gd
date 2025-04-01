@@ -1,5 +1,8 @@
 class_name PinballController extends Node2D
 
+const REA_INIT_VALUE = 0.5
+const SHAKE_VALUE = 15
+
 #Boton izquierdo
 @export var ButtonLeft : Button
 #Boton derecho
@@ -16,7 +19,9 @@ class_name PinballController extends Node2D
 
 @export var rsManager : ReaSensorManager
 
-@export var reaValue = 0.5
+var accelerValues
+
+@export var reaValue = REA_INIT_VALUE
 
 #Grados iniciales de la pala izquierda
 var initDegreesL
@@ -39,6 +44,8 @@ func _ready():
 func _process(delta):
 	PaddleL.set_rotation(move_toward(PaddleL.rotation, targetDegreesL, delta * turnSpeed))
 	PaddleR.set_rotation(move_toward(PaddleR.rotation, targetDegreesR, delta * turnSpeed))
+	if(accelerValues && abs(accelerValues.x)>SHAKE_VALUE && abs(accelerValues.y)>SHAKE_VALUE && abs(accelerValues.z)>SHAKE_VALUE ):
+		reaValue = REA_INIT_VALUE
 
 #Receptor de señal de presion del boton izquierdo, cambia los grados objetivos para que se active la pala
 func _on_button_left_button_down():
@@ -70,3 +77,4 @@ func decreaseValue():
 
 func sendValue(interaction):
 	interaction.result = reaValue
+	accelerValues = interaction.sensorValue
