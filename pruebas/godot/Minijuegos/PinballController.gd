@@ -1,4 +1,4 @@
-extends Node2D
+class_name PinballController extends Node2D
 
 #Boton izquierdo
 @export var ButtonLeft : Button
@@ -13,6 +13,10 @@ extends Node2D
 @export var turnDegrees = 45
 #Velocidad de giro
 @export var turnSpeed = 10
+
+@export var rsManager : ReaSensorManager
+
+@export var reaValue = 0.5
 
 #Grados iniciales de la pala izquierda
 var initDegreesL
@@ -29,6 +33,7 @@ func _ready():
 	initDegreesR = PaddleR.rotation
 	targetDegreesL = initDegreesL
 	targetDegreesR = initDegreesR
+	rsManager.getInteractionAt(0).callable = Callable(self, "sendValue")
 
 #Movimiento de las palas
 func _process(delta):
@@ -50,3 +55,18 @@ func _on_button_left_button_up():
 #Receptor de señal de boton levantado del boton derecho, restablece los grados objetivos a los iniciales
 func _on_button_right_button_up():
 	targetDegreesR = initDegreesR
+	
+func increaseValue():
+	if(reaValue+0.1 < 1):
+		reaValue += 0.1
+	else:
+		reaValue = 1
+
+func decreaseValue():
+	if(reaValue-0.1 > 0.0001):
+		reaValue -= 0.1
+	else:
+		reaValue = 0.005
+
+func sendValue(interaction):
+	interaction.result = reaValue

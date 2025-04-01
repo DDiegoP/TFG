@@ -29,17 +29,15 @@ radius = 15.0
 size = Vector2(89.5537, 15)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rmu41"]
-radius = 14.8484
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ny4g3"]
 
-[node name="MinijuegoPinball" type="Node2D" node_paths=PackedStringArray("ButtonLeft", "ButtonRight", "PaddleL", "PaddleR", "rsManager")]
+[node name="MinijuegoPinball" type="Node2D" node_paths=PackedStringArray("ButtonLeft", "ButtonRight", "PaddleL", "PaddleR")]
 script = ExtResource("1_o3iwa")
 ButtonLeft = NodePath("ButtonLeft")
 ButtonRight = NodePath("ButtonRight")
 PaddleL = NodePath("PaddleL")
 PaddleR = NodePath("PaddleR")
-rsManager = NodePath("ReaSensorManager")
 
 [node name="Walls" type="Node" parent="."]
 
@@ -101,7 +99,7 @@ scale = Vector2(162.64, 16.727)
 texture = SubResource("PlaceholderTexture2D_88wm6")
 
 [node name="Ball" type="RigidBody2D" parent="."]
-position = Vector2(491, 142)
+position = Vector2(609, 143)
 max_contacts_reported = 5
 contact_monitor = true
 
@@ -155,13 +153,13 @@ position = Vector2(44.9033, -0.830811)
 scale = Vector2(86.4161, 13.3566)
 texture = SubResource("PlaceholderTexture2D_88wm6")
 
-[node name="SensorL" type="StaticBody2D" parent="." node_paths=PackedStringArray("pinballController")]
+[node name="SensorL" type="StaticBody2D" parent="." node_paths=PackedStringArray("rsManager")]
 position = Vector2(471, 251)
 rotation = 0.785821
 scale = Vector2(1, 2.55558)
 script = ExtResource("2_p7y7d")
-pinballController = NodePath("..")
-type = 1
+key = "E2"
+rsManager = NodePath("../ReaSensorManager")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SensorL"]
 shape = SubResource("CapsuleShape2D_rmu41")
@@ -171,13 +169,13 @@ position = Vector2(-4.76837e-06, -9.41753e-06)
 scale = Vector2(18, 24)
 texture = SubResource("PlaceholderTexture2D_ny4g3")
 
-[node name="SensorR" type="StaticBody2D" parent="." node_paths=PackedStringArray("pinballController")]
+[node name="SensorR" type="StaticBody2D" parent="." node_paths=PackedStringArray("rsManager")]
 position = Vector2(605, 255)
 rotation = 2.35619
 scale = Vector2(1, 2.55558)
 script = ExtResource("2_p7y7d")
-pinballController = NodePath("..")
-type = 1
+key = "C1"
+rsManager = NodePath("../ReaSensorManager")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SensorR"]
 shape = SubResource("CapsuleShape2D_rmu41")

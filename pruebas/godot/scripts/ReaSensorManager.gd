@@ -1,6 +1,7 @@
 class_name ReaSensorManager extends Node
 
 enum Sensors {
+	None,
 	Gyroscope,
 	MagneticField,
 	Accelerometer
@@ -9,6 +10,8 @@ enum Sensors {
 enum Controls {
 	Volume,
 	Pan,
+	Mute,
+	Solo,
 	Custom
 }
 
@@ -50,6 +53,18 @@ func sendInfo(interaction):
 				client.send_message("/master/pan",[interaction.result])
 			else:
 				client.send_message(str("/track/",interaction.trackNum,"/pan"), [interaction.result])
+			pass
+		Controls.Mute:
+			if(interaction.trackNum==0):
+				client.send_message("/master/mute",[interaction.result])
+			else:
+				client.send_message(str("/track/",interaction.trackNum,"/mute"), [interaction.result])
+			pass
+		Controls.Solo:
+			if(interaction.trackNum==0):
+				client.send_message("/master/solo",[interaction.result])
+			else:
+				client.send_message(str("/track/",interaction.trackNum,"/solo"), [interaction.result])
 			pass
 		Controls.Custom:
 			client.send_message(interaction.customRoute, [interaction.result])

@@ -84,11 +84,11 @@ end
      --Conexion de un usuario nuevo : 
       if address == 't/connect' then 
       u = math.random(0,#users -1)
-      userips[u] = args[0]--cableado para el bajista
+      userips[0] = args[0]--cableado para el bajista
       --local msg1 = osc.encode('/t connect', users[u], 3.14, 'hello world!')
       --Voy a cablear el 2 para probar el bajo
-      local msg1 = osc.encode('/t connect', users[u], 3.14, 'hello world!')
-      onConnect(users[u])--Forzado par ael Bass player , deberia ser la U 
+      local msg1 = osc.encode('/t connect', 0, 3.14, 'hello world!')
+      onConnect(0)--Forzado par ael Bass player , deberia ser la U 
       userIP , userPort = udp:getsockname()
       --reaper.ShowConsoleMsg('user ip')
      -- reaper.ShowConsoleMsg(userIP)

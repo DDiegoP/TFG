@@ -1,6 +1,7 @@
 class_name Interaction extends Resource
 
 enum Sensors {
+	None,
 	Gyroscope,
 	MagneticField,
 	Accelerometer
@@ -9,6 +10,8 @@ enum Sensors {
 enum Controls {
 	Volume,
 	Pan,
+	Mute,
+	Solo,
 	Custom
 }
 
