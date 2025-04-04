@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://defja54tn6vq8"]
+[gd_scene load_steps=25 format=3 uid="uid://defja54tn6vq8"]
 
 [ext_resource type="Script" path="res://scripts/Spawner.gd" id="1_kwh5s"]
 [ext_resource type="PackedScene" uid="uid://cblwij4xngnpr" path="res://nota.tscn" id="1_s8wu0"]
@@ -27,6 +27,9 @@ shader = ExtResource("5_0q6lu")
 shader_parameter/sr = 0.6
 shader_parameter/sg = 0.4
 shader_parameter/sb = 0.5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_owd54"]
+bg_color = Color(0.0784314, 0.0784314, 0.0784314, 0.721569)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_80q6s"]
 size = Vector2(381.876, 384.997)
@@ -73,6 +76,10 @@ material = SubResource("ShaderMaterial_o2frc")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -7.0
+offset_top = -159.0
+offset_right = -10.0
+offset_bottom = -68.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -104,7 +111,9 @@ offset_top = 559.0
 offset_right = 311.0
 offset_bottom = 927.0
 scale = Vector2(0.319999, 0.320002)
+theme_override_colors/icon_pressed_color = Color(0.345098, 0, 0, 0.803922)
 theme_override_styles/normal = ExtResource("7_f8xq4")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_owd54")
 action_mode = 0
 icon = ExtResource("5_tiigo")
 flat = true
@@ -151,6 +160,7 @@ offset_top = 559.0
 offset_right = 311.0
 offset_bottom = 927.0
 scale = Vector2(0.319999, 0.320002)
+theme_override_colors/icon_pressed_color = Color(0.317647, 0.211765, 0, 0.803922)
 theme_override_styles/normal = ExtResource("7_f8xq4")
 icon = ExtResource("7_2qeor")
 flat = true
@@ -197,6 +207,7 @@ offset_top = 559.0
 offset_right = 311.0
 offset_bottom = 927.0
 scale = Vector2(0.319999, 0.320002)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0.635294, 0.803922)
 theme_override_styles/normal = ExtResource("7_f8xq4")
 icon = ExtResource("8_35say")
 flat = true
@@ -243,6 +254,7 @@ offset_top = 559.0
 offset_right = 311.0
 offset_bottom = 927.0
 scale = Vector2(0.319999, 0.320002)
+theme_override_colors/icon_pressed_color = Color(0, 0.337255, 0, 0.803922)
 theme_override_styles/normal = ExtResource("7_f8xq4")
 icon = ExtResource("9_qfm78")
 flat = true

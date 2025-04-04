@@ -8,7 +8,8 @@ void fragment() {
 		//float sizeh = (1.0/1080.0);
 		//vec2 factor = vec2(sizew*2.0,sizeh*2.0);
 		//SCREEN_PIXEL_SIZE
-        vec2 norm_size = size * SCREEN_PIXEL_SIZE; //factor;
+		vec2 factor = vec2(3.5,3.5);
+        vec2 norm_size = size * SCREEN_PIXEL_SIZE/factor; //factor;
 		//vec2 norm_size = size * factor;
         bool less_than_half = mod(SCREEN_UV.y / 2.0, norm_size.y) / norm_size.y < 0.5;
         vec2 uv = SCREEN_UV + vec2(norm_size.x * 0.5 * float(less_than_half), 0.0);
