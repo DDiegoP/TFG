@@ -1,0 +1,95 @@
+[gd_scene load_steps=6 format=3 uid="uid://14whehibnbhs"]
+
+[ext_resource type="Texture2D" uid="uid://brdou8g3plgyx" path="res://Sprites/2D-Planet.png" id="1_e0ie4"]
+[ext_resource type="Script" path="res://scripts/LauncherController.gd" id="2_e5nc3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wskry"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ccmcr"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_fjwc5"]
+
+[node name="MinijuegoPlanetDefenders" type="Node2D"]
+
+[node name="Planeta" type="StaticBody2D" parent="."]
+position = Vector2(552, 319)
+scale = Vector2(20, 20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Planeta"]
+shape = SubResource("CircleShape2D_wskry")
+
+[node name="Sprite2D" type="Sprite2D" parent="Planeta"]
+scale = Vector2(0.0387839, 0.0391232)
+texture = ExtResource("1_e0ie4")
+
+[node name="Line2D2" type="Line2D" parent="."]
+position = Vector2(745, 321)
+points = PackedVector2Array(0, 0, 351.973, 0)
+
+[node name="Line2D3" type="Line2D" parent="."]
+position = Vector2(557, 515)
+points = PackedVector2Array(0, 0, 0, 351.973)
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2(358, 321)
+rotation = 3.14159
+points = PackedVector2Array(0, 0, 351.973, 0)
+
+[node name="Line2D4" type="Line2D" parent="."]
+position = Vector2(553, 121)
+rotation = 3.14159
+points = PackedVector2Array(0, 0, 0, 351.973)
+
+[node name="Pivote" type="RigidBody2D" parent="."]
+position = Vector2(552, 319)
+collision_layer = 0
+collision_mask = 0
+can_sleep = false
+script = ExtResource("2_e5nc3")
+speed = 1.0
+
+[node name="ButtonLeft" type="Button" parent="Pivote"]
+offset_left = -544.0
+offset_top = 44.0
+offset_right = -109.0
+offset_bottom = 326.0
+metadata/_edit_use_anchors_ = true
+
+[node name="ButtonRight" type="Button" parent="Pivote"]
+offset_left = 78.9999
+offset_top = 44.0
+offset_right = 528.0
+offset_bottom = 326.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Camera2D" type="Camera2D" parent="Pivote"]
+position = Vector2(-12, 5)
+ignore_rotation = false
+
+[node name="Lanzadera" type="StaticBody2D" parent="Pivote"]
+position = Vector2(-0.99176, -200)
+rotation = -0.00995871
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivote/Lanzadera"]
+shape = SubResource("RectangleShape2D_ccmcr")
+
+[node name="Sprite2D" type="Sprite2D" parent="Pivote/Lanzadera"]
+scale = Vector2(20, 19.6429)
+texture = SubResource("PlaceholderTexture2D_fjwc5")
+
+[node name="Sprite2D" type="Sprite2D" parent="Pivote"]
+position = Vector2(0, 4.76837e-07)
+rotation = -0.00995871
+scale = Vector2(20, 19.6429)
+texture = SubResource("PlaceholderTexture2D_fjwc5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivote"]
+rotation = -0.00995871
+shape = SubResource("RectangleShape2D_ccmcr")
+
+[connection signal="button_down" from="Pivote/ButtonLeft" to="Pivote" method="_on_button_left_button_down"]
+[connection signal="button_up" from="Pivote/ButtonLeft" to="Pivote" method="_on_button_left_button_up"]
+[connection signal="button_down" from="Pivote/ButtonRight" to="Pivote" method="_on_button_right_button_down"]
+[connection signal="button_up" from="Pivote/ButtonRight" to="Pivote" method="_on_button_right_button_up"]
