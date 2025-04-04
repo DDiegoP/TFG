@@ -78,10 +78,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -7.0
 offset_top = -159.0
-offset_right = -10.0
-offset_bottom = -68.0
+offset_right = 21.0
+offset_bottom = 3.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="Carril1" type="Line2D" parent="."]
 position = Vector2(250, -41)
