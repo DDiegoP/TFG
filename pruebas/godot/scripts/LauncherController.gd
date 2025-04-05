@@ -9,7 +9,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	angular_velocity = currSpeed
-	print(rotation_degrees)
+	#print(rotation_degrees)
 
 
 func _on_button_left_button_down():

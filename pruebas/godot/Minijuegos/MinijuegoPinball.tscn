@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Minijuegos/PinballController.gd" id="1_o3iwa"]
 [ext_resource type="Script" path="res://Minijuegos/BallSensor.gd" id="2_p7y7d"]
 [ext_resource type="Script" path="res://scripts/ReaSensorManager.gd" id="3_bueld"]
-[ext_resource type="Resource" uid="uid://cuhdyarpf4on4" path="res://Minijuegos/MinijuegosResources/Pinball1Interaction.tres" id="4_7wvba"]
+[ext_resource type="Resource" uid="uid://cuhdyarpf4on4" path="res://Minijuegos/MinijuegosResources/PinballInteraction.tres" id="4_7wvba"]
 [ext_resource type="Script" path="res://scripts/MInijuegos/Bassplayer/BassPlayerSceneManager.gd" id="5_a105b"]
 [ext_resource type="Script" path="res://addons/godOSC/scripts/OSCClient.gd" id="6_voiiu"]
 [ext_resource type="Script" path="res://addons/godOSC/scripts/OSCServer.gd" id="7_pwoin"]

@@ -73,3 +73,6 @@ func sendInfo(interaction):
 #Devuelve la interaccion del indice solicitado
 func getInteractionAt(index) -> Interaction:
 	return interactions[index]
+
+func getInteractions() -> Array[Interaction]:
+	return interactions

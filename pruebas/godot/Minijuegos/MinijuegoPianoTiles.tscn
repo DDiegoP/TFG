@@ -13,7 +13,7 @@
 [ext_resource type="Script" path="res://scripts/MInijuegos/Bassplayer/BassPlayerSceneManager.gd" id="6_qxn1s"]
 [ext_resource type="Texture2D" uid="uid://cfaqw8lvrm4o0" path="res://Sprites/YellowCircleButton.png" id="7_2qeor"]
 [ext_resource type="Script" path="res://addons/godOSC/scripts/OSCServer.gd" id="7_e81yf"]
-[ext_resource type="StyleBox" uid="uid://di5q5x3bvlg2a" path="res://Minijuegos/BassButtonStyle.tres" id="7_f8xq4"]
+[ext_resource type="StyleBox" path="res://Minijuegos/BassButtonStyle.tres" id="7_f8xq4"]
 [ext_resource type="Texture2D" uid="uid://dmrdsoc4usxpy" path="res://Sprites/BlueCircleButton.png" id="8_35say"]
 [ext_resource type="Texture2D" uid="uid://c3dddwp3jp0e8" path="res://Sprites/GreenCircleButton.png" id="9_qfm78"]
 [ext_resource type="Script" path="res://scripts/MInijuegos/Bassplayer/BassReceiver.gd" id="9_she84"]

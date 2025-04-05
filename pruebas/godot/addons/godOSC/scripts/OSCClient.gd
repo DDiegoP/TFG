@@ -127,7 +127,7 @@ func prepare_message(osc_address : String, args : Array):
 
 func send_message(osc_address : String, args : Array):
 	var packet = prepare_message(osc_address, args)
-	print(osc_address + str(args))
+	#print(osc_address + str(args))
 	client.put_packet(packet)
 func send_broadcast_message(osc_address : String, args : Array):
 	client.set_broadcast_enabled(true)

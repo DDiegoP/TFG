@@ -1,11 +1,27 @@
 extends Node
 
+const TOP_VOL_VALUE = 0.8
 
-# Called when the node enters the scene tree for the first time.
+const TRACK_INIT_INDEX = 5
+
+@export var rsManager : ReaSensorManager
+
+@export var launcher : StaticBody2D
+
+@export var targets : Array[Node2D]
+
+var interactions : Array[Interaction]
+
+var furthestPosValue
+
 func _ready():
-	pass # Replace with function body.
-
+	interactions = rsManager.getInteractions()
+	furthestPosValue = (launcher.global_position - targets[3].position).length()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	for interaction in interactions:
+		calculateInteractionValues(interaction)
+	
+func calculateInteractionValues(interaction):
+	interaction.result = TOP_VOL_VALUE - (launcher.global_position - targets[interaction.trackNum - TRACK_INIT_INDEX].position).length() / furthestPosValue

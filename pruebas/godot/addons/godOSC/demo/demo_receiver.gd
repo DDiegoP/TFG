@@ -23,7 +23,7 @@ func _process(delta):
 			0:
 				get_tree().change_scene_to_file("res://Minijuegos/MinijuegoPinball.tscn")
 			1:
-				get_tree().change_scene_to_file("res://MiniMIDIController.tscn")
+				get_tree().change_scene_to_file("res://Minijuegos/MinijuegoPlanetDefenders.tscn")
 			2:
 				get_tree().change_scene_to_file("res://Minijuegos/MinijuegoPianoTiles.tscn")
 			3:

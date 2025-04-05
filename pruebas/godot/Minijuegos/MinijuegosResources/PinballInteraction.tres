@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Interaction" load_steps=2 format=3 uid="uid://cuhdyarpf4on4"]
+
+[ext_resource type="Script" path="res://scripts/Interaction.gd" id="1_xl7cj"]
+
+[resource]
+script = ExtResource("1_xl7cj")
+sensor = 3
+trackNum = 0
+control = 4
+customRoute = "/track/4/fx/1/fxparam/11/value"
