@@ -7,6 +7,7 @@ const SPEED = 100
 const DEATH_ZONE = 800
 
 @export var perfectMargin = 0.1
+@export var aspect : Sprite2D
 
 #String de la key correspondiente de la nota
 var key = ""
@@ -31,3 +32,7 @@ func _on_boton_pressed():
 			print_debug("Perfecto")
 		print_debug(key)
 		queue_free();
+
+func setAspect (img):
+	aspect.texture = img
+	pass

@@ -73,6 +73,8 @@ end
 --Vamos a dejar esta funcion escuchando para gestionar la conexion y desocnexion de usuarios  eso es el reaper.defer()
  function Main()
  for address, values in osc.enumReceive(udp) do
+    
+      debugUser = 2 ---para cablear conectarse a una escena cambia esto 
      --obtenemos los argumentos una vez por mensaje y dependiendo del tipo de mensaje gestionamos.    
      args = {}
      i = 0
@@ -84,11 +86,11 @@ end
      --Conexion de un usuario nuevo : 
       if address == 't/connect' then 
       u = math.random(0,#users -1)
-      userips[1] = args[0]--cableado para el bajista
+      userips[debugUser] = args[0]--cableado para el bajista
       --local msg1 = osc.encode('/t connect', users[u], 3.14, 'hello world!')
       --Voy a cablear el 2 para probar el bajo
-      local msg1 = osc.encode('/t connect', 1, 3.14, 'hello world!')
-      onConnect(1)--Forzado par ael Bass player , deberia ser la U 
+      local msg1 = osc.encode('/t connect',debugUser, 3.14, 'hello world!')
+      onConnect(debugUser)--Forzado par ael Bass player , deberia ser la U 
       userIP , userPort = udp:getsockname()
       --reaper.ShowConsoleMsg('user ip')
      -- reaper.ShowConsoleMsg(userIP)

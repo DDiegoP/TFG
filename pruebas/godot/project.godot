@@ -23,6 +23,7 @@ AppManager="*res://AppManager.gd"
 
 window/size/viewport_width=1080
 window/size/viewport_height=640
+window/stretch/mode="canvas_items"
 
 [input]
 

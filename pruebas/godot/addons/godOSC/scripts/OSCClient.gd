@@ -56,6 +56,7 @@ func connect_socket_to_host(new_address = "127.0.0.1", new_port = 3005):
 			if address.begins_with("192.168.") or address.begins_with("10.") or (address.begins_with("172.") and int(address.split(".")[1]) >= 16 and int(address.split(".")[1]) <= 31):
 				myaddress=address
 	var packet = prepare_message("t/connect",[myaddress])
+	print("myhost " + new_address)
 	print("sending message " + myaddress)
 	client.put_packet(packet)
 	##ip_address = client.get_packet_ip()
