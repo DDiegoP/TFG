@@ -23,7 +23,7 @@
 script = ExtResource("1_wcnr6")
 rsManager = NodePath("ReaSensorManager")
 launcher = NodePath("Pivote/Lanzadera")
-targets = [NodePath("Line2DTop"), NodePath("Line2DLeft"), NodePath("Line2DRight"), NodePath("Line2DDown")]
+targets = [NodePath("Line2DNorth"), NodePath("Line2DWest"), NodePath("Line2DEast"), NodePath("Line2DSouth")]
 
 [node name="Planeta" type="StaticBody2D" parent="."]
 position = Vector2(552, 319)
@@ -36,31 +36,64 @@ shape = SubResource("CircleShape2D_wskry")
 scale = Vector2(0.0387839, 0.0391232)
 texture = ExtResource("1_e0ie4")
 
-[node name="Line2DRight" type="Line2D" parent="."]
+[node name="Line2DEast" type="Line2D" parent="."]
 position = Vector2(745, 321)
 points = PackedVector2Array(0, 0, 351.973, 0)
 
-[node name="Line2DDown" type="Line2D" parent="."]
+[node name="RichTextLabel" type="RichTextLabel" parent="Line2DEast"]
+offset_left = 177.0
+offset_top = -78.0
+offset_right = 249.0
+offset_bottom = -38.0
+rotation = 1.5708
+text = "East"
+
+[node name="Line2DSouth" type="Line2D" parent="."]
 position = Vector2(557, 515)
 points = PackedVector2Array(0, 0, 0, 351.973)
 
-[node name="Line2DLeft" type="Line2D" parent="."]
+[node name="RichTextLabel" type="RichTextLabel" parent="Line2DSouth"]
+offset_left = 88.0
+offset_top = 144.0
+offset_right = 160.0
+offset_bottom = 184.0
+rotation = 3.14159
+text = "South"
+
+[node name="Line2DWest" type="Line2D" parent="."]
 position = Vector2(358, 321)
 rotation = 3.14159
 points = PackedVector2Array(0, 0, 351.973, 0)
 
-[node name="Line2DTop" type="Line2D" parent="."]
+[node name="RichTextLabel" type="RichTextLabel" parent="Line2DWest"]
+offset_left = 156.0
+offset_top = -83.9996
+offset_right = 228.0
+offset_bottom = -43.9996
+rotation = 1.5708
+text = "West"
+
+[node name="Line2DNorth" type="Line2D" parent="."]
 position = Vector2(553, 121)
 rotation = 3.14159
 points = PackedVector2Array(0, 0, 0, 351.973)
 
-[node name="Pivote" type="RigidBody2D" parent="."]
+[node name="RichTextLabel" type="RichTextLabel" parent="Line2DNorth"]
+offset_left = 79.9996
+offset_top = 140.0
+offset_right = 152.0
+offset_bottom = 180.0
+rotation = 3.14159
+text = "North"
+
+[node name="Pivote" type="RigidBody2D" parent="." node_paths=PackedStringArray("rsManager")]
 position = Vector2(552, 319)
 collision_layer = 0
 collision_mask = 0
 can_sleep = false
 script = ExtResource("2_e5nc3")
 speed = 1.0
+rsManager = NodePath("../ReaSensorManager")
 
 [node name="ButtonLeft" type="Button" parent="Pivote"]
 offset_left = -544.0
