@@ -1,14 +1,55 @@
-[gd_scene load_steps=6 format=3 uid="uid://c6pjucuvmi8rr"]
+[gd_scene load_steps=16 format=3 uid="uid://c6pjucuvmi8rr"]
 
+[ext_resource type="Texture2D" uid="uid://ijxnfb0kddlq" path="res://Sprites/bassbackground.png" id="1_adu22"]
 [ext_resource type="Script" path="res://addons/godOSC/demo/ConnectButton.gd" id="1_mry8v"]
 [ext_resource type="Script" path="res://addons/godOSC/scripts/OSCClient.gd" id="2_5wfgq"]
 [ext_resource type="Script" path="res://addons/godOSC/scripts/OSCServer.gd" id="3_87ea2"]
+[ext_resource type="StyleBox" uid="uid://drqfkxkgb072t" path="res://MainMenuStyle.tres" id="4_1xtwx"]
 [ext_resource type="Script" path="res://addons/godOSC/demo/demo_receiver.gd" id="4_b73jv"]
+[ext_resource type="Shader" path="res://Volumevisualizer.gdshader" id="6_gtk3j"]
+[ext_resource type="FontFile" uid="uid://bsgl5x331euda" path="res://fonts/MUSICNET.ttf" id="6_pyh58"]
+[ext_resource type="Texture2D" uid="uid://xnodj86po80k" path="res://playIcon.png" id="9_hxhxl"]
+[ext_resource type="Texture2D" uid="uid://c08ivnfsb2xwe" path="res://Sprites/midiIcon.png" id="10_h3f27"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c5jrh"]
 bg_color = Color(0.8, 0.815686, 0.788235, 1)
 
+[sub_resource type="Theme" id="Theme_pk56y"]
+
+[sub_resource type="Theme" id="Theme_0o2if"]
+
+[sub_resource type="SystemFont" id="SystemFont_svwd5"]
+font_names = PackedStringArray("Courier New")
+font_italic = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l43a8"]
+shader = ExtResource("6_gtk3j")
+shader_parameter/lines = 80
+shader_parameter/amplitude = 1.5
+shader_parameter/frequency = 0.25
+shader_parameter/intensity = 0.75
+shader_parameter/line_sharpness = 0.5
+shader_parameter/line_size = 0.85
+shader_parameter/fade = 0.12
+shader_parameter/rest_size = -0.2
+shader_parameter/edge = 0.05
+shader_parameter/speed = 0.25
+shader_parameter/color = Vector4(0.8, 0.85, 0.85, 1)
+shader_parameter/dot_matrix = false
+shader_parameter/dot_matriz_size = 80
+shader_parameter/speech_sim = true
+shader_parameter/speech_intensity = 0.8
+shader_parameter/progress = 1.0
+
 [node name="Node2D" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -314.0
+offset_top = -166.0
+offset_right = 1364.0
+offset_bottom = 843.0
+texture = ExtResource("1_adu22")
+expand_mode = 2
 
 [node name="OSCClient" type="Node" parent="."]
 script = ExtResource("2_5wfgq")
@@ -19,35 +60,79 @@ script = ExtResource("3_87ea2")
 port = 3003
 
 [node name="LineEdit" type="LineEdit" parent="."]
-offset_left = 174.0
-offset_top = 233.0
-offset_right = 940.0
-offset_bottom = 302.0
+offset_left = 151.0
+offset_top = 282.0
+offset_right = 917.0
+offset_bottom = 360.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_c5jrh")
 alignment = 1
 
 [node name="ConnectButton" type="Button" parent="LineEdit" node_paths=PackedStringArray("target_client")]
 layout_mode = 0
-offset_left = 83.0
-offset_top = 104.0
-offset_right = 692.0
-offset_bottom = 165.0
+offset_left = 79.0
+offset_top = 97.0
+offset_right = 687.0
+offset_bottom = 177.0
 scale = Vector2(0.993655, 0.851524)
-text = "CONECTAR "
+theme = SubResource("Theme_pk56y")
+theme_override_colors/font_color = Color(0.933333, 1, 1, 1)
+theme_override_font_sizes/font_size = 37
+theme_override_styles/normal = ExtResource("4_1xtwx")
+text = "PLAY!"
 script = ExtResource("1_mry8v")
 target_client = NodePath("../../OSCClient")
 osc_address = "/connect"
 
+[node name="PlayIcon" type="Sprite2D" parent="LineEdit/ConnectButton"]
+position = Vector2(219.392, 38.7541)
+scale = Vector2(0.171225, 0.18431)
+texture = ExtResource("9_hxhxl")
+
+[node name="EditButton" type="Button" parent="LineEdit/ConnectButton" node_paths=PackedStringArray("target_client")]
+offset_top = 89.2518
+offset_right = 608.0
+offset_bottom = 169.252
+scale = Vector2(0.993655, 0.851524)
+theme = SubResource("Theme_0o2if")
+theme_override_colors/font_color = Color(0.933333, 1, 1, 1)
+theme_override_font_sizes/font_size = 37
+theme_override_styles/normal = ExtResource("4_1xtwx")
+text = "EDIT"
+script = ExtResource("1_mry8v")
+target_client = NodePath("../../../OSCClient")
+osc_address = "/connect"
+
+[node name="MidiIcon" type="Sprite2D" parent="LineEdit/ConnectButton/EditButton"]
+position = Vector2(225.857, 38.6157)
+scale = Vector2(0.13469, 0.167603)
+texture = ExtResource("10_h3f27")
+
 [node name="Label" type="Label" parent="." node_paths=PackedStringArray("target_server")]
-offset_left = 110.0
-offset_top = 132.0
-offset_right = 1006.0
-offset_bottom = 196.0
-theme_override_font_sizes/font_size = 46
-text = "INTRODUCE TU CODIGO DE ANFITRION : "
+offset_left = 76.0
+offset_top = 213.0
+offset_right = 972.0
+offset_bottom = 277.0
+theme_override_colors/font_color = Color(0.94902, 1, 1, 1)
+theme_override_fonts/font = SubResource("SystemFont_svwd5")
+theme_override_font_sizes/font_size = 48
+text = "Host's ID:"
+horizontal_alignment = 1
 script = ExtResource("4_b73jv")
 target_server = NodePath("../OSCServer")
 osc_address = "/t connect"
 
+[node name="Title" type="Label" parent="."]
+material = SubResource("ShaderMaterial_l43a8")
+offset_left = 101.0
+offset_top = 67.0
+offset_right = 934.0
+offset_bottom = 215.0
+theme_override_fonts/font = ExtResource("6_pyh58")
+theme_override_font_sizes/font_size = 101
+text = "..iREAPLAY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="pressed" from="LineEdit/ConnectButton" to="LineEdit/ConnectButton" method="_on_pressed"]
+[connection signal="pressed" from="LineEdit/ConnectButton/EditButton" to="LineEdit/ConnectButton/EditButton" method="_on_pressed"]
