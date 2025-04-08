@@ -90,6 +90,7 @@ scale = Vector2(0.171225, 0.18431)
 texture = ExtResource("9_hxhxl")
 
 [node name="EditButton" type="Button" parent="LineEdit/ConnectButton" node_paths=PackedStringArray("target_client")]
+layout_mode = 0
 offset_top = 89.2518
 offset_right = 608.0
 offset_bottom = 169.252

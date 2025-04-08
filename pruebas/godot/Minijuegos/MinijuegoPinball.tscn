@@ -1,18 +1,27 @@
-[gd_scene load_steps=18 format=3 uid="uid://oforkb5ivmi6"]
+[gd_scene load_steps=23 format=3 uid="uid://oforkb5ivmi6"]
 
 [ext_resource type="Script" path="res://Minijuegos/PinballController.gd" id="1_o3iwa"]
+[ext_resource type="Texture2D" uid="uid://lqdflfmcdknl" path="res://Sprites/emptypiballfondo.png" id="2_4i1ml"]
 [ext_resource type="Script" path="res://Minijuegos/BallSensor.gd" id="2_p7y7d"]
+[ext_resource type="Shader" path="res://Minijuegos/lowresPostProcess.gdshader" id="2_qxdmp"]
 [ext_resource type="Script" path="res://scripts/ReaSensorManager.gd" id="3_bueld"]
+[ext_resource type="Texture2D" uid="uid://c2aubutbi678j" path="res://Sprites/piballfondo.png" id="3_sbues"]
+[ext_resource type="Texture2D" uid="uid://bbd6ugk3cyxwd" path="res://Sprites/wall.png" id="4_3lb7j"]
 [ext_resource type="Resource" uid="uid://cuhdyarpf4on4" path="res://Minijuegos/MinijuegosResources/PinballInteraction.tres" id="4_7wvba"]
+[ext_resource type="Texture2D" uid="uid://uf4rsbnbrvg4" path="res://Sprites/bola.png" id="5_83gkl"]
 [ext_resource type="Script" path="res://scripts/MInijuegos/Bassplayer/BassPlayerSceneManager.gd" id="5_a105b"]
+[ext_resource type="Texture2D" uid="uid://cygs0inamecgj" path="res://Sprites/pala.png" id="6_tp35w"]
 [ext_resource type="Script" path="res://addons/godOSC/scripts/OSCClient.gd" id="6_voiiu"]
 [ext_resource type="Script" path="res://addons/godOSC/scripts/OSCServer.gd" id="7_pwoin"]
+[ext_resource type="Texture2D" uid="uid://ccphkgnvx4swr" path="res://Sprites/Bumper.png" id="8_45148"]
 [ext_resource type="Script" path="res://addons/godOSC/scripts/OSCReceiver.gd" id="8_gusic"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2v4na"]
+shader = ExtResource("2_qxdmp")
+shader_parameter/amount = 250
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ew0k"]
 size = Vector2(162.785, 20)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_88wm6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i60v5"]
 size = Vector2(337, 20)
@@ -23,15 +32,11 @@ size = Vector2(19, 378)
 [sub_resource type="CircleShape2D" id="CircleShape2D_wh32x"]
 radius = 15.0
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_5sjf2"]
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tx4et"]
 size = Vector2(89.5537, 15)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rmu41"]
 radius = 14.8484
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ny4g3"]
 
 [node name="MinijuegoPinball" type="Node2D" node_paths=PackedStringArray("ButtonLeft", "ButtonRight", "PaddleL", "PaddleR", "rsManager")]
 script = ExtResource("1_o3iwa")
@@ -40,6 +45,56 @@ ButtonRight = NodePath("ButtonRight")
 PaddleL = NodePath("PaddleL")
 PaddleR = NodePath("PaddleR")
 rsManager = NodePath("ReaSensorManager")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PostProcess" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_2v4na")
+anchors_preset = -1
+anchor_left = 0.0148148
+anchor_top = 0.259375
+anchor_right = 0.982407
+anchor_bottom = 1.0
+offset_left = -7.0
+offset_top = -159.0
+offset_right = 21.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+offset_left = 379.0
+offset_top = 253.0
+offset_right = 684.0
+offset_bottom = 595.0
+texture = ExtResource("2_4i1ml")
+expand_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="TextureRect3"]
+offset_left = -379.0
+offset_top = -254.0
+offset_right = 698.0
+offset_bottom = 368.0
+texture = ExtResource("2_4i1ml")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+offset_left = 379.0
+offset_top = 64.0
+offset_right = 694.0
+offset_bottom = 430.0
+texture = ExtResource("2_4i1ml")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 433.0
+offset_top = 213.0
+offset_right = 649.0
+offset_bottom = 452.0
+texture = ExtResource("3_sbues")
+expand_mode = 1
 
 [node name="Walls" type="Node" parent="."]
 
@@ -51,9 +106,9 @@ rotation = 2.00713
 shape = SubResource("RectangleShape2D_3ew0k")
 
 [node name="Sprite2D" type="Sprite2D" parent="Walls/StaticBody2D2"]
-position = Vector2(0.136616, 0.038728)
-scale = Vector2(162.64, 16.727)
-texture = SubResource("PlaceholderTexture2D_88wm6")
+position = Vector2(2.79651, 0.038728)
+scale = Vector2(1.04366, 0.059)
+texture = ExtResource("4_3lb7j")
 
 [node name="StaticBody2D5" type="StaticBody2D" parent="Walls"]
 position = Vector2(538, 61)
@@ -62,9 +117,9 @@ position = Vector2(538, 61)
 shape = SubResource("RectangleShape2D_i60v5")
 
 [node name="Sprite2D" type="Sprite2D" parent="Walls/StaticBody2D5"]
-position = Vector2(0.136616, 0.038728)
-scale = Vector2(308.88, 16.727)
-texture = SubResource("PlaceholderTexture2D_88wm6")
+position = Vector2(1.49996, -1.43051e-06)
+scale = Vector2(2.09722, 0.05)
+texture = ExtResource("4_3lb7j")
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="Walls"]
 position = Vector2(696, 240)
@@ -73,9 +128,9 @@ position = Vector2(696, 240)
 shape = SubResource("RectangleShape2D_ltaci")
 
 [node name="Sprite2D" type="Sprite2D" parent="Walls/StaticBody2D4"]
-position = Vector2(7.62939e-06, 1.00002)
-scale = Vector2(16, 376)
-texture = SubResource("PlaceholderTexture2D_88wm6")
+position = Vector2(-0.500032, 21.5)
+scale = Vector2(0.119445, 1.20278)
+texture = ExtResource("4_3lb7j")
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="Walls"]
 position = Vector2(379, 241)
@@ -84,9 +139,9 @@ position = Vector2(379, 241)
 shape = SubResource("RectangleShape2D_ltaci")
 
 [node name="Sprite2D" type="Sprite2D" parent="Walls/StaticBody2D3"]
-position = Vector2(7.62939e-06, 1.00002)
-scale = Vector2(16, 376)
-texture = SubResource("PlaceholderTexture2D_88wm6")
+position = Vector2(0.500002, 1.49998)
+scale = Vector2(0.125, 1.09167)
+texture = ExtResource("4_3lb7j")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Walls"]
 position = Vector2(413, 498)
@@ -96,9 +151,9 @@ rotation = 1.13446
 shape = SubResource("RectangleShape2D_3ew0k")
 
 [node name="Sprite2D" type="Sprite2D" parent="Walls/StaticBody2D"]
-position = Vector2(0.136616, 0.038728)
-scale = Vector2(162.64, 16.727)
-texture = SubResource("PlaceholderTexture2D_88wm6")
+position = Vector2(-2.2066, 0.038728)
+scale = Vector2(1.04058, 0.059)
+texture = ExtResource("4_3lb7j")
 
 [node name="Ball" type="RigidBody2D" parent="."]
 position = Vector2(491, 142)
@@ -110,8 +165,9 @@ scale = Vector2(1.1, 1.1)
 shape = SubResource("CircleShape2D_wh32x")
 
 [node name="Sprite2D" type="Sprite2D" parent="Ball"]
-scale = Vector2(25, 25)
-texture = SubResource("PlaceholderTexture2D_5sjf2")
+position = Vector2(6.79493e-06, -2.08616e-06)
+scale = Vector2(0.0972223, 0.0972223)
+texture = ExtResource("5_83gkl")
 
 [node name="ButtonLeft" type="Button" parent="."]
 offset_left = 6.0
@@ -136,9 +192,10 @@ position = Vector2(45, 3.05176e-05)
 shape = SubResource("RectangleShape2D_tx4et")
 
 [node name="Sprite2D" type="Sprite2D" parent="PaddleL"]
-position = Vector2(44.9033, -0.83078)
-scale = Vector2(86.4161, 13.3566)
-texture = SubResource("PlaceholderTexture2D_88wm6")
+position = Vector2(47.8529, 0.315167)
+rotation = 1.39729
+scale = Vector2(-0.197, 0.236071)
+texture = ExtResource("6_tp35w")
 
 [node name="PaddleR" type="RigidBody2D" parent="."]
 position = Vector2(636, 568)
@@ -151,12 +208,13 @@ position = Vector2(45, 0)
 shape = SubResource("RectangleShape2D_tx4et")
 
 [node name="Sprite2D" type="Sprite2D" parent="PaddleR"]
-position = Vector2(44.9033, -0.830811)
-scale = Vector2(86.4161, 13.3566)
-texture = SubResource("PlaceholderTexture2D_88wm6")
+position = Vector2(49.5653, -4.03486)
+rotation = 1.76244
+scale = Vector2(-0.197, 0.236)
+texture = ExtResource("6_tp35w")
 
 [node name="SensorL" type="StaticBody2D" parent="." node_paths=PackedStringArray("pinballController")]
-position = Vector2(471, 251)
+position = Vector2(454, 244)
 rotation = 0.785821
 scale = Vector2(1, 2.55558)
 script = ExtResource("2_p7y7d")
@@ -166,12 +224,12 @@ pinballController = NodePath("..")
 shape = SubResource("CapsuleShape2D_rmu41")
 
 [node name="Sprite2D" type="Sprite2D" parent="SensorL"]
-position = Vector2(-4.76837e-06, -9.41753e-06)
-scale = Vector2(18, 24)
-texture = SubResource("PlaceholderTexture2D_ny4g3")
+position = Vector2(-0.706806, -0.123955)
+scale = Vector2(0.20148, 0.087687)
+texture = ExtResource("8_45148")
 
 [node name="SensorR" type="StaticBody2D" parent="." node_paths=PackedStringArray("pinballController")]
-position = Vector2(605, 255)
+position = Vector2(622, 238)
 rotation = 2.35619
 scale = Vector2(1, 2.55558)
 script = ExtResource("2_p7y7d")
@@ -182,9 +240,9 @@ type = 1
 shape = SubResource("CapsuleShape2D_rmu41")
 
 [node name="Sprite2D" type="Sprite2D" parent="SensorR"]
-position = Vector2(-4.76837e-06, -9.41753e-06)
-scale = Vector2(18, 24)
-texture = SubResource("PlaceholderTexture2D_ny4g3")
+position = Vector2(-4.76837e-06, -0.0718759)
+scale = Vector2(-0.2, -0.0846788)
+texture = ExtResource("8_45148")
 
 [node name="ReaSensorManager" type="Node" parent="." node_paths=PackedStringArray("client")]
 script = ExtResource("3_bueld")

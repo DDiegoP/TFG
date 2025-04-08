@@ -96,6 +96,7 @@ offset_bottom = 3.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="Carril1" type="Line2D" parent="."]
 position = Vector2(250, -41)
