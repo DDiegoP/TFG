@@ -2,6 +2,7 @@ class_name PinballController extends Node2D
 
 const REA_INIT_VALUE = 0.5
 const SHAKE_VALUE = 15
+const INIT_TEXT = "Current Bias: "
 
 #Boton izquierdo
 @export var ButtonLeft : Button
@@ -23,6 +24,8 @@ var accelerValues
 
 @export var reaValue = REA_INIT_VALUE
 
+@export var textLabel : RichTextLabel
+
 #Grados iniciales de la pala izquierda
 var initDegreesL
 #Grados iniciales de la pala derecha
@@ -39,6 +42,7 @@ func _ready():
 	targetDegreesL = initDegreesL
 	targetDegreesR = initDegreesR
 	rsManager.getInteractionAt(0).callable = Callable(self, "sendValue")
+	updateText()
 
 #Movimiento de las palas
 func _process(delta):
@@ -68,13 +72,20 @@ func increaseValue():
 		reaValue += 0.1
 	else:
 		reaValue = 1
+	
+	updateText()
 
 func decreaseValue():
 	if(reaValue-0.1 > 0.0001):
 		reaValue -= 0.1
 	else:
 		reaValue = 0.005
+	
+	updateText()
 
 func sendValue(interaction):
 	interaction.result = reaValue
 	accelerValues = interaction.sensorValue
+
+func updateText():
+	textLabel.text = str(INIT_TEXT, reaValue)

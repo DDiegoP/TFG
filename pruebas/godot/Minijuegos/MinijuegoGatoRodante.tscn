@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://d4l311r66gap8"]
+[gd_scene load_steps=19 format=3 uid="uid://d4l311r66gap8"]
 
 [ext_resource type="Script" path="res://Minijuegos/MinijuegoGatoRodante.gd" id="1_mwjr0"]
 [ext_resource type="Texture2D" uid="uid://byajtarv4s3tr" path="res://Sprites/BackgroundRolling.png" id="2_b0uvu"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Minijuegos/SpawnPoint.gd" id="3_fxfg4"]
 [ext_resource type="Script" path="res://scripts/Spawner.gd" id="3_hb7qc"]
 [ext_resource type="Texture2D" uid="uid://fyfqxd2mfm6r" path="res://Sprites/Tracks.png" id="3_rvab1"]
+[ext_resource type="FontFile" uid="uid://c55jp1jjuoyqr" path="res://fonts/Arcade/ArcadeInterlaced-O4d.ttf" id="3_sokwl"]
 [ext_resource type="PackedScene" uid="uid://es6dvdkm1yxx" path="res://notaGato.tscn" id="4_byeo8"]
 [ext_resource type="Texture2D" uid="uid://5ersqlf5gkl0" path="res://Sprites/wheel.png" id="4_kg5s4"]
 [ext_resource type="Texture2D" uid="uid://6265ulive4kq" path="res://Sprites/WallCat.png" id="5_mgwoc"]
@@ -24,17 +25,29 @@ radius = 15.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1egfa"]
 size = Vector2(48.5, 257)
 
-[node name="MinijuegoGato" type="Node2D" node_paths=PackedStringArray("ball", "rsManager")]
+[node name="MinijuegoGato" type="Node2D" node_paths=PackedStringArray("ball", "rsManager", "textLabel")]
 position = Vector2(10, 3)
 script = ExtResource("1_mwjr0")
 ball = NodePath("Ball")
 ballSpeed = 10.0
 rsManager = NodePath("ReaSensorManager")
+textLabel = NodePath("RichTextLabel")
 
 [node name="BackgroundRolling" type="Sprite2D" parent="."]
 position = Vector2(-4, 481)
 scale = Vector2(1.19273, 1.44866)
 texture = ExtResource("2_b0uvu")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = -208.0
+offset_top = 225.0
+offset_right = 197.0
+offset_bottom = 328.0
+size_flags_stretch_ratio = 4.84
+theme_override_fonts/normal_font = ExtResource("3_sokwl")
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "0%"
 
 [node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2(-2, 633)
@@ -62,7 +75,7 @@ scale = Vector2(1.5, 1.5)
 texture = ExtResource("4_kg5s4")
 
 [node name="Wall1" type="StaticBody2D" parent="."]
-position = Vector2(-524, 634)
+position = Vector2(-537, 634)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall1"]
 position = Vector2(-4.75, -132.5)
@@ -74,7 +87,7 @@ scale = Vector2(2.182, 2.374)
 texture = ExtResource("5_mgwoc")
 
 [node name="Wall2" type="StaticBody2D" parent="."]
-position = Vector2(512, 634)
+position = Vector2(527, 634)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2"]
 position = Vector2(9.5, -125.5)

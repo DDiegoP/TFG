@@ -74,7 +74,7 @@ end
  function Main()
  for address, values in osc.enumReceive(udp) do
     
-      debugUser = 2 ---para cablear conectarse a una escena cambia esto 
+      debugUser = 3 ---para cablear conectarse a una escena cambia esto 
      --obtenemos los argumentos una vez por mensaje y dependiendo del tipo de mensaje gestionamos.    
      args = {}
      i = 0

@@ -10,6 +10,8 @@ const RIGHTX = 495
 #ReaSensorManager
 @export var rsManager : ReaSensorManager
 
+@export var textLabel : RichTextLabel
+
 var catInteraction : Interaction
 #Fuerza que se esta aplicando en la bola
 var forceToApply : Vector2
@@ -50,5 +52,9 @@ func sendCatXToInteraction(interaction):
 		total = ball.position.x/RIGHTX
 	else:
 		total = -ball.position.x/LEFTX
+	
+	var shownVar = total*100
+	
+	textLabel.text = str("[center]","%0.2f" % shownVar, "%", "[/center]")
 	
 	interaction.result = (total+1)/2
