@@ -81,8 +81,8 @@ position = Vector2(9.5, -125.5)
 shape = SubResource("RectangleShape2D_1egfa")
 
 [node name="Sprite2D" type="Sprite2D" parent="Wall2"]
-position = Vector2(10, -125.5)
-scale = Vector2(2.182, 2.374)
+position = Vector2(8.50102, -125.5)
+scale = Vector2(2.31827, 2.374)
 texture = ExtResource("5_mgwoc")
 
 [node name="ButtonLeft" type="Button" parent="."]
