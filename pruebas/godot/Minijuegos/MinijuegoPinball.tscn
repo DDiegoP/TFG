@@ -73,6 +73,7 @@ texture = ExtResource("2_4i1ml")
 expand_mode = 1
 
 [node name="TextureRect3" type="TextureRect" parent="TextureRect3"]
+layout_mode = 0
 offset_left = -379.0
 offset_top = -254.0
 offset_right = 698.0

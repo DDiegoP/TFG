@@ -1,10 +1,14 @@
-[gd_scene load_steps=17 format=3 uid="uid://d4l311r66gap8"]
+[gd_scene load_steps=18 format=3 uid="uid://d4l311r66gap8"]
 
 [ext_resource type="Script" path="res://Minijuegos/MinijuegoGatoRodante.gd" id="1_mwjr0"]
+[ext_resource type="Texture2D" uid="uid://byajtarv4s3tr" path="res://Sprites/BackgroundRolling.png" id="2_b0uvu"]
 [ext_resource type="Script" path="res://scripts/ReaSensorManager.gd" id="2_n0fdw"]
 [ext_resource type="Script" path="res://Minijuegos/SpawnPoint.gd" id="3_fxfg4"]
 [ext_resource type="Script" path="res://scripts/Spawner.gd" id="3_hb7qc"]
+[ext_resource type="Texture2D" uid="uid://fyfqxd2mfm6r" path="res://Sprites/Tracks.png" id="3_rvab1"]
 [ext_resource type="PackedScene" uid="uid://es6dvdkm1yxx" path="res://notaGato.tscn" id="4_byeo8"]
+[ext_resource type="Texture2D" uid="uid://5ersqlf5gkl0" path="res://Sprites/wheel.png" id="4_kg5s4"]
+[ext_resource type="Texture2D" uid="uid://6265ulive4kq" path="res://Sprites/WallCat.png" id="5_mgwoc"]
 [ext_resource type="Resource" uid="uid://bc1n1ld80mnbs" path="res://Minijuegos/MinijuegosResources/GatoInteraction.tres" id="6_2ssy5"]
 [ext_resource type="Script" path="res://scripts/MInijuegos/Bassplayer/BassPlayerSceneManager.gd" id="7_48jhn"]
 [ext_resource type="Script" path="res://addons/godOSC/scripts/OSCClient.gd" id="8_t3tx0"]
@@ -12,19 +16,13 @@
 [ext_resource type="Script" path="res://addons/godOSC/scripts/OSCReceiver.gd" id="10_glad5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i60v5"]
-size = Vector2(1069, 20)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_88wm6"]
+size = Vector2(1060, 134)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wh32x"]
 radius = 15.0
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_5sjf2"]
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1egfa"]
-size = Vector2(20, 271)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_umnma"]
+size = Vector2(48.5, 257)
 
 [node name="MinijuegoGato" type="Node2D" node_paths=PackedStringArray("ball", "rsManager")]
 position = Vector2(10, 3)
@@ -33,17 +31,22 @@ ball = NodePath("Ball")
 ballSpeed = 10.0
 rsManager = NodePath("ReaSensorManager")
 
+[node name="BackgroundRolling" type="Sprite2D" parent="."]
+position = Vector2(-4, 481)
+scale = Vector2(1.19273, 1.44866)
+texture = ExtResource("2_b0uvu")
+
 [node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2(-2, 633)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
-position = Vector2(9.5, 0)
-shape = SubResource("RectangleShape2D_i60v5")
-
 [node name="Sprite2D" type="Sprite2D" parent="Floor"]
-position = Vector2(0.136616, 0.038728)
-scale = Vector2(1000, 16.727)
-texture = SubResource("PlaceholderTexture2D_88wm6")
+position = Vector2(0.499979, 89)
+scale = Vector2(1.57797, 1.15976)
+texture = ExtResource("3_rvab1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2(14, 57)
+shape = SubResource("RectangleShape2D_i60v5")
 
 [node name="Ball" type="RigidBody2D" parent="."]
 position = Vector2(-13, 581)
@@ -55,20 +58,20 @@ scale = Vector2(1.1, 1.1)
 shape = SubResource("CircleShape2D_wh32x")
 
 [node name="Sprite2D" type="Sprite2D" parent="Ball"]
-scale = Vector2(25, 25)
-texture = SubResource("PlaceholderTexture2D_5sjf2")
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_kg5s4")
 
 [node name="Wall1" type="StaticBody2D" parent="."]
 position = Vector2(-524, 634)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall1"]
-position = Vector2(9.5, -125.5)
+position = Vector2(-4.75, -132.5)
 shape = SubResource("RectangleShape2D_1egfa")
 
 [node name="Sprite2D" type="Sprite2D" parent="Wall1"]
-position = Vector2(12, -127.299)
-scale = Vector2(14, 271.402)
-texture = SubResource("PlaceholderTexture2D_umnma")
+position = Vector2(-6.00001, -132)
+scale = Vector2(2.182, 2.374)
+texture = ExtResource("5_mgwoc")
 
 [node name="Wall2" type="StaticBody2D" parent="."]
 position = Vector2(512, 634)
@@ -78,9 +81,9 @@ position = Vector2(9.5, -125.5)
 shape = SubResource("RectangleShape2D_1egfa")
 
 [node name="Sprite2D" type="Sprite2D" parent="Wall2"]
-position = Vector2(12, -127.299)
-scale = Vector2(14, 271.402)
-texture = SubResource("PlaceholderTexture2D_umnma")
+position = Vector2(10, -125.5)
+scale = Vector2(2.182, 2.374)
+texture = ExtResource("5_mgwoc")
 
 [node name="ButtonLeft" type="Button" parent="."]
 offset_left = -530.0
@@ -159,7 +162,7 @@ script = ExtResource("10_glad5")
 target_server = NodePath("../OSCServer")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(2, 323)
+position = Vector2(-2, 496)
 
 [connection signal="button_down" from="ButtonLeft" to="." method="_on_button_left_button_down"]
 [connection signal="button_up" from="ButtonLeft" to="." method="_on_button_left_button_up"]
