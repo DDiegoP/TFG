@@ -1,17 +1,27 @@
-[gd_scene load_steps=16 format=3 uid="uid://14whehibnbhs"]
+[gd_scene load_steps=23 format=3 uid="uid://14whehibnbhs"]
 
-[ext_resource type="Texture2D" uid="uid://brdou8g3plgyx" path="res://Sprites/2D-Planet.png" id="1_e0ie4"]
 [ext_resource type="Script" path="res://scripts/MInijuegos/PlanetDefendersManager.gd" id="1_wcnr6"]
 [ext_resource type="Script" path="res://scripts/LauncherController.gd" id="2_e5nc3"]
+[ext_resource type="Shader" path="res://Minijuegos/lowresPostProcess.gdshader" id="2_flft6"]
+[ext_resource type="Texture2D" uid="uid://byrnp23pub0nf" path="res://Sprites/StarsBackground.png" id="3_bf70f"]
 [ext_resource type="Script" path="res://scripts/ReaSensorManager.gd" id="3_dk0g0"]
+[ext_resource type="Texture2D" uid="uid://scq8slffllw1" path="res://Sprites/PlanetEarth.png" id="4_bgn4p"]
+[ext_resource type="Texture2D" uid="uid://c5lklnsdf0i24" path="res://Sprites/Wave.png" id="4_dgubb"]
 [ext_resource type="Script" path="res://scripts/MInijuegos/Bassplayer/BassPlayerSceneManager.gd" id="4_kxbog"]
 [ext_resource type="Script" path="res://addons/godOSC/scripts/OSCClient.gd" id="5_cvvcn"]
 [ext_resource type="Resource" uid="uid://c1uxgovd51uc8" path="res://Minijuegos/MinijuegosResources/PlanetDefendersInteraction1.tres" id="5_vshlv"]
+[ext_resource type="Texture2D" uid="uid://bpuaqhghopujd" path="res://Sprites/WhiteArrow.png" id="5_xv7uq"]
+[ext_resource type="Texture2D" uid="uid://oayepexqv23e" path="res://Sprites/Antenna.png" id="6_0f8po"]
 [ext_resource type="Script" path="res://addons/godOSC/scripts/OSCServer.gd" id="6_bbdbf"]
 [ext_resource type="Resource" uid="uid://c67ktv1g0ogrm" path="res://Minijuegos/MinijuegosResources/PlanetDefendersInteraction2.tres" id="6_csv3y"]
+[ext_resource type="Texture2D" uid="uid://dxmmjrjrl2xem" path="res://Sprites/RedArrow.png" id="6_flsjy"]
 [ext_resource type="Resource" uid="uid://dulsb74sa6isb" path="res://Minijuegos/MinijuegosResources/PlanetDefendersInteraction3.tres" id="7_3y1us"]
 [ext_resource type="Script" path="res://addons/godOSC/scripts/OSCReceiver.gd" id="7_k1p5q"]
 [ext_resource type="Resource" uid="uid://beih76fuepemt" path="res://Minijuegos/MinijuegosResources/PlanetDefendersInteraction4.tres" id="8_h1gkw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mhkn1"]
+shader = ExtResource("2_flft6")
+shader_parameter/amount = 250
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wskry"]
 
@@ -25,6 +35,71 @@ rsManager = NodePath("ReaSensorManager")
 launcher = NodePath("Pivote/Lanzadera")
 targets = [NodePath("Line2DNorth"), NodePath("Line2DWest"), NodePath("Line2DEast"), NodePath("Line2DSouth")]
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="PostProcess" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_mhkn1")
+anchors_preset = -1
+anchor_left = 0.0148148
+anchor_top = 0.259375
+anchor_right = 0.982407
+anchor_bottom = 1.0
+offset_left = -7.0
+offset_top = -159.0
+offset_right = 21.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="BackgroundRolling" type="Sprite2D" parent="."]
+position = Vector2(538.5, 322)
+scale = Vector2(0.667943, 0.620607)
+texture = ExtResource("3_bf70f")
+
+[node name="Line2DEast" type="Line2D" parent="."]
+position = Vector2(745, 315.5)
+scale = Vector2(1, 2.35)
+points = PackedVector2Array(0, 0, 500, 0)
+texture = ExtResource("4_dgubb")
+texture_mode = 2
+
+[node name="Line2DSouth" type="Line2D" parent="."]
+position = Vector2(557, 515)
+scale = Vector2(2.35, 1)
+points = PackedVector2Array(0, 0, 0, 500)
+texture = ExtResource("4_dgubb")
+texture_mode = 2
+
+[node name="Line2DWest" type="Line2D" parent="."]
+position = Vector2(358, 321)
+rotation = 3.14159
+scale = Vector2(1, 2.35)
+points = PackedVector2Array(0, 0, 500, 0)
+texture = ExtResource("4_dgubb")
+texture_mode = 2
+
+[node name="Line2DNorth" type="Line2D" parent="."]
+position = Vector2(553, 121)
+rotation = 3.14159
+scale = Vector2(2.35, 1)
+points = PackedVector2Array(0, 0, 0, 500)
+texture = ExtResource("4_dgubb")
+texture_mode = 2
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(557, 527)
+rotation = 3.14159
+scale = Vector2(0.140909, 0.163415)
+texture = ExtResource("5_xv7uq")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(552, 102)
+scale = Vector2(0.140909, 0.163415)
+texture = ExtResource("6_flsjy")
+
 [node name="Planeta" type="StaticBody2D" parent="."]
 position = Vector2(552, 319)
 scale = Vector2(20, 20)
@@ -33,58 +108,9 @@ scale = Vector2(20, 20)
 shape = SubResource("CircleShape2D_wskry")
 
 [node name="Sprite2D" type="Sprite2D" parent="Planeta"]
-scale = Vector2(0.0387839, 0.0391232)
-texture = ExtResource("1_e0ie4")
-
-[node name="Line2DEast" type="Line2D" parent="."]
-position = Vector2(745, 321)
-points = PackedVector2Array(0, 0, 351.973, 0)
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Line2DEast"]
-offset_left = 177.0
-offset_top = -78.0
-offset_right = 249.0
-offset_bottom = -38.0
-rotation = 1.5708
-text = "East"
-
-[node name="Line2DSouth" type="Line2D" parent="."]
-position = Vector2(557, 515)
-points = PackedVector2Array(0, 0, 0, 351.973)
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Line2DSouth"]
-offset_left = 88.0
-offset_top = 144.0
-offset_right = 160.0
-offset_bottom = 184.0
-rotation = 3.14159
-text = "South"
-
-[node name="Line2DWest" type="Line2D" parent="."]
-position = Vector2(358, 321)
-rotation = 3.14159
-points = PackedVector2Array(0, 0, 351.973, 0)
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Line2DWest"]
-offset_left = 156.0
-offset_top = -83.9996
-offset_right = 228.0
-offset_bottom = -43.9996
-rotation = 1.5708
-text = "West"
-
-[node name="Line2DNorth" type="Line2D" parent="."]
-position = Vector2(553, 121)
-rotation = 3.14159
-points = PackedVector2Array(0, 0, 0, 351.973)
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Line2DNorth"]
-offset_left = 79.9996
-offset_top = 140.0
-offset_right = 152.0
-offset_bottom = 180.0
-rotation = 3.14159
-text = "North"
+position = Vector2(-0.0249989, 7.89762e-07)
+scale = Vector2(0.0311719, 0.0312013)
+texture = ExtResource("4_bgn4p")
 
 [node name="Pivote" type="RigidBody2D" parent="." node_paths=PackedStringArray("rsManager")]
 position = Vector2(552, 319)
@@ -123,8 +149,9 @@ collision_mask = 0
 shape = SubResource("RectangleShape2D_ccmcr")
 
 [node name="Sprite2D" type="Sprite2D" parent="Pivote/Lanzadera"]
-scale = Vector2(20, 19.6429)
-texture = SubResource("PlaceholderTexture2D_fjwc5")
+position = Vector2(0.2507, -25.9988)
+scale = Vector2(0.114483, 0.13029)
+texture = ExtResource("6_0f8po")
 
 [node name="Sprite2D" type="Sprite2D" parent="Pivote"]
 position = Vector2(0, 4.76837e-07)
@@ -157,6 +184,9 @@ port = 3003
 [node name="Receiver" type="Node2D" parent="Networking" node_paths=PackedStringArray("target_server")]
 script = ExtResource("7_k1p5q")
 target_server = NodePath("../OSCServer")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(544, 323)
 
 [connection signal="button_down" from="Pivote/ButtonLeft" to="Pivote" method="_on_button_left_button_down"]
 [connection signal="button_up" from="Pivote/ButtonLeft" to="Pivote" method="_on_button_left_button_up"]
