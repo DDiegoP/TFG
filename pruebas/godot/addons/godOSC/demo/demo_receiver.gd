@@ -1,11 +1,5 @@
 extends OSCReceiver
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	#print(target_server.incoming_messages.has(osc_address))
@@ -28,5 +22,5 @@ func _process(delta):
 				get_tree().change_scene_to_file("res://Minijuegos/MinijuegoPianoTiles.tscn")
 			3:
 				get_tree().change_scene_to_file("res://Minijuegos/MinijuegoGatoRodante.tscn")
-	
-	pass
+			4:
+				get_tree().change_scene_to_file("res://MiniMIDIController.tscn")

@@ -20,8 +20,8 @@ local socket = require('socket.core')
 --Variables del servidor base
 port = 3000 -- el puerto donde se aloja el server , la ip se obtiene automaticamente
 users = {} --el servidor gestiona los slots de usuarios disponibles 
-maxusers = 2 --cuantos usuarios simultaneos podemos gestionar
-userips = {1,2,3,4}
+maxusers = 5 --cuantos usuarios simultaneos podemos gestionar
+userips = {1, 2, 3, 4, 5}
 
 userServerPort = 3003 -- el puerto donde esta el server de Godot en los moviles/ otros pcs
 -- Funciones que nos ofrece el servidor base : 
@@ -74,7 +74,7 @@ end
  function Main()
  for address, values in osc.enumReceive(udp) do
     
-      debugUser = 3 ---para cablear conectarse a una escena cambia esto 
+      debugUser = 4 ---para cablear conectarse a una escena cambia esto 
      --obtenemos los argumentos una vez por mensaje y dependiendo del tipo de mensaje gestionamos.    
      args = {}
      i = 0
@@ -84,19 +84,26 @@ end
      end 
      --Gestionamos los distintos tipos de mensajes :
      --Conexion de un usuario nuevo : 
-      if address == 't/connect' then 
-      u = math.random(0,#users -1)
-      userips[debugUser] = args[0]--cableado para el bajista
+      if address == 't/connect' or address == 't/edit' then 
+        if address == 't/connect' then
+          u = 0
+        elseif address == 't/edit' then
+          u = 4
+        end
+
+      userips[u] = args[0]--cableado para el bajista
       --local msg1 = osc.encode('/t connect', users[u], 3.14, 'hello world!')
       --Voy a cablear el 2 para probar el bajo
-      local msg1 = osc.encode('/t connect',debugUser, 3.14, 'hello world!')
-      onConnect(debugUser)--Forzado par ael Bass player , deberia ser la U 
+      local msg1 = osc.encode('/t connect', users[u], 3.14, 'hello world!')
+      onConnect(u)--Forzado par ael Bass player , deberia ser la U 
       userIP , userPort = udp:getsockname()
       --reaper.ShowConsoleMsg('user ip')
      -- reaper.ShowConsoleMsg(userIP)
       --reaper.ShowConsoleMsg('user port')
       udp:sendto(msg1,args[0],userServerPort)
-      reaper.ShowConsoleMsg("enviado")
+      reaper.ShowConsoleMsg("enviado a")
+      reaper.ShowConsoleMsg(userIP)
+      reaper.ShowConsoleMsg(userPort)
      -- table.remove(users,u+1) --ese slot de usuario ya no esta disponible
       --print('currenusers',users)
       end

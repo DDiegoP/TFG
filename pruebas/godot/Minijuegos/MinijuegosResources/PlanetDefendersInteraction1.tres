@@ -5,6 +5,6 @@
 [resource]
 script = ExtResource("1_qoarh")
 sensor = 2
-trackNum = 5
+trackNum = 4
 control = 0
 customRoute = ""

@@ -21,21 +21,20 @@ function onConnect(a) -- override de que pasa en mi juego en especifico cuando s
   currentTime = reaper.GetPlayPosition()
   local msg = osc.encode("t/CurrentTime",currentTime)
   udp:sendto(msg,userips[2],userServerPort)
- end
-  if a == 1 then
+  elseif a == 4 then
    reaper.ShowConsoleMsg("MiniMIDIController connected")
    ntracks = reaper.CountTracks(0)
    local msg = osc.encode("t/NumOfTracks",ntracks)
-   udp:sendto(msg,userips[1],userServerPort)
-  end
+   udp:sendto(msg,userips[4],userServerPort)
   
   end
+end
   
 function onDisconnect(a) -- override de que pasa en mi juego en especifico cuando se desconcecta alguien
   reaper.ShowConsoleMsg("b")
   end  
 --Nuestro Juego es para 4 jugadores asi qeu especificamos 4 slots de usuario
-maxusers = 2
+maxusers = 5
 createUserSlots()
 setUp()
 

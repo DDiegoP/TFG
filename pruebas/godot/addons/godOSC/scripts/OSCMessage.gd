@@ -7,19 +7,6 @@ extends Node
 @export var target_client : OSCClient
 
 ## The OSC address to send to
-@export var osc_address := "/example"
+var osc_address := "/example"
 ##Para reaper solo se puede leer desde reascript el primer floa to el primer string
-@export var osc_argument = "argumeto "
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	
-	# Sends 0 to the target OSC address
-	target_client.send_message(osc_address, [osc_argument])
-	pass
+var osc_argument = "argument"

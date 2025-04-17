@@ -5,6 +5,6 @@
 [resource]
 script = ExtResource("1_fwdgo")
 sensor = 0
-trackNum = 8
+trackNum = 7
 control = 0
 customRoute = ""

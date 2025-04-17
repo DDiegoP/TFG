@@ -5,6 +5,6 @@
 [resource]
 script = ExtResource("1_465ax")
 sensor = 1
-trackNum = 1
+trackNum = 2
 control = 1
 customRoute = ""

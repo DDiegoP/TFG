@@ -231,6 +231,7 @@ rotation = 0.785821
 scale = Vector2(1, 2.55558)
 script = ExtResource("2_p7y7d")
 pinballController = NodePath("..")
+type = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SensorL"]
 shape = SubResource("CapsuleShape2D_rmu41")
@@ -246,7 +247,6 @@ rotation = 2.35619
 scale = Vector2(1, 2.55558)
 script = ExtResource("2_p7y7d")
 pinballController = NodePath("..")
-type = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SensorR"]
 shape = SubResource("CapsuleShape2D_rmu41")
@@ -268,11 +268,9 @@ scene_server = NodePath("OSCServer")
 
 [node name="OSCClient" type="Node" parent="Networking"]
 script = ExtResource("6_voiiu")
-port = 3000
 
 [node name="OSCServer" type="Node" parent="Networking"]
 script = ExtResource("7_pwoin")
-port = 3003
 
 [node name="Receiver" type="Node2D" parent="Networking" node_paths=PackedStringArray("target_server")]
 script = ExtResource("8_gusic")

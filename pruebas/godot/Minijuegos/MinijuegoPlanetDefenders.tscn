@@ -174,11 +174,9 @@ scene_server = NodePath("OSCServer")
 
 [node name="OSCClient" type="Node" parent="Networking"]
 script = ExtResource("5_cvvcn")
-port = 3000
 
 [node name="OSCServer" type="Node" parent="Networking"]
 script = ExtResource("6_bbdbf")
-port = 3003
 
 [node name="Receiver" type="Node2D" parent="Networking" node_paths=PackedStringArray("target_server")]
 script = ExtResource("7_k1p5q")

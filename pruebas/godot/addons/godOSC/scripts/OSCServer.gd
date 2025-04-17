@@ -5,7 +5,7 @@ extends Node
 
 
 ## The port over which to recieve messages
-@export var port = 4646
+@export var listenPort = 4646
 
 ## A dictionary containing all recieved messages.
 var incoming_messages := {}
@@ -20,12 +20,12 @@ var server = UDPServer.new()
 var peers: Array[PacketPeerUDP] = []
 
 func _ready():
-	server.listen(port)
+	server.listen(listenPort)
 
 ## Sets the port for the server to listen on. Can only listen to one port at a time.
 func listen(new_port):
-	port = new_port
-	server.listen(port)
+	listenPort = new_port
+	server.listen(listenPort)
 
 func _process(_delta):
 	server.poll()

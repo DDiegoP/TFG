@@ -14,9 +14,9 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c5jrh"]
 bg_color = Color(0.8, 0.815686, 0.788235, 1)
 
-[sub_resource type="Theme" id="Theme_pk56y"]
-
 [sub_resource type="Theme" id="Theme_0o2if"]
+
+[sub_resource type="Theme" id="Theme_pk56y"]
 
 [sub_resource type="SystemFont" id="SystemFont_svwd5"]
 font_names = PackedStringArray("Courier New")
@@ -53,11 +53,10 @@ expand_mode = 2
 
 [node name="OSCClient" type="Node" parent="."]
 script = ExtResource("2_5wfgq")
-port = 3000
 
 [node name="OSCServer" type="Node" parent="."]
 script = ExtResource("3_87ea2")
-port = 3003
+listenPort = 3003
 
 [node name="LineEdit" type="LineEdit" parent="."]
 offset_left = 151.0
@@ -67,6 +66,26 @@ offset_bottom = 360.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_c5jrh")
 alignment = 1
+
+[node name="EditButton" type="Button" parent="LineEdit" node_paths=PackedStringArray("target_client")]
+offset_left = 79.0
+offset_top = 173.0
+offset_right = 687.0
+offset_bottom = 253.0
+scale = Vector2(0.993655, 0.851524)
+theme = SubResource("Theme_0o2if")
+theme_override_colors/font_color = Color(0.933333, 1, 1, 1)
+theme_override_font_sizes/font_size = 37
+theme_override_styles/normal = ExtResource("4_1xtwx")
+text = "EDIT"
+script = ExtResource("1_mry8v")
+requestType = "t/edit"
+target_client = NodePath("../../OSCClient")
+
+[node name="MidiIcon" type="Sprite2D" parent="LineEdit/EditButton"]
+position = Vector2(225.857, 38.6157)
+scale = Vector2(0.13469, 0.167603)
+texture = ExtResource("10_h3f27")
 
 [node name="ConnectButton" type="Button" parent="LineEdit" node_paths=PackedStringArray("target_client")]
 layout_mode = 0
@@ -82,32 +101,11 @@ theme_override_styles/normal = ExtResource("4_1xtwx")
 text = "PLAY!"
 script = ExtResource("1_mry8v")
 target_client = NodePath("../../OSCClient")
-osc_address = "/connect"
 
 [node name="PlayIcon" type="Sprite2D" parent="LineEdit/ConnectButton"]
 position = Vector2(219.392, 38.7541)
 scale = Vector2(0.171225, 0.18431)
 texture = ExtResource("9_hxhxl")
-
-[node name="EditButton" type="Button" parent="LineEdit/ConnectButton" node_paths=PackedStringArray("target_client")]
-layout_mode = 0
-offset_top = 89.2518
-offset_right = 608.0
-offset_bottom = 169.252
-scale = Vector2(0.993655, 0.851524)
-theme = SubResource("Theme_0o2if")
-theme_override_colors/font_color = Color(0.933333, 1, 1, 1)
-theme_override_font_sizes/font_size = 37
-theme_override_styles/normal = ExtResource("4_1xtwx")
-text = "EDIT"
-script = ExtResource("1_mry8v")
-target_client = NodePath("../../../OSCClient")
-osc_address = "/connect"
-
-[node name="MidiIcon" type="Sprite2D" parent="LineEdit/ConnectButton/EditButton"]
-position = Vector2(225.857, 38.6157)
-scale = Vector2(0.13469, 0.167603)
-texture = ExtResource("10_h3f27")
 
 [node name="Label" type="Label" parent="." node_paths=PackedStringArray("target_server")]
 offset_left = 76.0
@@ -135,5 +133,5 @@ text = "..iREAPLAY"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[connection signal="pressed" from="LineEdit/EditButton" to="LineEdit/EditButton" method="_on_pressed"]
 [connection signal="pressed" from="LineEdit/ConnectButton" to="LineEdit/ConnectButton" method="_on_pressed"]
-[connection signal="pressed" from="LineEdit/ConnectButton/EditButton" to="LineEdit/ConnectButton/EditButton" method="_on_pressed"]
