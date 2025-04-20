@@ -161,12 +161,14 @@ client = NodePath("../Networking/OSCClient")
 script = ExtResource("7_48jhn")
 scene_client = NodePath("OSCClient")
 scene_server = NodePath("OSCServer")
+oscEndMessage = "t/disconnect"
 
 [node name="OSCClient" type="Node" parent="Networking"]
 script = ExtResource("8_t3tx0")
 
 [node name="OSCServer" type="Node" parent="Networking"]
 script = ExtResource("9_kdtry")
+listenPort = 3003
 
 [node name="Receiver" type="Node2D" parent="Networking" node_paths=PackedStringArray("target_server")]
 script = ExtResource("10_glad5")

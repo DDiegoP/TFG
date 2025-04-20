@@ -288,12 +288,14 @@ target_client = NodePath("../../../Networking/OSCClient")
 script = ExtResource("6_qxn1s")
 scene_client = NodePath("OSCClient")
 scene_server = NodePath("OSCServer")
+oscEndMessage = "t/disconnect"
 
 [node name="OSCClient" type="Node" parent="Networking"]
 script = ExtResource("6_3ehlr")
 
 [node name="OSCServer" type="Node" parent="Networking"]
 script = ExtResource("7_e81yf")
+listenPort = 3003
 
 [node name="Receiver" type="Node2D" parent="Networking" node_paths=PackedStringArray("target_spawner", "target_server")]
 script = ExtResource("9_she84")

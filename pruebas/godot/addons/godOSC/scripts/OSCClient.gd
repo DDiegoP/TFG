@@ -54,10 +54,8 @@ func close_socket():
 		client.close()
 
 func terminateConnection(terminationRequest : String):
-	var packet = prepare_message(terminationRequest, [myaddress])
-	client.put_packet(packet)
-	close_socket()
-	
+	client.set_dest_address(AppManager.currentHostName, 3000)
+	send_message(terminationRequest, [""])
 
 ## Send an OSC message over UDP.
 func prepare_message(osc_address : String, args : Array):
