@@ -54,7 +54,6 @@ function translateMessage()
   --cur_pos = reaper.GetCursorPosition()
   cur_pos = reaper.GetPlayPosition()
   --reaper.ShowConsoleMsg(tostring(cur_pos).."\n")
-  reaper.ShowConsoleMsg(tostring(cur_pos))
   --cur_pos = reaper.GetCursorPosition()
   endpos =  reaper.MIDI_GetPPQPosFromProjTime(take , cur_pos+lenght)
   ppq = reaper.MIDI_GetPPQPosFromProjTime(take, cur_pos)
@@ -87,19 +86,15 @@ end
 -- La funcion para defer bien hecha
 function removeFirst ()
   -- si no esta vacia vemos si la primera nota ya se ha acabado
-  reaper.ShowConsoleMsg("ay la puta madre")
   pista = reaper.GetTrack(0,tracknum)
   objeto = reaper.GetTrackMediaItem(pista,0)
   toma = reaper.GetActiveTake(objeto)
   nNotes = reaper.MIDI_CountEvts(toma)
-  reaper.ShowConsoleMsg(tostring(nNotes))
   l = reaper.GetMediaItemInfo_Value(objeto, "D_LENGTH")
-  reaper.ShowConsoleMsg(tostring(l))
   
   
   if nNotes > 0 then
    playhead_pos = reaper.GetPlayPosition()
-   reaper.ShowConsoleMsg(tostring(playhead_pos))
    local retval, selected, muted, startppqpos, endppqpos, chan, pitch,vel 
           = reaper.MIDI_GetNote(toma,0)
    
@@ -110,7 +105,6 @@ function removeFirst ()
      end
     -- if  playhead_pos >= l - 0.0016 then
      if  playhead_pos <=  0.25 then 
-     reaper.ShowConsoleMsg("pentakill")
       for i=0,nNotes-1 do --El array de notas midi de reaper empieza en 0 tambien
       reaper.MIDI_DeleteNote(toma,0) 
       end

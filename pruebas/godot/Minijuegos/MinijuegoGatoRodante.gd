@@ -55,6 +55,11 @@ func sendCatXToInteraction(interaction):
 	
 	var shownVar = total*100
 	
+	if(shownVar>100):
+		shownVar = 100
+	if(shownVar<-100):
+		shownVar = -100
+	
 	textLabel.text = str("[center]","%0.2f" % shownVar, "%", "[/center]")
 	
 	interaction.result = (total+1)/2

@@ -74,7 +74,6 @@ end
  function Main()
  for address, values in osc.enumReceive(udp) do
     
-      debugUser = 4 ---para cablear conectarse a una escena cambia esto 
      --obtenemos los argumentos una vez por mensaje y dependiendo del tipo de mensaje gestionamos.    
      args = {}
      i = 0
@@ -86,7 +85,7 @@ end
      --Conexion de un usuario nuevo : 
       if address == 't/connect' or address == 't/edit' then 
         if address == 't/connect' then
-          u = 0
+          u = math.random(0,#users -2)
         elseif address == 't/edit' then
           u = 4
         end
@@ -101,11 +100,8 @@ end
      -- reaper.ShowConsoleMsg(userIP)
       --reaper.ShowConsoleMsg('user port')
       udp:sendto(msg1,args[0],userServerPort)
-      reaper.ShowConsoleMsg("enviado a")
-      reaper.ShowConsoleMsg(userIP)
-      reaper.ShowConsoleMsg(userPort)
-     -- table.remove(users,u+1) --ese slot de usuario ya no esta disponible
-      --print('currenusers',users)
+      table.remove(users,u+1) --ese slot de usuario ya no esta disponible
+      print('currentusers',users)
       end
      
       --Desconexion de un usuario 
@@ -115,6 +111,7 @@ end
       a = args[0]
       reaper.ShowConsoleMsg('user disconected')
       reaper.ShowConsoleMsg(args[0])
+      onDisconnect(a)
       end
      -- print('address: ', address)
       --print('This message haves '..#values..' values:')

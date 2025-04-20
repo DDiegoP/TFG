@@ -68,6 +68,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_c5jrh")
 alignment = 1
 
 [node name="EditButton" type="Button" parent="LineEdit" node_paths=PackedStringArray("target_client")]
+layout_mode = 0
 offset_left = 79.0
 offset_top = 173.0
 offset_right = 687.0

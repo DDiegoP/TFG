@@ -4,7 +4,7 @@ extends Node
 ## Client for sending Open Sound Control messages over UDP. Use one OSCClient per server you want to send to.
 
 ## The IP Address of the server to send to.
-var  myip_address = "tu ip"
+var  myaddress = "tu ip"
 var  other_ipaddress = "su ip" 
 ## The port to send to.
 var port = 3000
@@ -21,7 +21,6 @@ func connect_socket_to_host(new_address = "127.0.0.1", new_port = 3005, request 
 	
 	client.set_dest_address(new_address, new_port)
 	#le decimos al host nuestra direccion 
-	var myaddress
 	var androidname = []
 	##IMPORTANTE ESTO ES PARA WINDOWS , COMPUTERNAME ES UNA VARIABLE DE WINDOWS 
 	##PARA ANDROID HAY QUE CAMBIARLO
@@ -53,6 +52,12 @@ func disconnect_socket_from_host(new_address :String, new_port : int, osc_addres
 func close_socket():
 	if client.is_socket_connected():
 		client.close()
+
+func terminateConnection(terminationRequest : String):
+	var packet = prepare_message(terminationRequest, [myaddress])
+	client.put_packet(packet)
+	close_socket()
+	
 
 ## Send an OSC message over UDP.
 func prepare_message(osc_address : String, args : Array):
@@ -106,8 +111,8 @@ func prepare_message(osc_address : String, args : Array):
 
 func send_message(osc_address : String, args : Array):
 	var packet = prepare_message(osc_address, args)
-	#print(osc_address + str(args))
 	client.put_packet(packet)
+	
 func send_broadcast_message(osc_address : String, args : Array):
 	client.set_broadcast_enabled(true)
 	var packet = prepare_message(osc_address, args)

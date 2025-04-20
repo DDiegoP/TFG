@@ -19,7 +19,6 @@ function translateTrack(t)
   isMidi = reaper.TakeIsMIDI(take)
 
   if isMidi then 
-    reaper.ShowConsoleMsg("yay Midi Track")
   -- Obtenemos el numero de notas de la midi track 
    nNotes = reaper.MIDI_CountEvts(take)
   -- reaper.ShowConsoleMsg(tostring(nNotes))
@@ -40,7 +39,6 @@ function translateTrack(t)
         notePitch= pitch 
         codifiedTrackTimes[i] = reaper.MIDI_GetProjTimeFromPPQPos(take,noteTime)
         codifiedTrackPitch[i] = notePitch
-        reaper.ShowConsoleMsg( codifiedTrackTimes[i])
     -- https://inspiredacoustics.com/en/MIDI_note_numbers_and_center_frequencies
     end
  -- reaper.MIDI_GetNote()
