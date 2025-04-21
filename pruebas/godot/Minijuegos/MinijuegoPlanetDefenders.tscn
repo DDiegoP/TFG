@@ -36,6 +36,7 @@ launcher = NodePath("Pivote/Lanzadera")
 targets = [NodePath("Line2DNorth"), NodePath("Line2DWest"), NodePath("Line2DEast"), NodePath("Line2DSouth")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="PostProcess" type="ColorRect" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_mhkn1")
@@ -89,13 +90,14 @@ texture = ExtResource("4_dgubb")
 texture_mode = 2
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(557, 527)
-rotation = 3.14159
+position = Vector2(782, 315)
+rotation = 1.5708
 scale = Vector2(0.140909, 0.163415)
 texture = ExtResource("5_xv7uq")
 
 [node name="Sprite2D3" type="Sprite2D" parent="."]
-position = Vector2(552, 102)
+position = Vector2(322, 322)
+rotation = 4.71239
 scale = Vector2(0.140909, 0.163415)
 texture = ExtResource("6_flsjy")
 
