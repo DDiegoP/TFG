@@ -14,7 +14,7 @@ func _ready():
 
 func _notification(what):
 	if phone:
-		if what == NOTIFICATION_APPLICATION_PAUSED:
+		if what == NOTIFICATION_WM_WINDOW_FOCUS_OUT:
 			endConnection()
 	else:
 		if what == NOTIFICATION_WM_CLOSE_REQUEST:

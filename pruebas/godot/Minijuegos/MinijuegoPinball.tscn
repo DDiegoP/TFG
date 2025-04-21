@@ -39,16 +39,18 @@ size = Vector2(89.5537, 15)
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rmu41"]
 radius = 14.8484
 
-[node name="MinijuegoPinball" type="Node2D" node_paths=PackedStringArray("ButtonLeft", "ButtonRight", "PaddleL", "PaddleR", "rsManager", "textLabel")]
+[node name="MinijuegoPinball" type="Node2D" node_paths=PackedStringArray("ButtonLeft", "ButtonRight", "PaddleL", "PaddleR", "ball", "rsManager", "textLabel")]
 script = ExtResource("1_o3iwa")
 ButtonLeft = NodePath("ButtonLeft")
 ButtonRight = NodePath("ButtonRight")
 PaddleL = NodePath("PaddleL")
 PaddleR = NodePath("PaddleR")
+ball = NodePath("Ball")
 rsManager = NodePath("ReaSensorManager")
 textLabel = NodePath("RichTextLabel")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="PostProcess" type="ColorRect" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_2v4na")
@@ -168,7 +170,9 @@ scale = Vector2(1.04058, 0.059)
 texture = ExtResource("4_3lb7j")
 
 [node name="Ball" type="RigidBody2D" parent="."]
-position = Vector2(491, 142)
+position = Vector2(538, 142)
+can_sleep = false
+freeze_mode = 1
 max_contacts_reported = 5
 contact_monitor = true
 

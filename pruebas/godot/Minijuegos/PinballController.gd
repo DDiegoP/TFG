@@ -3,6 +3,7 @@ class_name PinballController extends Node2D
 const REA_INIT_VALUE = 0.5
 const SHAKE_VALUE = 15
 const INIT_TEXT = "Current Bias: "
+const FALLEN_POS = 1000
 
 #Boton izquierdo
 @export var ButtonLeft : Button
@@ -12,6 +13,8 @@ const INIT_TEXT = "Current Bias: "
 @export var PaddleL : RigidBody2D
 #Pala derecha
 @export var PaddleR : RigidBody2D
+
+@export var ball : RigidBody2D
 
 #Grados que giran las palas
 @export var turnDegrees = 45
@@ -30,6 +33,8 @@ var accelerValues
 var initDegreesL
 #Grados iniciales de la pala derecha
 var initDegreesR
+#Posicion inicial de la bola
+var initialBallPos
 #Grados objetivo de la pala izquierda
 var targetDegreesL
 #Grados objetivo de la pala derecha
@@ -39,13 +44,15 @@ var targetDegreesR
 func _ready():
 	initDegreesL = PaddleL.rotation
 	initDegreesR = PaddleR.rotation
+	initialBallPos = ball.global_position
 	targetDegreesL = initDegreesL
 	targetDegreesR = initDegreesR
 	rsManager.getInteractionAt(0).callable = Callable(self, "sendValue")
 	updateText()
 
-#Movimiento de las palas
+#Movimiento de las palas y comprobacion de caida de bola
 func _process(delta):
+	checkBallFall()
 	PaddleL.set_rotation(move_toward(PaddleL.rotation, targetDegreesL, delta * turnSpeed))
 	PaddleR.set_rotation(move_toward(PaddleR.rotation, targetDegreesR, delta * turnSpeed))
 	if(accelerValues && abs(accelerValues.x)>SHAKE_VALUE && abs(accelerValues.y)>SHAKE_VALUE && abs(accelerValues.z)>SHAKE_VALUE ):
@@ -89,3 +96,8 @@ func sendValue(interaction):
 
 func updateText():
 	textLabel.text = str(INIT_TEXT, reaValue)
+	
+func checkBallFall():
+	if ball.global_position.y > FALLEN_POS:
+		ball.global_position = initialBallPos
+		ball.linear_velocity = Vector2.ZERO

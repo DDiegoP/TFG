@@ -21,7 +21,7 @@ local socket = require('socket.core')
 port = 3000 -- el puerto donde se aloja el server , la ip se obtiene automaticamente
 users = {} --el servidor gestiona los slots de usuarios disponibles 
 maxusers = 5 --cuantos usuarios simultaneos podemos gestionar
-userips = {1, 2, 3, 4, 5}
+userips = {0, 1, 2, 3, 4}
 
 userServerPort = 3003 -- el puerto donde esta el server de Godot en los moviles/ otros pcs
 -- Funciones que nos ofrece el servidor base : 
@@ -47,15 +47,13 @@ function print(...)
 end
 
 function getUserIP(id)
-  reaper.ShowConsoleMsg(id)
   return userips[id]
 end
 function createUserSlots()
 users = {}
-for i = 0, maxusers do
-  users[i]=i
+for i = 0, maxusers - 2 do
+  table.insert(users, i)
 end
-reaper.ShowConsoleMsg(#users)
 end  
 
 
@@ -81,40 +79,53 @@ end
       args[i] = v
       i = i+1
      end 
-
+    reaper.ShowConsoleMsg("\nArray users: \n")
+    for i, v in ipairs(users) do
+      reaper.ShowConsoleMsg(tostring(v))
+    end
+      reaper.ShowConsoleMsg("\n")
      --Gestionamos los distintos tipos de mensajes :
      --Conexion de un usuario nuevo : 
-      if address == 't/connect' or address == 't/edit' then 
+      if address == 't/connect' or address == 't/edit' then
+        if #users > 0 then 
         if address == 't/connect' then
-          u = math.random(0,#users -2)
+          i = math.random(0 ,#users -2)
+          u = users[i]
         elseif address == 't/edit' then
           u = 4
         end
-
-      userips[u] = args[0]--cableado para el bajista
+        
+        reaper.ShowConsoleMsg("\nConectado:")
+        reaper.ShowConsoleMsg(u)
+        userips[u] = args[0]--cableado para el bajista
       --local msg1 = osc.encode('/t connect', users[u], 3.14, 'hello world!')
       --Voy a cablear el 2 para probar el bajo
-      local msg1 = osc.encode('/t connect', users[u], 3.14, 'hello world!')
-      onConnect(u)--Forzado par ael Bass player , deberia ser la U 
-      userIP , userPort = udp:getsockname()
+        local msg1 = osc.encode('/t connect', u, 3.14, 'hello world!')
+        onConnect(u)--Forzado par ael Bass player , deberia ser la U 
+        userIP , userPort = udp:getsockname()
       --reaper.ShowConsoleMsg('user ip')
      -- reaper.ShowConsoleMsg(userIP)
       --reaper.ShowConsoleMsg('user port')
-      udp:sendto(msg1,args[0],userServerPort)
-      table.remove(users,u+1) --ese slot de usuario ya no esta disponible
-      print('currentusers',users)
+        udp:sendto(msg1,args[0],userServerPort)
+        table.remove(users, i) --ese slot de usuario ya no esta disponible
+      else
+        reaper.ShowConsoleMsg("\nSlots de usuario ocupados")
+      end
       end
       
       --Desconexion de un usuario 
       --nos envia su token y lo devolvemos a la lista
       if address == 't/disconnect' then
-      reaper.ShowConsoleMsg('user disconected')
-      local disconnectMsg = osc.encode(address, 0, 0, '')
-      udp:sendto(disconnectMsg, args[0],userServerPort)
-      table.insert(users,args[0])
-      a = args[0]
-
-      onDisconnect(a)
+        local disconnectMsg = osc.encode(address, 0, 0, '')
+        reaper.ShowConsoleMsg("\nargs[0] es")
+        reaper.ShowConsoleMsg(args[0])
+        u = args[0]
+        reaper.ShowConsoleMsg("\nDesconectado:")
+        reaper.ShowConsoleMsg(u)
+        table.insert(users,u)
+        userips[u] = u
+        a = args[0]
+        onDisconnect(a)
       end
      -- print('address: ', address)
       --print('This message haves '..#values..' values:')
