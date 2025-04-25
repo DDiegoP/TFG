@@ -2,7 +2,7 @@ class_name PinballController extends Node2D
 
 const REA_INIT_VALUE = 0.5
 const SHAKE_VALUE = 15
-const INIT_TEXT = "Current Bias: "
+const INIT_TEXT = "Current Chance: "
 const FALLEN_POS = 1000
 
 #Boton izquierdo
@@ -73,30 +73,29 @@ func _on_button_left_button_up():
 #Receptor de señal de boton levantado del boton derecho, restablece los grados objetivos a los iniciales
 func _on_button_right_button_up():
 	targetDegreesR = initDegreesR
-	
+
+#Aumenta el valor del bias en reaper
 func increaseValue():
-	if(reaValue+0.1 < 1):
-		reaValue += 0.1
-	else:
-		reaValue = 1
+	reaValue = clamp(reaValue + 0.05, 0.25, 0.75)
 	
 	updateText()
 
+#Reduce el valor del bias en reaper
 func decreaseValue():
-	if(reaValue-0.1 > 0.0001):
-		reaValue -= 0.1
-	else:
-		reaValue = 0.005
+	reaValue = clamp(reaValue - 0.05, 0.25, 0.75)
 	
 	updateText()
 
+#Pone el valor de la interaccion a reaValue
 func sendValue(interaction):
 	interaction.result = reaValue
 	accelerValues = interaction.sensorValue
 
+#Actualiza el texto que se muestra con los valores de reaValue entre 0 y 100 % correspondiendo a 0.25 y 0.75
 func updateText():
-	textLabel.text = str(INIT_TEXT, reaValue)
-	
+	textLabel.text = str(INIT_TEXT, round(((reaValue - 0.25) * 2) * 100), "%")
+
+#Comprueba si la bola se ha caido y si es así resetea su posición
 func checkBallFall():
 	if ball.global_position.y > FALLEN_POS:
 		ball.global_position = initialBallPos

@@ -107,7 +107,7 @@ offset_right = 687.0
 offset_bottom = 230.0
 theme_override_fonts/normal_font = ExtResource("5_bii43")
 theme_override_font_sizes/normal_font_size = 29
-text = "Current Bias:"
+text = "Current Chance:"
 
 [node name="Walls" type="Node" parent="."]
 
