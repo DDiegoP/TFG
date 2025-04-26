@@ -37,7 +37,7 @@ func _process(delta):
 			timer=0
 		else: #siguiente nota que tengo que spanear si la hay
 			var downtime=  noteSpawnStamps[currentIndex] -timer
-			if downtime <=0:
+			if downtime <=0 and notes[currentIndex] !=0:
 				var chosen = randi_range(0,maxIndex)
 				SpawnPointMap[notes[currentIndex]].spawnNote(notes[currentIndex], noteStamps[currentIndex]-timer)
 				currentIndex += 1
@@ -68,18 +68,24 @@ func transferData(times,innotes,curtime):
 		#nos aseguramos de empezar en la nota que toca
 		if( t < timer):
 			currentIndex = currentIndex +1
+		if time == 0:
+			break
 			
 	pass
 	var parsednotes = []
 	var si = 0 #spawnpoints index
 	for note in innotes:
 		notes.push_back(note)	
-		if not parsednotes.has(note):
+		if not parsednotes.has(note) and note !=0:
 			#SpawnPointMap.set(key : note, value : spawnPoints[si])
-			SpawnPointMap[note] = spawnPoints[si]
-			si+=1
-			parsednotes.push_back(note)
-					 
+			if(si<4):
+				SpawnPointMap[note] = spawnPoints[si]
+				si+=1
+				parsednotes.push_back(note)
+			else:
+				print("Bass line only supports 4 diferent notes")
+				break
+		
 	pass
 	
 	print("BasslPLayer data Transfered")
