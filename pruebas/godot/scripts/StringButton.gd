@@ -6,6 +6,8 @@ extends Node
 @export var button: Button
 @export var texture : Texture
 
+#depurando bugs
+var count = 0
 # Spawnea la nota en el punto de spawn y conecta la senial del boton a la funcion de la nota
 func spawnNote(note, noteStamp):
 	var newNote = nota.instantiate()

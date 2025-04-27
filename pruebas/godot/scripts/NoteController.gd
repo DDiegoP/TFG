@@ -6,7 +6,8 @@ const SPEED = 100
 #Posicion y en la que va a desaparecer la nota y fallarse
 const DEATH_ZONE = 800
 
-@export var perfectMargin = 0.1
+#@export var perfectMargin = 0.1
+var perfectMargin = 0.1
 @export var aspect : Sprite2D
 
 #String de la key correspondiente de la nota
@@ -27,6 +28,7 @@ func _process(delta):
 #Funcion conectada al boton de su carril, al apretarse el boton si las areas estan una encima de
 #la otra se elimina y se aparece la key por consola
 func _on_boton_pressed():
+	#cuidadp que las notas colisionaban entre si 	
 	if(get_overlapping_areas().size()>0):
 		if(timer > targetTime - perfectMargin || timer < targetTime + perfectMargin):
 			print_debug("Perfecto")

@@ -6,6 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_27gvm"]
 
 [node name="Nota" type="Area2D" node_paths=PackedStringArray("aspect")]
+collision_mask = 2
 script = ExtResource("1_h8k5l")
 aspect = NodePath("Sprite2D")
 

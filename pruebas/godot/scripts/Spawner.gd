@@ -20,6 +20,8 @@ var maxIndex = 0
 #Tiempo en el que la nota se tendría que pulsar
 @export var noteStamps : Array[float] = []
 
+
+var count=0
 var noteSpeed = 0.5
 #asignaremos cada nota a un canal
 var  SpawnPointMap= {} 
@@ -30,6 +32,15 @@ func _ready():
 # Avanza un timer que recorre noteSpawnStamps y las va spawneando en las cuerdas de forma aleatoria
 # en su tiempo correspondiente al llegar al final vuelve al inicio de las notas
 func _process(delta):
+	#testeando para el bug 
+
+	count+=1
+	if(count > 45):
+		count =0
+		#spawnPoints[0].spawnNote(34,0.5)
+		
+	pass
+	
 	timer += delta
 	if(noteSpawnStamps.size()>0):
 		if(currentIndex >= noteSpawnStamps.size()-1):#se acabo la cancion vuevlo a empezar
