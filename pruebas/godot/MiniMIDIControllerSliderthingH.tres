@@ -1,0 +1,11 @@
+[gd_resource type="MeshTexture" load_steps=3 format=3 uid="uid://j3n2bxqpfdpl"]
+
+[ext_resource type="Texture2D" uid="uid://dn1464kqjh52v" path="res://Sprites/sliderthingmuytinyH.png" id="1_dtilg"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_fb68e"]
+size = Vector2(30, 20)
+
+[resource]
+mesh = SubResource("QuadMesh_fb68e")
+base_texture = ExtResource("1_dtilg")
+image_size = Vector2(30, 20)

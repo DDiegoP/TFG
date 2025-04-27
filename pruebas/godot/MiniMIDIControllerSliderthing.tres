@@ -1,0 +1,14 @@
+[gd_resource type="MeshTexture" load_steps=4 format=3 uid="uid://cgfs7wxsg7vo1"]
+
+[ext_resource type="Texture2D" uid="uid://bbjwlsdmoe0tt" path="res://Sprites/sliderthingmuytiny.png" id="1_upv0y"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x5s8b"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_lq20v"]
+material = SubResource("StandardMaterial3D_x5s8b")
+size = Vector2(20, 25)
+
+[resource]
+mesh = SubResource("QuadMesh_lq20v")
+base_texture = ExtResource("1_upv0y")
+image_size = Vector2(20, 25)
