@@ -15,7 +15,7 @@
 [ext_resource type="Script" path="res://scripts/MInijuegos/Bassplayer/BassPlayerSceneManager.gd" id="6_qxn1s"]
 [ext_resource type="Texture2D" uid="uid://cfaqw8lvrm4o0" path="res://Sprites/YellowCircleButton.png" id="7_2qeor"]
 [ext_resource type="Script" path="res://addons/godOSC/scripts/OSCServer.gd" id="7_e81yf"]
-[ext_resource type="StyleBox" path="res://Minijuegos/BassButtonStyle.tres" id="7_f8xq4"]
+[ext_resource type="StyleBox" uid="uid://di5q5x3bvlg2a" path="res://Minijuegos/BassButtonStyle.tres" id="7_f8xq4"]
 [ext_resource type="Texture2D" uid="uid://dmrdsoc4usxpy" path="res://Sprites/BlueCircleButton.png" id="8_35say"]
 [ext_resource type="Texture2D" uid="uid://c3dddwp3jp0e8" path="res://Sprites/GreenCircleButton.png" id="9_qfm78"]
 [ext_resource type="Script" path="res://scripts/MInijuegos/Bassplayer/BassReceiver.gd" id="9_she84"]
@@ -136,6 +136,7 @@ flat = true
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" type="Area2D" parent="Carril1/Boton"]
+collision_layer = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Carril1/Boton/Area2D"]
 position = Vector2(206.251, 174.999)
@@ -182,6 +183,7 @@ flat = true
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" type="Area2D" parent="Carril2/Boton"]
+collision_layer = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Carril2/Boton/Area2D"]
 position = Vector2(180.938, 182.498)
@@ -228,6 +230,7 @@ flat = true
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" type="Area2D" parent="Carril3/Boton"]
+collision_layer = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Carril3/Boton/Area2D"]
 position = Vector2(180.938, 182.498)
@@ -274,6 +277,7 @@ flat = true
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" type="Area2D" parent="Carril4/Boton"]
+collision_layer = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Carril4/Boton/Area2D"]
 position = Vector2(180.938, 182.498)
@@ -302,6 +306,7 @@ script = ExtResource("9_she84")
 target_spawner = NodePath("../..")
 osc_address2 = "t/BassLineTime"
 osc_address3 = "t/CurrentTime"
+osc_address4 = "t/loopInfo"
 target_server = NodePath("../OSCServer")
 osc_address = "t/BassLineNote"
 

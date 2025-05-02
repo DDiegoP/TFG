@@ -22,10 +22,12 @@ var maxIndex = 0
 
 
 var count=0
-var noteSpeed = 0.5
+var noteSpeed = 0.65
 #asignaremos cada nota a un canal
 var  SpawnPointMap= {} 
 
+#informacion del bucle de la pieza si lo hay 
+var loopinfo=[]
 func _ready():
 	maxIndex = spawnPoints.size()-1
 
@@ -45,7 +47,7 @@ func _process(delta):
 	if(noteSpawnStamps.size()>0):
 		if(currentIndex >= noteSpawnStamps.size()-1):#se acabo la cancion vuevlo a empezar
 			currentIndex = 0
-			timer=0
+			timer=loopinfo[0]
 		else: #siguiente nota que tengo que spanear si la hay
 			var downtime=  noteSpawnStamps[currentIndex] -timer
 			if downtime <=0 and notes[currentIndex] !=0:
@@ -62,7 +64,7 @@ func _process(delta):
 			#var chosen = randi_range(0,maxIndex)
 			#spawnPoints[chosen].spawnNote(notes[currentIndex], noteStamps[currentIndex]-timer)
 	##print(timer)
-func transferData(times,innotes,curtime):
+func transferData(times,innotes,curtime,inloop):
 	timer=curtime
 	notes = []
 	noteSpawnStamps = []
@@ -98,5 +100,5 @@ func transferData(times,innotes,curtime):
 				break
 		
 	pass
-	
+	loopinfo=  inloop
 	print("BasslPLayer data Transfered")

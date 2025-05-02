@@ -1,7 +1,7 @@
 extends Area2D
 
 #Velocidad de la nota bajando por el carril
-const SPEED = 100
+const SPEED = 150
 
 #Posicion y en la que va a desaparecer la nota y fallarse
 const DEATH_ZONE = 800
