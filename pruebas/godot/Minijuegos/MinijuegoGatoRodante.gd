@@ -16,13 +16,13 @@ var catInteraction : Interaction
 #Fuerza que se esta aplicando en la bola
 var forceToApply : Vector2
 
+var accelerForce
 func _ready():
 	catInteraction = rsManager.getInteractionAt(0)
 	catInteraction.callable = Callable(self, "sendCatXToInteraction")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var accelerForce = Input.get_accelerometer()
 	ball.apply_central_impulse(forceToApply+ Vector2(accelerForce.x, 0))
 
 #Se cambia el vector de fuerza horizontal que se aplica a el nuevo valor
@@ -47,6 +47,8 @@ func _on_button_right_button_up():
 
 func sendCatXToInteraction(interaction):
 	var total
+	
+	accelerForce = interaction.sensorValue
 	
 	if(ball.position.x>=0):
 		total = ball.position.x/RIGHTX
