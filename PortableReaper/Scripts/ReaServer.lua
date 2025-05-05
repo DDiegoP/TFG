@@ -89,7 +89,9 @@ end
       if address == 't/connect' or address == 't/edit' then
         if #users > 0 then 
         if address == 't/connect' then
-          i = math.random(0 ,#users -2)
+          i = math.random(1 ,#users -2)
+          reaper.ShowConsoleMsg("random:")
+          reaper.ShowConsoleMsg(i)
           u = users[i]
         elseif address == 't/edit' then
           u = 4

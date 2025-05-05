@@ -28,7 +28,7 @@ func _process(delta):
 		target_server.incoming_messages.erase(osc_address2)
 	if target_server.incoming_messages.has(osc_address4):
 		loop.append( target_server.incoming_messages[osc_address4][0])
-		loop.append(target_server.incoming_messages[osc_address4][0])	
+		loop.append(target_server.incoming_messages[osc_address4][1])	
 	if target_server.incoming_messages.has(osc_address3):
 		ctime=target_server.incoming_messages[osc_address3][0]
 		target_server.incoming_messages.erase(osc_address3)

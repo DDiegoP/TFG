@@ -44,15 +44,15 @@ func _process(delta):
 	pass
 	
 	timer += delta
+	
 	if(noteSpawnStamps.size()>0):
-		if(currentIndex >= noteSpawnStamps.size()-1):#se acabo la cancion vuevlo a empezar
+		if(timer >= loopinfo[1]):#se acabo la cancion vuevlo a empezar
 			currentIndex = 0
 			timer=loopinfo[0]
-		else: #siguiente nota que tengo que spanear si la hay
+		elif(currentIndex<notes.size()) :#siguiente nota que tengo que spanear si la hay
 			var downtime=  noteSpawnStamps[currentIndex] -timer
 			if downtime <=0 and notes[currentIndex] !=0:
-				var chosen = randi_range(0,maxIndex)
-				SpawnPointMap[notes[currentIndex]].spawnNote(notes[currentIndex], noteStamps[currentIndex]-timer)
+				SpawnPointMap[notes[currentIndex]].spawnNote(notes[currentIndex], noteStamps[currentIndex],timer)
 				currentIndex += 1
 				
 		#if(currentIndex  >= noteSpawnStamps.size() -1 || currentIndex  >= notes.size()-1):

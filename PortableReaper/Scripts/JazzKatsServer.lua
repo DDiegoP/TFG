@@ -12,14 +12,26 @@ function onConnect(a) -- override de que pasa en mi juego en especifico cuando s
     reaper.ShowConsoleMsg("bass player connected")
     --Se conecto el que toca el bajo le mandamos a godot nuestra linea de bajo
     basslineTimes,basslineNotes = translateTrack(0)
+    --Los arrays normales empiezan en 0 pero las tablas de lua en 1 :)
+    table.insert(basslineNotes,1,basslineNotes[0])
+    table.insert(basslineTimes,1,basslineTimes[0]) 
     --reaper.ShowConsoleMsg(bassline[1])
     --por que momento de la pieza estamos tambien es informacion util 
     local msg =osc.encodeArray("t/BassLineTime",basslineTimes) 
     udp:sendto(msg,userips[2],userServerPort)
+    
+    
     local msg =osc.encodeArray("t/BassLineNote",basslineNotes) 
+    reaper.ShowConsoleMsg(tostring(msg))
     udp:sendto(msg,userips[2],userServerPort)
+    reaper.ShowConsoleMsg(tostring(basslineNotes[0]))
     currentTime = reaper.GetPlayPosition()
     local msg = osc.encode("t/CurrentTime",currentTime)
+    udp:sendto(msg,userips[2],userServerPort)
+    --y por ultimo como esta pieza tiene un bucle necesitamos mandar tambien informacion dle mismo
+    loopstart,loopend = reaper.GetSet_LoopTimeRange(false,true,0,0,true)
+    local msg = osc.encode("t/loopInfo",loopstart,loopend)
+    
     udp:sendto(msg,userips[2],userServerPort)
 
   elseif a == 4 then
