@@ -11,6 +11,10 @@ var currentIndex = 0
 #Indice maximo de puntos de spawn
 var maxIndex = 0
 
+#cuanto tardamos en descender del spawnpoint al boton 
+var noteTravelTime = 150 
+#Asumiremos que los 4 spawners y los 4 botones son equidistantes
+var travelDistance = 0
 #Puntos de spawn de las notas
 @export var spawnPoints: Array[Marker2D] = []
 #Array con strings de las notas
@@ -20,9 +24,12 @@ var maxIndex = 0
 #Tiempo en el que la nota se tendría que pulsar
 @export var noteStamps : Array[float] = []
 
+#Ubico un boton para calcular distancias
+@export var buttonArea : CollisionShape2D ; 
 
 var count=0
-var noteSpeed = 0.65
+#var noteSpeed = 0.65
+var noteSpeed = 110
 #asignaremos cada nota a un canal
 var  SpawnPointMap= {} 
 
@@ -35,6 +42,7 @@ func _ready():
 # en su tiempo correspondiente al llegar al final vuelve al inicio de las notas
 func _process(delta):
 	#testeando para el bug 
+
 
 	count+=1
 	if(count > 45):
@@ -50,9 +58,26 @@ func _process(delta):
 			currentIndex = 0
 			timer=loopinfo[0]
 		elif(currentIndex<notes.size()) :#siguiente nota que tengo que spanear si la hay
-			var downtime=  noteSpawnStamps[currentIndex] -timer
-			if downtime <=0 and notes[currentIndex] !=0:
-				SpawnPointMap[notes[currentIndex]].spawnNote(notes[currentIndex], noteStamps[currentIndex],timer)
+			var travelDistance = absf (spawnPoints[0].position.y -buttonArea.transform.get_origin()[1])
+				
+			##print(travelDistance)
+			var traveltime = (travelDistance/(noteSpeed))
+			print("travel time")
+			print(traveltime)
+			
+			var downtime=  abs(noteSpawnStamps[currentIndex] -timer)
+			print(downtime)
+			if downtime >=traveltime and notes[currentIndex] !=0:
+				# v = d/t  t = d/v
+				#travelDistance = absf (spawnPoints[0].position.y -buttonArea.transform.get_origin()[1])
+				
+				#print(travelDistance)
+				# traveltime = (travelDistance/(noteSpeed*delta))
+				#puede que me acabe de conctar en medio y cuandren notas en medio d euna cuerda
+				var advancedDistance = 0
+				if(downtime<traveltime):
+					advancedDistance= downtime/traveltime
+				SpawnPointMap[notes[currentIndex]].spawnNote(notes[currentIndex], noteStamps[currentIndex],abs(advancedDistance*travelDistance))
 				currentIndex += 1
 				
 		#if(currentIndex  >= noteSpawnStamps.size() -1 || currentIndex  >= notes.size()-1):

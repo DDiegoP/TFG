@@ -1,13 +1,13 @@
 extends Area2D
 
 #Velocidad de la nota bajando por el carril
-const SPEED = 150
+const SPEED = 110
 
 #Posicion y en la que va a desaparecer la nota y fallarse
 const DEATH_ZONE = 800
 
 #@export var perfectMargin = 0.1
-var perfectMargin = 0.1
+var perfectMargin = 0.01
 @export var aspect : Sprite2D
 
 #String de la key correspondiente de la nota
@@ -23,8 +23,10 @@ func _process(delta):
 	position.y += delta * SPEED
 	if (position.y> DEATH_ZONE):
 		queue_free();
-	
-
+	if (timer ==targetTime || (timer >targetTime+ perfectMargin && timer < targetTime+ 2*perfectMargin )):
+		print_debug("Perfecto")
+	#print(timer)
+	##print(targetTime)
 #Funcion conectada al boton de su carril, al apretarse el boton si las areas estan una encima de
 #la otra se elimina y se aparece la key por consola
 func _on_boton_pressed():
