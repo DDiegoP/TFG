@@ -54,20 +54,18 @@ func _process(delta):
 	timer += delta
 	
 	if(noteSpawnStamps.size()>0):
-		if(timer >= loopinfo[1]):#se acabo la cancion vuevlo a empezar
-			currentIndex = 0
-			timer=loopinfo[0]
-		elif(currentIndex<notes.size()) :#siguiente nota que tengo que spanear si la hay
+		
+		if(currentIndex<notes.size()) :#siguiente nota que tengo que spanear si la hay
 			var travelDistance = absf (spawnPoints[0].position.y -buttonArea.transform.get_origin()[1])
 				
 			##print(travelDistance)
-			var traveltime = (travelDistance/(noteSpeed))
-			print("travel time")
-			print(traveltime)
+			var traveltime = 2.45*(travelDistance/(noteSpeed))
+			##print("travel time")
+			##print(traveltime)
 			
 			var downtime=  abs(noteSpawnStamps[currentIndex] -timer)
-			print(downtime)
-			if downtime >=traveltime and notes[currentIndex] !=0:
+			##print(downtime)
+			if downtime <=traveltime and notes[currentIndex] !=0:
 				# v = d/t  t = d/v
 				#travelDistance = absf (spawnPoints[0].position.y -buttonArea.transform.get_origin()[1])
 				
@@ -79,7 +77,14 @@ func _process(delta):
 					advancedDistance= downtime/traveltime
 				SpawnPointMap[notes[currentIndex]].spawnNote(notes[currentIndex], noteStamps[currentIndex],abs(advancedDistance*travelDistance))
 				currentIndex += 1
-				
+				#podemos tener un bucle en una cancion debemos ir comporbando tambien si volvemos a empezar 
+				#if(currentIndex >= notes.size() -1):
+					#currentIndex=0;
+					#sapwneamos las notas que  estan al inicio del bucle 
+					
+		if(timer >= loopinfo[1]):#se acabo la cancion vuevlo a empezar
+			currentIndex = 0
+			timer=loopinfo[0] + delta
 		#if(currentIndex  >= noteSpawnStamps.size() -1 || currentIndex  >= notes.size()-1):
 			#currentIndex = 0
 			#timer = 0
@@ -96,7 +101,7 @@ func transferData(times,innotes,curtime,inloop):
 	noteStamps = []
 	currentIndex=0
 	#var speed = spawnPoints[0].getNoteSpeed() este metodo no exisitia 
-	var speed = 0.2
+	var speed = 1.0
 	var targetPos = spawnPoints[0].position.y
 	for time in times:
 		

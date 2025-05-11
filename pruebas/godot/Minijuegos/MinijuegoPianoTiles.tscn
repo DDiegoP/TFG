@@ -147,6 +147,8 @@ shape = SubResource("RectangleShape2D_80q6s")
 script = ExtResource("5_3aw17")
 osc_address2 = "/BassNoteOff"
 target_client = NodePath("../../../Networking/OSCClient")
+osc_address = "/BassNoteOn"
+osc_argument = "41"
 
 [node name="Carril2" type="Line2D" parent="."]
 position = Vector2(400, -41)
@@ -194,6 +196,8 @@ shape = SubResource("RectangleShape2D_80q6s")
 script = ExtResource("5_3aw17")
 osc_address2 = "/BassNoteOff"
 target_client = NodePath("../../../Networking/OSCClient")
+osc_address = "/BassNoteOn"
+osc_argument = "43"
 
 [node name="Carril3" type="Line2D" parent="."]
 position = Vector2(550, -41)
@@ -241,6 +245,8 @@ shape = SubResource("RectangleShape2D_80q6s")
 script = ExtResource("5_3aw17")
 osc_address2 = "/BassNoteOff"
 target_client = NodePath("../../../Networking/OSCClient")
+osc_address = "/BassNoteOn"
+osc_argument = "45"
 
 [node name="Carril4" type="Line2D" parent="."]
 position = Vector2(700, -41)
@@ -288,6 +294,8 @@ shape = SubResource("RectangleShape2D_80q6s")
 script = ExtResource("5_3aw17")
 osc_address2 = "/BassNoteOff"
 target_client = NodePath("../../../Networking/OSCClient")
+osc_address = "/BassNoteOn"
+osc_argument = "48"
 
 [node name="Networking" type="Node2D" parent="." node_paths=PackedStringArray("scene_client", "scene_server")]
 script = ExtResource("6_qxn1s")

@@ -7,6 +7,6 @@ extends Node
 @export var target_client : OSCClient
 
 ## The OSC address to send to
-var osc_address := "/example"
+@export var osc_address := "/example"
 ##Para reaper solo se puede leer desde reascript el primer floa to el primer string
-var osc_argument = "argument"
+@export var osc_argument = "argument"
