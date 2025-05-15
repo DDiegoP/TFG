@@ -102,6 +102,8 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_dwkxb")
 icon = SubResource("CanvasTexture_ev6sg")
 script = ExtResource("7_7fxfg")
 target_client = NodePath("../../NETWORKING/OSCClient")
+osc_address = "/midiP"
+osc_argument = "60"
 metadata/_edit_use_anchors_ = true
 
 [node name="Button" type="Button" parent="MIDIController/WhiteKeys" node_paths=PackedStringArray("target_client")]
@@ -117,6 +119,8 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_dwkxb")
 icon = SubResource("CanvasTexture_ev6sg")
 script = ExtResource("7_7fxfg")
 target_client = NodePath("../../../NETWORKING/OSCClient")
+osc_address = "/midiP"
+osc_argument = "62"
 metadata/_edit_use_anchors_ = true
 
 [node name="Button" type="Button" parent="MIDIController/WhiteKeys/Button" node_paths=PackedStringArray("target_client")]
@@ -131,6 +135,8 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_dwkxb")
 icon = SubResource("CanvasTexture_ev6sg")
 script = ExtResource("7_7fxfg")
 target_client = NodePath("../../../../NETWORKING/OSCClient")
+osc_address = "/midiP"
+osc_argument = "64"
 metadata/_edit_use_anchors_ = true
 
 [node name="Button" type="Button" parent="MIDIController/WhiteKeys/Button/Button" node_paths=PackedStringArray("target_client")]
@@ -146,6 +152,8 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_dwkxb")
 icon = SubResource("CanvasTexture_ev6sg")
 script = ExtResource("7_7fxfg")
 target_client = NodePath("../../../../../NETWORKING/OSCClient")
+osc_address = "/midiP"
+osc_argument = "67"
 metadata/_edit_use_anchors_ = true
 
 [node name="Button" type="Button" parent="MIDIController/WhiteKeys/Button/Button/Button" node_paths=PackedStringArray("target_client")]
@@ -160,6 +168,8 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_dwkxb")
 icon = SubResource("CanvasTexture_ev6sg")
 script = ExtResource("7_7fxfg")
 target_client = NodePath("../../../../../../NETWORKING/OSCClient")
+osc_address = "/midiP"
+osc_argument = "69"
 metadata/_edit_use_anchors_ = true
 
 [node name="Button" type="Button" parent="MIDIController/WhiteKeys/Button/Button/Button/Button" node_paths=PackedStringArray("target_client")]
@@ -174,6 +184,8 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_dwkxb")
 icon = SubResource("CanvasTexture_ev6sg")
 script = ExtResource("7_7fxfg")
 target_client = NodePath("../../../../../../../NETWORKING/OSCClient")
+osc_address = "/midiP"
+osc_argument = "70"
 metadata/_edit_use_anchors_ = true
 
 [node name="Button2" type="Button" parent="MIDIController/WhiteKeys/Button/Button" node_paths=PackedStringArray("target_client")]
@@ -189,6 +201,8 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_dwkxb")
 icon = SubResource("CanvasTexture_ev6sg")
 script = ExtResource("7_7fxfg")
 target_client = NodePath("../../../../../NETWORKING/OSCClient")
+osc_address = "/midiP"
+osc_argument = "65"
 metadata/_edit_use_anchors_ = true
 
 [node name="BlackKeys" type="Button" parent="MIDIController" node_paths=PackedStringArray("target_client")]
@@ -204,6 +218,8 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_8bl3e")
 icon = SubResource("CanvasTexture_ev6sg")
 script = ExtResource("7_7fxfg")
 target_client = NodePath("../../NETWORKING/OSCClient")
+osc_address = "/midiP"
+osc_argument = "63"
 metadata/_edit_use_anchors_ = true
 
 [node name="Button2" type="Button" parent="MIDIController/BlackKeys" node_paths=PackedStringArray("target_client")]
@@ -219,6 +235,8 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_8bl3e")
 icon = SubResource("CanvasTexture_ev6sg")
 script = ExtResource("7_7fxfg")
 target_client = NodePath("../../../NETWORKING/OSCClient")
+osc_address = "/midiP"
+osc_argument = "66"
 metadata/_edit_use_anchors_ = true
 
 [node name="Button2" type="Button" parent="MIDIController/BlackKeys/Button2" node_paths=PackedStringArray("target_client")]
@@ -234,6 +252,8 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_8bl3e")
 icon = SubResource("CanvasTexture_ev6sg")
 script = ExtResource("7_7fxfg")
 target_client = NodePath("../../../../NETWORKING/OSCClient")
+osc_address = "/midiP"
+osc_argument = "68"
 metadata/_edit_use_anchors_ = true
 
 [node name="Button3" type="Button" parent="MIDIController/BlackKeys/Button2/Button2" node_paths=PackedStringArray("target_client")]
@@ -249,6 +269,8 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_8bl3e")
 icon = SubResource("CanvasTexture_ev6sg")
 script = ExtResource("7_7fxfg")
 target_client = NodePath("../../../../../NETWORKING/OSCClient")
+osc_address = "/midiP"
+osc_argument = "61"
 metadata/_edit_use_anchors_ = true
 
 [node name="Button4" type="Button" parent="MIDIController/BlackKeys/Button2/Button2/Button3" node_paths=PackedStringArray("target_client")]
@@ -265,6 +287,8 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_8bl3e")
 icon = SubResource("CanvasTexture_ev6sg")
 script = ExtResource("7_7fxfg")
 target_client = NodePath("../../../../../../NETWORKING/OSCClient")
+osc_address = "/midiP"
+osc_argument = "70"
 metadata/_edit_use_anchors_ = true
 
 [node name="PlayButton" type="Button" parent="MIDIController" node_paths=PackedStringArray("target_client")]
@@ -278,6 +302,7 @@ text = "PLAY
 "
 script = ExtResource("2_bmjjo")
 target_client = NodePath("../../NETWORKING/OSCClient")
+osc_address = "t/play"
 metadata/_edit_use_anchors_ = true
 
 [node name="StopButton" type="Button" parent="MIDIController" node_paths=PackedStringArray("target_client")]
@@ -291,6 +316,7 @@ text = "STOP
 "
 script = ExtResource("2_bmjjo")
 target_client = NodePath("../../NETWORKING/OSCClient")
+osc_address = "t/stop"
 metadata/_edit_use_anchors_ = true
 
 [node name="Mixer" type="Label" parent="MIDIController"]
@@ -326,6 +352,7 @@ max_value = 1.0
 step = 0.01
 script = ExtResource("3_5yyr0")
 target_client = NodePath("../../../NETWORKING/OSCClient")
+osc_address = "/SetPan"
 metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="MIDIController/Mixer/PAN"]
@@ -384,6 +411,7 @@ max_value = 2.0
 step = 0.01
 script = ExtResource("4_xsy7t")
 target_client = NodePath("../../../NETWORKING/OSCClient")
+osc_address = "/SetVolume"
 metadata/_edit_use_anchors_ = true
 
 [node name="Label2" type="Label" parent="MIDIController/Mixer/VOLUME"]
@@ -441,6 +469,7 @@ offset_bottom = 68.0
 theme_override_styles/normal = ExtResource("13_wj4a3")
 script = ExtResource("2_bu8cy")
 target_client = NodePath("../../../NETWORKING/OSCClient")
+osc_address = "/SelectTrack"
 metadata/_edit_use_anchors_ = true
 
 [node name="ClearButton" type="Button" parent="MIDIController" node_paths=PackedStringArray("target_client")]
@@ -456,6 +485,7 @@ text = "CLEAR
 "
 script = ExtResource("6_xirj1")
 target_client = NodePath("../../NETWORKING/OSCClient")
+osc_address = "/clearMidi"
 metadata/_edit_use_anchors_ = true
 
 [node name="NETWORKING" type="Node" parent="." node_paths=PackedStringArray("scene_client", "scene_server")]
