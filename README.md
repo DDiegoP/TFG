@@ -7,6 +7,9 @@
 ## Demo Project<a name="id1"></a>
 This repository contains a sample project.This particular demo consists of a mobile app that will allow the user to interact directly with a reaper project that is also provided.These conection will be handled via the OSC protocol.This mobile app contains 4 minigames and a very basic Midi controller that you can hook up to your Reaper project.The sample reaper project is a short Blues piece strcutured specifically to change as it reciebes user input from the mobile app.
 
+
+[![Watch the video](https://img.youtube.com/vi/JYQMGX2iR8s/maxresdefault.jpg)](https://youtu.be/JYQMGX2iR8s)
+
 ## Instalation Guide<a name="id2"></a>
 In order to try out the demo project you will need follow a series of simple steps:
 
