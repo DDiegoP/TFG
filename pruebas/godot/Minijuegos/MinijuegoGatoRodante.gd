@@ -24,7 +24,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if(accelerForce!= null):
-		ball.apply_central_impulse(forceToApply+ Vector2(accelerForce.x, 0))
+		ball.apply_central_impulse(forceToApply + Vector2(accelerForce.x, 0))
 
 #Se cambia el vector de fuerza horizontal que se aplica a el nuevo valor
 func changeForce(newForce):

@@ -36,7 +36,6 @@ launcher = NodePath("Pivote/Lanzadera")
 targets = [NodePath("Line2DNorth"), NodePath("Line2DWest"), NodePath("Line2DEast"), NodePath("Line2DSouth")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="PostProcess" type="ColorRect" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_mhkn1")
