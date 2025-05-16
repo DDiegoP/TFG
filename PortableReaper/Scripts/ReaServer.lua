@@ -71,7 +71,7 @@ end
 --Vamos a dejar esta funcion escuchando para gestionar la conexion y desocnexion de usuarios  eso es el reaper.defer()
  function Main()
  for address, values in osc.enumReceive(udp) do
-    
+     
      --obtenemos los argumentos una vez por mensaje y dependiendo del tipo de mensaje gestionamos.    
      args = {}
      i = 0
@@ -89,7 +89,12 @@ end
       if address == 't/connect' or address == 't/edit' then
         if #users > 0 then 
         if address == 't/connect' then
-          i = math.random(1 ,#users -2)
+          if #users>2 then
+           i = math.random(1 ,#users -2)
+          
+          else
+           i=1
+          end
           reaper.ShowConsoleMsg("random:")
           reaper.ShowConsoleMsg(i)
           u = users[i]
