@@ -22,6 +22,8 @@ In order to try out the demo project you will need follow a series of simple ste
 * Click on actions and execute "JazzKatsServer.lua"
 * A console will show up in reaper containing the IP address you have to type on the mobile app.
 
+[![Watch the video](https://img.youtube.com/vi/9uLZ6GbC18Y/maxresdefault.jpg)](https://youtu.be/9uLZ6GbC18Y)
+
 We can´t directly distribute the vst plug ins that we used to create our song but all of them are freely available online.To get  your reaper project to sound like ours you will just need to install : 
 * [Kontak 7 komplete start](https://www.native-instruments.com/es/products/komplete/bundles/komplete-start/)
 * [stochas probabilistic sequencer](https://stochas.org/)
