@@ -33,7 +33,10 @@ function setUp()
   udp = assert(socket.udp())
   assert(udp1:setpeername("177.44.4.1",3004)) -- Informacion aleatoria es solo para inicializarlo
   ip,n = udp1:getsockname()--tras inicializarlo nos puede dar la IP de este oredenador :)
+  reaper.ShowConsoleMsg("\nTu codigo de host es :")
+  reaper.ShowConsoleMsg("\n")
   reaper.ShowConsoleMsg(ip)
+  reaper.ShowConsoleMsg("\n")
   --Hemos establecido que el servidor de nuestro programa estara en el puerto 3000:
   assert(udp:setsockname(ip,port))
   udp:settimeout(0.0001) -- Dont forget to set a low timeout! udp:receive block until have a message or timeout. values like (1) will make REAPER laggy.
